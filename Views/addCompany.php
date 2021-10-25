@@ -16,7 +16,7 @@
                                  <input type="number" name="year" min="0" max="2021" placeholder="Year" required><br>
                                  <label for="city">City</label>
                                  <div class="form-group">
-                                   <select name="city" >
+                                   <select name="idcity" id="city">
                                    <option disabled selected>Select...</option>
                                    <?php if(isset($listCity)){ foreach($listCity as $city){ ?>
                                    <option value="<?php echo $city->getIdCity();?>" ><?php echo $city->getName();?></option>
