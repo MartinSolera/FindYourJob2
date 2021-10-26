@@ -30,10 +30,16 @@
                         <td><?php echo $company->getPhoneNumber(); ?></td>
                         <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"></td> 
                         <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?nameCompany=".$company->getName()."&email=".$company->getEmail();?> " style="color: white;">modify</a></button></td> 
-                              </tr>
+                        <td><button class="btn btn-danger">
+                                   <a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany/" . $company->getEmail();}; ?>">Eliminar Empresa</a>
+                         </td>      
+                      </tr>
                              <?php }
                           }?>
-                        </form>
+                        
+                      </form>
+                        
+
                     </tbody>
                </table>
           </div>
