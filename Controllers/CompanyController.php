@@ -8,6 +8,9 @@ use Models\Company as Company;
 use Models\City as City;
 use Utils\Utils as Utils;
 use DAO\Connection as Connection;
+use Controllers\Functions;//para mensajes de dbb
+use PDOException;
+
 
 class CompanyController
 {
@@ -23,15 +26,18 @@ class CompanyController
     public function ShowListViewStudent($message = "")
     {
         Utils::checkStudentSession();
+
         $companies = $this->companyDAO->GetAll();
+
         require_once(VIEWS_PATH."list-companies-std.php");
     }
 
    public function ViewAddCompany($message = ""){
+
         Utils::checkAdminSession();
 
         $listCity = $this->cityDao->GetCitys();
-        
+       
         require_once(VIEWS_PATH."addCompany.php");
     }
 
@@ -56,11 +62,31 @@ class CompanyController
             require_once(VIEWS_PATH."student-company-show.php");
         }
     }
-    public function RedirectAddForm()
+
+    public function ShowListViewAdmin($message = "")
+    {
+        Utils::checkAdminSession();
+        $companies = $this->companyDAO->GetAll();
+        require_once(VIEWS_PATH."company-management.php");
+    }
+
+    public function ShowAdminMenu($message = "")
+    {
+        Utils::checkAdminSession();
+        require_once(VIEWS_PATH."home-admin.php");
+    }
+
+    public function LogOut(){
+        Utils::logout();
+    }
+
+   /* public function RedirectAddForm($message ="")
     {
         Utils::checkAdminSession();
         require_once(VIEWS_PATH . "addCompany.php");
-    }
+    }*/ // esta repetida y no la usamos 
+
+
     public function AddCompany($name,$year,$idcity,$description,$email,$phone,$logo)
     {
         Utils::checkAdminSession();
@@ -76,9 +102,19 @@ class CompanyController
             $newCompany->setPhoneNumber($phone);
             $newCompany->setLogo($logo);
 
-            $this->companyDAO->Add($newCompany);
+            try {
+             $result = $this->companyDAO->Add($newCompany);
 
-            $this->ViewAddCompany("Company added");
+             if($result == 1)
+             $this->ViewAddCompany("Company added");
+             else
+             $this->ViewAddCompany("ERROR: Failed in Company Add, reintente");
+
+            } catch (PDOException $ex) {
+                if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
+                $this->ViewAddCompany("some of the data entered");
+            }
+           
     }
 
     public function DeleteCompany($email)
@@ -98,23 +134,6 @@ class CompanyController
         $this->ShowListViewAdmin("Company modified");
     }
 
-
-    public function ShowListViewAdmin($message = "")
-    {
-        Utils::checkAdminSession();
-        $companies = $this->companyDAO->GetAll();
-        require_once(VIEWS_PATH."company-management.php");
-    }
-
-    public function ShowAdminMenu($message = "")
-    {
-        Utils::checkAdminSession();
-        require_once(VIEWS_PATH."home-admin.php");
-    }
-
-    public function LogOut(){
-        Utils::logout();
-    }
 
     public function FilterCompanies($search)
     {

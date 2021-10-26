@@ -5,6 +5,8 @@
     use DAO\ICompanyDAO as ICompanyDAO;
     use DAO\Connection as Connection;
     use DAO\CityDAO as CityDAO;
+    use FFI\Exception;//agregar para errores de try 
+
 
     class CompanyDAO implements ICompanyDAO{
 
@@ -109,7 +111,7 @@
              $parameters['email'] = $email;
              $parameters['phone_number'] = $phone_number;
              
-             $this->connection = Connection::getInstance();
+            // $this->connection = Connection::getInstance();
              return $this->connection->ExecuteNonQuery($sql, $parameters);
  
              }   catch (\PDOException $exception) {
@@ -123,7 +125,7 @@
              $parameters['companyId'] = $companyId;
      
              try {
-                 $this->connection = Connection::getInstance();
+                // $this->connection = Connection::getInstance(); ya esta en el constructor
                  $companiesList = $this->connection->execute($sql, $parameters);
              } catch (\PDOException $exception) {
                  throw $exception;

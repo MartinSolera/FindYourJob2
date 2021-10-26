@@ -17,10 +17,13 @@ INSERT INTO UserType (description) VALUES ('Student');
 create table if not exists User(
 id_User BIGINT UNSIGNED AUTO_INCREMENT not null,
 email VARCHAR(50) not null UNIQUE,
+password VARCHAR(50) not null , /*agregue el password */
 idUserType BIGINT UNSIGNED not null,
 constraint pk_idUser primary key(id_User),
 constraint fk_idUserType foreign key (idUserType) references UserType(id_UserType)
 )ENGINE=INNODB;
+
+INSERT INTO User (email , password,iduserType) VALUES ('admin@utn.com','holaMundo',1); /*inserte el admid .. en la base */
 
 create table if not exists Career(
 id_Career BIGINT UNSIGNED AUTO_INCREMENT not null,
@@ -30,7 +33,7 @@ constraint pk_idCarrer primary key(id_Career)
 
 create table if not exists City(
 id_City BIGINT UNSIGNED AUTO_INCREMENT not null,
-name VARCHAR(30) not null ,
+name VARCHAR(30) not null UNIQUE,
 constraint pk_idCity primary key(id_City)
 )ENGINE=INNODB;
 
@@ -39,12 +42,12 @@ INSERT INTO City (name) VALUES ('Mar del Plata'),('Bahia blanca'),('Gran Buenos 
 
 create table if not exists Company(
 id_Company BIGINT UNSIGNED AUTO_INCREMENT not null,
-name varchar(50) not null,
+name varchar(50) not null UNIQUE, /*puse unico para no tener dos empresas con el mismo nombre*/
 yearFoundation YEAR not null ,
 description VARCHAR(30) not null ,
 logo LONGBLOB not null ,
 email VARCHAR(50) not null UNIQUE,
-phoneNumber VARCHAR(12) not null UNIQUE,
+phoneNumber VARCHAR(20) not null UNIQUE,
 idCity  BIGINT UNSIGNED not null,
 constraint pk_idCompany primary key(id_Company),
 constraint fk_idCity foreign key (idCity) references City(id_City) on update CASCADE
