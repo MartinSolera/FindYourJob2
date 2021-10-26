@@ -34,7 +34,7 @@
         {
             Utils::checkAdminSession();
             $this->studenList= $this->studentDAO->GetAll();
-            $this->careerList= $this->careerDAO->GetAll();
+            /* $this->careerList= $this->careerDAO->GetAll(); */
             require_once(VIEWS_PATH."list-student.php");
         }
 

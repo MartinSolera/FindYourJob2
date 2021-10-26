@@ -17,6 +17,6 @@
             </form>
             <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Registrarse</a>
      </div>
-
+</main>
 
      

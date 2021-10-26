@@ -13,7 +13,7 @@
                                  <label for="">Name</label>
                                  <input type="text" name="name" placeholder="Name"required >
                                  <label for="">Year Foundation</label><br>
-                                 <input input type="number" min="1900" max="2099" step="1" placeholder="Year" required><br>
+                                 <input input type="number" name="year" min="1900" max="2099" step="1" placeholder="Year" required><br>
                                  <label for="city">City</label>
                                  <div class="form-group">
                                    <select name="idcity" id="city" required>
