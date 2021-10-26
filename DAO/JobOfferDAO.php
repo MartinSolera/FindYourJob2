@@ -89,6 +89,67 @@
             }
         }
 
+        public function updateJobOffer(JobOffer $jobOffer)
+        {
+            $query = "UPDATE joboffer SET name=:name, description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany WHERE  id_JobOffer = :id_JobOffer" ;
+            
+
+            $parameters['description'] = $jobOffer->getDescription();
+            $parameters['dateTime'] = $jobOffer->getDateTime();
+            $parameters['limit_date'] = $jobOffer->getLimitDate();
+            $parameters['timeState'] = $jobOffer->getTimeState();
+            $parameters['userState'] = $jobOffer->getUserState();
+            $parameters['idUser'] = $jobOffer->getUser()->getId();
+            $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
+            $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
+            
+            try {
+                $this->connection = Connection::getInstance();
+                return $this->connection->executeNonQuery($sql, $parameters);
+            } catch (\PDOException $exception) {
+                throw $exception;
+            }
+        }
+
+        public function searchJobOffer($id_jobOffer)
+        {
+            $sql = "SELECT * FROM joboffer WHERE id_JobOffer=:id_JobOffer";
+            $parameters['id_JobOffer'] = $id_jobOffer;
+    
+            try {
+                $this->connection = Connection::getInstance();
+                $this->jobOfferList = $this->connection->execute($sql, $parameters);
+            } catch (\PDOException $exception) {
+                throw $exception;
+            }
+           
+            if (!empty($jobOfferList)) {
+                return $this->retrieveDataJobOffer();
+            } else {
+                return false;
+            }
+        }
+
+        private function retrieveDataJobOffer()
+        {
+            $listToReturn = array();
+    
+            foreach ($this->jobOfferList as $value) {
+                $jobOffer = new JobOffer();
+                $jobOffer->setDescription($value['description']);
+                $jobOffer->setDateTime($value['datetime']);
+                $jobOffer->setLimitDate($value['limit_date']);
+                $jobOffer->setTimeState($value['timeState']);
+                $jobOffer->setUserState($value['idUser']);
+
+                $jobOffer->setUser($this->GetUserXid($value['idUser']));
+                $jobOffer->setCompany($this->GetCompanyXid($value['idCompany']));
+                $jobOffer->setJobPosition($this->GetJobPositionXid($value['idJobPosition']));
+    
+                array_push($listToReturn, $jobOffer);
+            }
+            return  $listToReturn;
+        }
 
 
     }
