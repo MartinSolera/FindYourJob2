@@ -1,17 +1,17 @@
 <?php
     namespace Models;
 
-    class Role{
+    class UserType {
 
-        private $idRole;
+        private $id;
         private $description;
 
-        public function setIdRole($idRole){
-            $this->idRole = $idRole;
+        public function setId($id){
+            $this->id = $id;
         }
 
-        public function getIdRole(){
-            return $this->idRole;
+        public function getId(){
+            return $this->id;
         }
 
         public function setDescription($description){

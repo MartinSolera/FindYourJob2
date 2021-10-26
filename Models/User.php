@@ -6,6 +6,7 @@ class User
     private $email; 
     private $password;
     private $id;
+    private $userType;
 
     /**
      * Get the value of email
@@ -53,6 +54,14 @@ class User
 
     public function setId($id){
         $this->id = $id;
+    }
+
+    public function getUserType(){
+        return $this->userType;
+    }
+
+    public function setUserType($userType){
+        $this->userType = $userType;
     }
 }
 
