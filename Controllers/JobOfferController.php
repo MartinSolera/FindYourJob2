@@ -45,23 +45,19 @@
 
         
 
-                ///Filtro de job offers
-                public function jobOffersForJobPosition($positionId){
-                    Utils::checkSession();
-                    $this->jobOfferList = $this->jobOfferDAO->GetAllJobPosition();
-                    $results = array();
+              ///Filtro de job offers
+        public function jobOffersForJobPosition($positionId){
+            Utils::checkSession();
+            $this->jobOfferList = $this->jobOfferDAO->GetAllJobPosition();
+            $results = array();
         
-                    foreach($this->jobOfferList as $offer){
-                        if($offer['jobPositionId'] == $positionId){
-                            array_push($results, $offer); 
-                        }
+            foreach($this->jobOfferList as $offer){
+                if($offer['jobPositionId'] == $positionId){
+                        array_push($results, $offer); 
                     }
-                    return $results;
                 }
-        
+                return $results;
             }
-
-
         
 
     }
