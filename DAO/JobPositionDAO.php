@@ -83,7 +83,32 @@
         }
        
 
+        public function updateJobPosition(JobPosition $jobPosition)
+        {
+            $sql = "UPDATE jobposition SET description=:description;";
+    
+            $parameters['description'] = $jobPosition->getDescription();
+    
+            try {
+                $this->connection = Connection::getInstance();
+                return $this->connection->executeNonQuery($sql, $parameters);
+            } catch (Exception $exception) {
+                throw $exception;
+            }
+        }
         
+        public function deleteJobPosition($jobPosition)
+        {
+            $sql = "DELETE FROM jobposition WHERE id_JobPosition=:id_JobPosition";
+            $parameters['id_JobPosition'] = $jobPosition;
+    
+            try {
+                $this->connection = Connection::getInstance();
+                return $this->connection->executeNonQuery($sql, $parameters);
+            } catch (Exception $exception) {
+                throw $exception;
+            }
+        }
         
     }
 
