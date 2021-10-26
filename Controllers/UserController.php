@@ -33,15 +33,15 @@ class UserController{
                 $this->UserDAO->Add($newUser);
 
                 $succesfulRegistration = true;
-                require_once(VIEWS_PATH . "index.php");
+                require_once(VIEWS_PATH . "login.php");
             } else {
                 $registedEmail = true;
-                require_once(VIEWS_PATH . "index.php");
+                require_once(VIEWS_PATH . "login.php");
             }
             
         } else {
             $invalidEmail = true;
-            require_once(VIEWS_PATH . "index.php");
+            require_once(VIEWS_PATH . "login.php");
         }
     }
 
