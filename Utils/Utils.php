@@ -15,6 +15,12 @@
                 header("Location:".FRONT_ROOT);
             }
         }
+        public static function checkSession(){
+            if(!(isset($_SESSION['admin']) || isset($_SESSION['student']))){
+                $userNotLogged = true;
+                require_once(VIEWS_PATH ."login.php");
+            }
+        }
 
         public static function logout(){
             session_destroy();
