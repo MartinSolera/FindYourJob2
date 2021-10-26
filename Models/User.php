@@ -5,7 +5,7 @@ class User
 {
     private $email; 
     private $password;
-   
+    private $id;
 
     /**
      * Get the value of email
@@ -47,7 +47,13 @@ class User
         return $this;
     }
 
-   
+    public function getId(){
+        return $this->id;
+    }
+
+    public function setId($id){
+        $this->id = $id;
+    }
 }
 
 ?>

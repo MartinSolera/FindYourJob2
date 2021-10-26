@@ -4,14 +4,14 @@
     class JobOffer {
 
         private $idJobOffer;
-        private $student;
+        private $user; 
         private $company;
         private $jobPosition;
         private $description;
         private $datetime;
-        private $limit_date;
+        private $limitDate;
         private $timeState;
-        private $studentState;
+        private $userState;
 
         public function setIdJobOffer($idJobOffer){
             $this->idJobOffer = $idJobOffer;
@@ -21,28 +21,28 @@
             return $this->idJobOffer;
         }
 
-        public function setStudent($student){
-            $this->student = $student;
+        public function setUser($user){
+            $this->user = $user;
         }
 
-        public function getStudent(){
-            return $this->student;
+        public function getUser(){
+            return $this->user;
         }
 
         public function setCompany($company){
             $this->company = $company;
         }
 
-        public function getCompanyId_JobOffer(){
-            return $this->companyId_JobOffer;
+        public function getCompany(){
+            return $this->company;
         }
 
-        public function setJobPositionId_JobOffer($jobPositionId){
-            $this->jobPositionId_JobOffer = $jobPositionId;
+        public function setJobPosition($jobPosition){
+            $this->jobPosition = $jobPosition;
         }
 
-        public function getJobPositionId_JobOffer(){
-            return $this->jobPositionId_JobOffer;
+        public function getJobPosition(){
+            return $this->jobPosition;
         }
 
         public function setDescription($description){
@@ -61,12 +61,12 @@
             return $this->datetime;
         }
 
-        public function setLimitDate($limit_date){
-            $this->limit_date = $this->limit_date;
+        public function setLimitDate($limitDate){
+            $this->limitDate = $this->limitDate;
         }
 
         public function getLimitDate(){
-            return $this->limit_date;
+            return $this->limitDate;
         }
 
         public function setTimeState ($timeState){
@@ -77,12 +77,12 @@
             return $this->timeState;
         }
 
-        public function setStudentState($studentState){
-            $this->studentState = $studentState;
+        public function setUserState($userState){
+            $this->userState = $userState;
         }
 
-        public function getStudentState(){
-            return $this->studentState;
+        public function getUserState(){
+            return $this->userState;
         }
 
     }

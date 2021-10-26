@@ -3,16 +3,16 @@
 
     class JobPosition {
 
-        private $jobPositionId;
+        private $id;
         private $careerId;
         private $description;
 
-        public function getJobPositionId(){
-            return $this->jobPositionId;
+        public function getId(){
+            return $this->id;
         }
 
-        public function setJobPositionId($jobPositionId){
-            $this->jobPositionId = $jobPositionId;
+        public function setId($id){
+            $this->id = $id;
         }
 
         public function getCareerId(){
