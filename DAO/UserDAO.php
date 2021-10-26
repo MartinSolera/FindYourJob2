@@ -13,7 +13,63 @@
             $this->nameTable = "user";
         }
 
-        
+        public function Add(User $user){
+            $query = " INSERT INTO ". $this->nameTable . " (email , password , idUserType) value (:email , :password , :idUserType)";
+    
+            $parameters['email'] = $user->getEmail();
+            $parameters['password'] = $user->getPassword();
+            $parameters['idUserType'] = $user->getUserType()->getId();
+
+            try {
+                $result = $this->connection->ExecuteNonQuery($query, $parameters);
+    
+            } catch (\PDOException $ex) {
+                throw $ex;
+            }
+            return $result;
+        }
+
+        public function GetAll() {
+            $listUsers = [];
+
+            $query = "SELECT * FROM" . $this->nameTable;
+
+            try {
+                $result = $this->connection->Execute($query);
+            } catch (\PDOException $ex){
+                throw $ex;
+            }
+
+            if(!empty($result)) { 
+                foreach($result as $value) {
+                    $user = new User();
+
+                    $user->setEmail($value['email']);
+                    $user->setPassword($value['password']);
+                    $user->setUserType($this->userTypeDAO->GetUserTypeXid($value['idUserType']));
+                
+                    array_push($listUsers, $user);
+                }
+            }
+            return $listUsers;
+        }
+
+        public function DeleteUser($idUser)
+        {
+            $sql = "DELETE FROM user WHERE id_User = :id_User";
+            $parameters['id_User'] = $idUser;
+     
+            try {
+                $this->connection = Connection::getInstance();
+                $result = $this->connection->ExecuteNonQuery($sql, $parameters);
+    
+            }catch (\PDOException $exception) {
+                throw $exception;
+            }
+        }
+
+
+
     }
 
 ?>
