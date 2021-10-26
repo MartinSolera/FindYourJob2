@@ -9,6 +9,10 @@
                     <label for="">USERNAME</label>
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Type email" required>
                </div>
+             <!--    <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
+               </div>-->
                <button class="btn btn-dark btn-block btn-lg" type="submit" >Log In</button>
             </form>
             <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Registrarse</a>
