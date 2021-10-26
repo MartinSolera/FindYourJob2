@@ -68,6 +68,18 @@
             }
         }
 
+        public function getUserByEmail($email){
+            $userExist = NULL;
+            $users = $this->GetAll();
+
+            foreach($users as $user){
+                if($user->getEmail() == $email){
+                    $userExist = $user;
+                }
+            }
+            return $userExist;
+        }
+
 
 
     }
