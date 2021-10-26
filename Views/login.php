@@ -11,6 +11,7 @@
                </div>
                <button class="btn btn-dark btn-block btn-lg" type="submit" >Log In</button>
             </form>
+            <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Registrarse</a>
      </div>
 
 
