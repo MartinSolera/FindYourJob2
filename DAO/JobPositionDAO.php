@@ -3,8 +3,9 @@
     use Models\JobPosition as JobPosition;
 
     class JobPositionDAO {
+        
         private $jobPositionList = array();
-        private $tableName = "jobPosition";
+        private $tableName = "jobposition";
         private $connection;
 
         /* private function Add (JobPosition $jobPosition){
@@ -17,14 +18,13 @@
  */
         private function Add(JobPosition $jobPosition) {
             try {
-                $query = "INSERT INTO ".$this->tableName." (jobPositionId, careerId, description) VALUES (:jobPositionId, :careerId, :description);";
+                $query = "INSERT INTO ".$this->tableName." (id_JobPosition, description, idCareer) VALUES (:id_JobPosition, :description, :idCareer);";
                 
-                $parameters["jobPositionId"] = $jobPosition->getJobPositionId();
-                $parameters["careerId"] = $jobPosition->getCareerId();
+                $parameters["id_JobPosition"] = $jobPosition->getId();
                 $parameters["description"] = $jobPosition->getDescription();
+                $parameters["idCareer"] = $jobPosition->getCareerId();
 
                 $this->connection = Connection::GetInstance();
-
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch(Exception $ex)
@@ -44,8 +44,8 @@
 
                 foreach($resultSet as $row){
                     $jobP = new JobPosition();
-                    $jobP->setJobPositionId($row['jobPositionId']);
-                    $jobP->setCareerId($row['careerId']);
+                    $jobP->setId($row['id_JobPosition']);
+                    $jobP->setCareerId($row['idCareer']);
                     $jobP->setDescription($row['description']);
 
                     array_push($jobPositionList, $jobP);
@@ -74,7 +74,7 @@
             {
                 $jobPosition = new JobPosition();
 
-                $jobPosition->setJobPositionId($valuesArray['jobPositionId']);
+                $jobPosition->setId($valuesArray['id_JobPosition']);
                 $jobPosition->setCareerId($valuesArray['careerId']);
                 $jobPosition->setDescription($valuesArray['description']);
 
@@ -82,6 +82,7 @@
             }
         }
        
+
         
         
     }
