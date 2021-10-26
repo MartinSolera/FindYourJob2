@@ -16,6 +16,7 @@
                     <th>Phone Number</th>
                     <th>Logo</th>  
                     <th>Modify</th> 
+                    <th>Delete</th>
                     </thead>
                     <tbody>  
                    <form action="" method ="get">
@@ -30,9 +31,7 @@
                         <td><?php echo $company->getPhoneNumber(); ?></td>
                         <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"></td> 
                         <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?nameCompany=".$company->getName()."&email=".$company->getEmail();?> " style="color: white;">modify</a></button></td> 
-                        <td><button class="btn btn-danger">
-                                   <a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany/" . $company->getEmail();}; ?>">Eliminar Empresa</a>
-                         </td>      
+                        <td><button class="btn btn-danger"><a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany/" . $company->getEmail();}; ?>" style="color: white;">delete</a></button></td>      
                       </tr>
                              <?php }
                           }?>
@@ -44,33 +43,6 @@
                </table>
           </div>
      </section>
-</main>
-
-<main class="py-5">  
-<div class="container">
-<h3 class="mb-4">Remove Company</h3>
-        <form action="<?php echo FRONT_ROOT."Company/DeleteCompany" ?>" method="post">
-        <table  style="max-width: 35%;">
-            <thead>
-              <tr>
-                <th style="width: 100px;">Email</th>
-              </tr>
-            </thead>
-            <tbody align=center>
-              <tr>
-                <td>
-                    <input type="email" name="email" style="height: 40px;" placeholder="company email" required>
-                </td>
-
-                <td>
-                  <button type="submit" class="btn" value="">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-            </tr>
-          </table>
-         </form>
-      </div>
 </main>
 
 
