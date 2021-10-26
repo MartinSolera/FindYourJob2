@@ -4,6 +4,7 @@
     use Models\Person as Person;
     use Models\Student as Student;
     use Controllers\CompanyController as CompanyController;
+    use Utils\Utils as Utils;
     
     class HomeController
     {
@@ -44,6 +45,23 @@
             else{
                 $this->Index("Error: el usuario no se encuentra en el sistema.");
             }
+        }
+
+        public function RedirectHome()
+        {
+            Utils::checkSession();
+            if (isset($_SESSION['admin'])) {
+                require_once(VIEWS_PATH . "home-admin.php");
+            } else {
+                $student = $_SESSION['student'];
+                require_once(VIEWS_PATH . "home-student.php");
+            }
+           
+        }
+
+        public function ShowRegister()
+        {
+            require_once(VIEWS_PATH . "user-registration.php");
         }
     } 
     
