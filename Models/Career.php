@@ -4,16 +4,13 @@ namespace Models;
 class Career {
 
     private $careerId;
-    private $nameCareer;
-    private $active;
+    private $isActive;
     private $description;
 
     public function __construct()
     {
 
     }
-
-    
 
     /**
      * Get the value of careerId
@@ -29,24 +26,6 @@ class Career {
     public function setCareerId($careerId): self
     {
         $this->careerId = $careerId;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of nameCareer
-     */
-    public function getNameCareer()
-    {
-        return $this->nameCareer;
-    }
-
-    /**
-     * Set the value of nameCareer
-     */
-    public function setNameCareer($nameCareer): self
-    {
-        $this->nameCareer = $nameCareer;
 
         return $this;
     }
