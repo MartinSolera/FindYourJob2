@@ -17,7 +17,6 @@
                                  <label for="city">City</label>
                                  <div class="form-group">
                                    <select name="idcity" id="city" required>
-                                   <option disabled selected>Select a City</option>
                                    <?php if(isset($listCity)){ foreach($listCity as $city){ ?>
                                    <option value="<?php echo $city->getIdCity();?>" ><?php echo $city->getName();?></option>
                                    <?php } } ?>

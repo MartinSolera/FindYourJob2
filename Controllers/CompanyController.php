@@ -41,10 +41,14 @@ class CompanyController
         require_once(VIEWS_PATH."addCompany.php");
     }
 
-    public function ShowModifyCompany($nameCompany , $email)
+    public function ShowModifyCompany($idCompany)
     {
 
-       $company = $this->companyDAO->GetCompany($nameCompany , $email);
+        Utils::checkAdminSession();
+        
+       $company = $this->companyDAO->GetCompanyXid($idCompany);
+
+       $listCity = $this->cityDao->GetCitys();
 
         require_once(VIEWS_PATH."modifyCompany.php");
     }
@@ -53,7 +57,7 @@ class CompanyController
     {
 
         $company = $this->companyDAO->GetCompany($nameCompany, $email);
-        //require_once(VIEWS_PATH."student-company-show.php");
+       
         if (isset($adminLoggedIn)) 
         {
             require_once(VIEWS_PATH."admin-company-show.php");
@@ -66,17 +70,21 @@ class CompanyController
     public function ShowListViewAdmin($message = "")
     {
         Utils::checkAdminSession();
+
         $companies = $this->companyDAO->GetAll();
+
         require_once(VIEWS_PATH."company-management.php");
     }
 
     public function ShowAdminMenu($message = "")
     {
         Utils::checkAdminSession();
+
         require_once(VIEWS_PATH."home-admin.php");
     }
 
     public function LogOut(){
+
         Utils::logout();
     }
 
@@ -110,9 +118,10 @@ class CompanyController
              else
              $this->ViewAddCompany("ERROR: Failed in Company Add, reintente");
 
-            } catch (PDOException $ex) {
+            } catch (PDOException $ex) {// si encuentra un error de dbb
                 if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
-                $this->ViewAddCompany("some of the data entered");
+                $this->ViewAddCompany("some of the data entered");// devuelve este mensage 
+
             }
            
     }
@@ -125,13 +134,27 @@ class CompanyController
         $this->ShowListViewAdmin("Company deleted");
     }
 
-    public function UpdateCompany($name, $year, $city, $description, $email, $phone, $logo, $nameCompany , $emailCompany)
+    public function ModifyCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $logo,$idCompany)
     {
         Utils::checkAdminSession();
 
-        $this->companyDAO->UpdateCompany($name, $year, $city, $description, $email, $phone, $logo,$nameCompany , $emailCompany);
+        try{
 
+        $result = $this->companyDAO->UpdateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $logo,$idCompany);
+       
+        if($result == 1)
         $this->ShowListViewAdmin("Company modified");
+        else
+        $this->ShowListViewAdmin("ERROR: Failed in Company modify");
+
+    }catch(PDOException $ex){
+
+        if(Functions::contains_substr($ex->getMessage(), "Duplicate entry")) 
+        $this->ShowListViewAdmin("Datos repetidos ");
+
+          
+     }
+
     }
 
 

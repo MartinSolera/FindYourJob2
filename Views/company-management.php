@@ -30,8 +30,8 @@
                         <td><?php echo $company->getEmail(); ?></td>
                         <td><?php echo $company->getPhoneNumber(); ?></td>
                         <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"></td> 
-                        <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?nameCompany=".$company->getName()."&email=".$company->getEmail();?> " style="color: white;">modify</a></button></td> 
-                        <td><button class="btn btn-danger"><a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany/" . $company->getEmail();}; ?>" style="color: white;">delete</a></button></td>      
+                        <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?idCompany=".$company->getIdCompany();?> " style="color: white;">modify</a></button></td> 
+                        <td><button class="btn btn-danger"><a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany?idCompany=".$company->getIdCompany();}?> " style="color: white;">delete</a></button></td>      
                       </tr>
                              <?php }
                           }?>
