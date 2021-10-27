@@ -5,17 +5,22 @@
     use Models\JobPosition as JobPosition;
     use DAO\Connection as Connection;
     use DAO\JobPositionDAO as JobPositionDAO;
+    use FFI\Exception;
 
     class JobOfferDAO {
 
         private $connection;
         private $nameTable;
-        private $jobPositionDao;
+        private $jobPositionDAO;
+        private $userDAO;
+        private $companyDAO;
 
         public function __construct(){
             $this->connection = Connection::GetInstance();
             $this->nameTable = "joboffer";
-            $this->jobPositionDao = new JobPositionDAO();
+            $this->jobPositionDAO = new JobPositionDAO();
+            $this->userDAO = new UserDAO();
+            $this->companyDAO = new CompanyDAO();
         }
 
         public function Add(JobOffer $jobOffer){
@@ -33,7 +38,7 @@
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);
     
-            } catch (\PDOException $ex) {
+            } catch (Exception $ex) {
                 throw $ex;
             }
             return $result;
@@ -49,7 +54,7 @@
             try {
                 $result = $this->connection->Execute($query);
     
-            } catch (\PDOException $ex) {
+            } catch (Exception $ex) {
                 throw $ex;
             }
     
@@ -65,9 +70,9 @@
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setUserState($value['idUser']);
 
-                    $jobOffer->setUser($this->GetUserXid($value['idUser']));
-                    $jobOffer->setCompany($this->GetCompanyXid($value['idCompany']));
-                    $jobOffer->setJobPosition($this->GetJobPositionXid($value['idJobPosition']));
+                    $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
+                    $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
+                    $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
                     
                     array_push($listJobOffers, $jobOffer);
                 }
@@ -84,10 +89,11 @@
                 $this->connection = Connection::getInstance();
                 $result = $this->connection->ExecuteNonQuery($sql, $parameters);
     
-            }  catch (\PDOException $exception) {
+            }  catch (Exception $exception) {
                 throw $exception;
             }
         }
+        /*******/
 
         public function updateJobOffer(JobOffer $jobOffer)
         {
@@ -105,8 +111,8 @@
             
             try {
                 $this->connection = Connection::getInstance();
-                return $this->connection->executeNonQuery($sql, $parameters);
-            } catch (\PDOException $exception) {
+                return $this->connection->executeNonQuery($query, $parameters);
+            } catch (Exception $exception) {
                 throw $exception;
             }
         }
@@ -119,7 +125,7 @@
             try {
                 $this->connection = Connection::getInstance();
                 $this->jobOfferList = $this->connection->execute($sql, $parameters);
-            } catch (\PDOException $exception) {
+            } catch (Exception $exception) {
                 throw $exception;
             }
            
