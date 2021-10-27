@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use Models\Person as Person;
+    use Models\User as User;
     use Models\Student as Student;
     use Controllers\CompanyController as CompanyController;
     use Utils\Utils as Utils;
@@ -27,10 +27,9 @@
             $student->setEmail($email);
 
             if($email == 'admin@utn.com'){
-                $admin = new Person();
-                $admin->setEmail($email);
-                $admin->setIsAdmin(true);
-                $_SESSION['admin'] = $admin;
+                $user = new User();
+                $user->setEmail($email);
+                $_SESSION['admin'] = $user;
 
                 require_once(VIEWS_PATH . "home-admin.php");
 

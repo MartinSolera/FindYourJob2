@@ -1,8 +1,7 @@
 <?php
     namespace Models;
-    use Models\Person as Person;
 
-    class Student extends Person
+    class Student 
     {
         private $studentId; 
         private $dni;
