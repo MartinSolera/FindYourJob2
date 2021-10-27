@@ -80,7 +80,7 @@
                 $jobPosition = new JobPosition();
 
                 $jobPosition->setId($valuesArray['id_JobPosition']);
-                $jobPosition->setCareerId($valuesArray['careerId']);
+                $jobPosition->setCareer($this->careerDAO->GetCareerXid($valuesArray['careerId']));
                 $jobPosition->setDescription($valuesArray['description']);
 
                 array_push($this->jobPositionList, $jobPosition);
