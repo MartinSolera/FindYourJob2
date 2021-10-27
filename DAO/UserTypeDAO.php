@@ -2,6 +2,7 @@
     namespace DAO;
     use Models\UserType as UserType;
     use DAO\Connection as Connection;
+    use FFI\Exception;
 
     class UserTypeDAO {
 
@@ -21,7 +22,7 @@
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);
     
-            } catch (\PDOException $ex) {
+            } catch (Exception $ex) {
                 throw $ex;
             }
             return $result;
@@ -34,7 +35,7 @@
 
             try {
                 $result = $this->connection->Execute($query);
-            } catch (\PDOException $ex){
+            } catch (Exception $ex){
                 throw $ex;
             }
 
@@ -72,7 +73,7 @@
             $parameters['id_UserType'] = $id_UserType;
             try{
                 $result = $this->connection->Execute($query, $parameters);
-            } catch (\PDOException $ex) {
+            } catch (Exception $ex) {
                 throw $ex;
             }
 

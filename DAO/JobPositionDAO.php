@@ -1,28 +1,33 @@
 <?php
+    namespace DAO;
+
     use DAO\Connection;
     use Models\JobPosition as JobPosition;
+    use DAO\IJobPosition as IJobPosition;
+    use DAO\CareerDAO as CareerDAO;
+    use FFI\Exception;
 
-    class JobPositionDAO {
-        
+    class JobPositionDAO implements IJobPosition {
+
         private $jobPositionList = array();
         private $tableName = "jobposition";
         private $connection;
+        private $careerDAO;
 
-        /* private function Add (JobPosition $jobPosition){
-            $this->RetrieveData();
-            
-            array_push($this->jobPositionList, $jobPosition);
-
-            $this->SaveData();
+        public function __construct(){
+            $this->connection = Connection::GetInstance();
+            $this->nameTable = "jobposition";
+            $this->companyDAO = new CompanyDAO();
+            $this->careerDAO = new CareerDAO();
         }
- */
-        private function Add(JobPosition $jobPosition) {
+
+        public function Add(JobPosition $jobPosition) {
             try {
                 $query = "INSERT INTO ".$this->tableName." (id_JobPosition, description, idCareer) VALUES (:id_JobPosition, :description, :idCareer);";
                 
                 $parameters["id_JobPosition"] = $jobPosition->getId();
                 $parameters["description"] = $jobPosition->getDescription();
-                $parameters["idCareer"] = $jobPosition->getCareerId();
+                $parameters["idCareer"] = $jobPosition->getCareer()->getCareerId();
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -45,7 +50,7 @@
                 foreach($resultSet as $row){
                     $jobP = new JobPosition();
                     $jobP->setId($row['id_JobPosition']);
-                    $jobP->setCareerId($row['idCareer']);
+                    $jobP->setCareer($this->careerDAO->GetCareerXid($row['idCareer']));
                     $jobP->setDescription($row['description']);
 
                     array_push($jobPositionList, $jobP);
@@ -82,7 +87,6 @@
             }
         }
        
-
         public function updateJobPosition(JobPosition $jobPosition)
         {
             $sql = "UPDATE jobposition SET description=:description;";
@@ -109,6 +113,36 @@
                 throw $exception;
             }
         }
+
+        public function GetJobPositionXid($idJobP){
+
+            $query = " SELECT * FROM " . $this->nameTable . " WHERE id_JobPosition = (:id_JobPosition)";
+    
+            $parameters['id_JobPosition'] = $idJobP;
+    
+            try {
+                $result = $this->connection->Execute($query, $parameters);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            $jobP = null;
+    
+            if(!empty($result)){
+    
+                foreach($result as $value){
+
+                    $jobP = new JobPosition();
+
+                    $jobP->setId($value['id_JobPosition']);
+                    $jobP->setCareer($this->careerDAO->GetCareerXid($value['idCareer']));
+                    $jobP->setDescription($value['description']);
+                }
+            }
+            return $jobP;
+         }
+
         
     }
 

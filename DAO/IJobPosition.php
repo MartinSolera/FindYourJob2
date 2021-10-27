@@ -6,5 +6,6 @@
     interface IJobPositionDAO
     {
         function GetAll();
+        function Add(JobPosition $jobPosition);
     }
 ?>

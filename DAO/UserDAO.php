@@ -2,6 +2,7 @@
     namespace DAO;
     use Models\User as User;
     use DAO\Connection as Connection;
+    use FFI\Exception;
 
     class UserDAO {
 
@@ -47,7 +48,8 @@
                     $user->setEmail($value['email']);
                     $user->setPassword($value['password']);
                     $user->setUserType($this->userTypeDAO->GetUserTypeXid($value['idUserType']));
-                
+                    $user->setId($value['id_User']);
+                    
                     array_push($listUsers, $user);
                 }
             }
@@ -80,8 +82,35 @@
             return $userExist;
         }
 
+        public function GetUserXid($idUser) {
 
+            $query = " SELECT * FROM " . $this->nameTable . " WHERE id_User = (:id_User)";
+    
+            $parameters['id_User'] = $idUser;
+    
+            try {
+                $result = $this->connection->Execute($query, $parameters);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            $user = null;
+    
+            if(!empty($result)){
+    
+                foreach($result as $value){
 
+                    $user = new User();
+
+                    $user->setEmail($value['email']);
+                    $user->setPassword($value['password']);
+                    $user->setUserType($this->userTypeDAO->GetUserTypeXid($value['idUserType']));
+                    $user->setId($value['id_User']);
+                }
+            }
+            return $user;
+        }
     }
 
 ?>

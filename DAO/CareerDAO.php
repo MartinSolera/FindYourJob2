@@ -3,6 +3,7 @@
 
     use Models\Career as Career;
     use DAO\ICareerDAO as ICareerDAO;
+    use FFI\Exception;
 
     class CareerDAO implements ICareerDAO{
 
@@ -80,6 +81,35 @@
             }
         
     }
+    
+    public function GetCareerXid($idCareer){
+
+        $query = " SELECT * FROM " . $this->nameTable . " WHERE id_Career = (:id_Career)";
+
+        $parameters['id_Career'] = $idCareer;
+
+        try {
+            $result = $this->connection->Execute($query, $parameters);
+
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+
+        $career = null;
+
+        if(!empty($result)){
+
+            foreach($result as $value){
+
+                $career = new Career();
+
+                $career->setCareerId($value['id_Career']);
+                $career->setDescription($value['description']); 
+                $career->setActive($value['isActive']); //todavia no esta la columna en la bdd
+            }
+        }
+        return $career;
+     }
 
     }
 
