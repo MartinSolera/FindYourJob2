@@ -119,8 +119,9 @@ class CompanyController
              $this->ViewAddCompany("ERROR: Failed in Company Add, reintente");
 
             } catch (PDOException $ex) {// si encuentra un error de dbb
+    
                 if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
-                $this->ViewAddCompany("some of the data entered");// devuelve este mensage 
+                $this->ViewAddCompany($ex->getMessage());// devuelve este mensage 
 
             }
            
