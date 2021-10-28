@@ -5,7 +5,7 @@
      <section id="listado" class="mb-5">
           <div class="container">
           <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
-               <h2 class="mb-4">Job Offers Management</h2>
+               <h2 class="mb-4">Job Offer Management</h2>
                <table class="table bg-light-alpha">
                     <thead>
                     <th>Name</th>
@@ -19,9 +19,13 @@
                     </thead>
                     <tbody>  
                    <form action="" method ="get">
-                   <?php if(!empty($companies)){ 
-                  foreach($companies as $company){ ?>
-                      <tr>
+                   <?php if(!empty($jobOffers)){ 
+                  foreach($jobOffers as $jobOff){ ?>
+                    <tr>
+                         <td><?php echo $jobOff->getCompany()->getName(); ?></td>
+                         <td><?php echo $jobOff->get; ?></td>
+                         <td><?php echo $jobOff->get; ?></td>
+
                         <td><?php echo $company->getName(); ?></td>
                         <td><?php echo $company->getYearFoundation(); ?></td>
                         <td><?php echo $company->getCity(); ?></td>
@@ -29,8 +33,9 @@
                         <td><?php echo $company->getEmail(); ?></td>
                         <td><?php echo $company->getPhoneNumber(); ?></td>
                         <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"></td> 
-                        <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?nameCompany=".$company->getName()."&email=".$company->getEmail();?> " style="color: white;">modify</a></button></td> 
-                              </tr>
+                        <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?idCompany=".$company->getIdCompany();?> " style="color: white;">modify</a></button></td> 
+                        <td><button class="btn btn-danger"><a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany?idCompany=".$company->getIdCompany();}?> " style="color: white;">delete</a></button></td>
+                    </tr>
                              <?php }
                           }?>
                         </form>
