@@ -58,9 +58,22 @@
            
         }
 
+        public function RegisterValidation($email)
+        {
+                $student = $this->studentDAO->getStudentByMail($email);
+                // $career = $this->careerDAO->getCareerStudent($student);
+            if ($student != null)
+            {
+                require_once(VIEWS_PATH . "user-registration.php");
+            } else {
+                $message = "This mail is incorrect. Please try again";
+                require_once(VIEWS_PATH . "user-validation.php");
+            }
+        }
+
         public function ShowRegister()
         {
-            require_once(VIEWS_PATH . "user-registration.php");
+            require_once(VIEWS_PATH . "user-validation.php");
         }
     } 
     

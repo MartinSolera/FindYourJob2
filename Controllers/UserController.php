@@ -16,33 +16,39 @@ class UserController{
             $this->UserDAO = new UserDAO();
         }
 
-    public function Register($email, $password){
-        $studentController = new StudentController();
-        $student = new Student();
-        $student = $studentController->getByEmail($email);
-
-        if ($student != null) {
-            
-            if($this->UserDAO->getUserByEmail($email) == null){
-                $newUser = new User();
-                $newUser->setEmail($email);
-                $newUser->setPassword($password);
-                $newUser->setId($student->getId());
-                $newUser->setUserType(2);
+    public function userRegister($email, $password, $confirmPass){
         
-                $this->UserDAO->Add($newUser);
-
-                $succesfulRegistration = true;
-                require_once(VIEWS_PATH . "login.php");
+        if ($password == $confirmPass)
+        {
+            $studentController = new StudentController();
+            $student = new Student();
+            $student = $studentController->getByEmail($email);
+    
+            if ($student != null) {
+                
+                if($this->UserDAO->getUserByEmail($email) == null){
+                    $newUser = new User();
+                    $newUser->setEmail($email);
+                    $newUser->setPassword($password);
+                    $newUser->setId($student->getId());
+                    $newUser->setUserType(2);
+            
+                    $this->UserDAO->Add($newUser);
+    
+                    $succesfulRegistration = true;
+                    require_once(VIEWS_PATH . "login.php");
+                } else {
+                    $registedEmail = true;
+                    require_once(VIEWS_PATH . "login.php");
+                }
+                
             } else {
-                $registedEmail = true;
+                $invalidEmail = true;
                 require_once(VIEWS_PATH . "login.php");
             }
-            
-        } else {
-            $invalidEmail = true;
-            require_once(VIEWS_PATH . "login.php");
+
         }
+
     }
 
     public function getUserByEmail($email){
