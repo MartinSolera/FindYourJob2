@@ -34,7 +34,7 @@
         </div>
     </section>
     <section>
-        <form action='<?php echo FRONT_ROOT ?>Student/studentRegistration' method="post" class="bg-light-alpha p-5">
+        <form action='<?php echo FRONT_ROOT ?>User/userRegister' method="post" class="bg-light-alpha p-5">
             <div>
                 <div class="form-group">
                     <label for="" align="center"></label>

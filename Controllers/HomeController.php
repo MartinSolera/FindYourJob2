@@ -5,15 +5,17 @@
     use Models\Student as Student;
     use Controllers\CompanyController as CompanyController;
     use Utils\Utils as Utils;
-    
+    use DAO\StudentDAO as StudentDAO;
     class HomeController
     {
         private $studentController;
         private $companyController;
+        private $studentDAO;
 
         public function __construct(){
             $this->studentController = new StudentController();
             $this->companyController = new CompanyController();
+            $this->studentDAO = new StudentDAO();
         }
 
         public function Index($message = "")

@@ -5,7 +5,7 @@ namespace Controllers;
 use Controllers\StudentController as StudentController;
 use Models\Student as Student;
 use Models\User as User;
-use DAO\UserDAO;
+use DAO\UserDAO as UserDAO;
 
 class UserController{
 

@@ -150,6 +150,18 @@
             }
             return $exists;
         }
-        
+        public function getStudentByMail($email)
+        {
+            $this->RetrieveData();
+
+            foreach ($this->studentList as $student) {
+                if ($student->getEmail() == $email){
+                    return $student;
+                }
+            }
+                return null;
+           
+        }
+
     }
 ?>
