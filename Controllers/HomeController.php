@@ -21,14 +21,15 @@
             require_once(VIEWS_PATH."login.php");
         }   
 
-        public function login($email){
+        public function login($email, $password){
             $studentController = new StudentController();
             $student = new Student();
             $student->setEmail($email);
 
-            if($email == 'admin@utn.com'){
+            if(($email == 'admin@utn.com') && ($password == "admin")){
                 $user = new User();
                 $user->setEmail($email);
+                $user->setPassword($password);
                 $_SESSION['admin'] = $user;
 
                 require_once(VIEWS_PATH . "home-admin.php");
