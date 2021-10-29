@@ -16,11 +16,13 @@ class CompanyController
 {
     private $companyDAO;
     private $cityDao;
+    private $message;
 
     public function __construct()
     {
         $this->companyDAO = new CompanyDAO();
         $this->cityDao = new CityDAO();
+        $message = null;
     }
 
     public function ShowListViewStudent($message = "")
@@ -113,8 +115,10 @@ class CompanyController
             try {
              $result = $this->companyDAO->Add($newCompany);
 
-             if($result == 1)
-             $this->ViewAddCompany("Company added");
+             if($result == 1){
+             $message = "Company added";
+             $this->ViewAddCompany($message);
+            }
              else
              $this->ViewAddCompany("ERROR: Failed in Company Add, reintente");
 
