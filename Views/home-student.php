@@ -5,7 +5,7 @@
 <body>
 <header class="text-center">
     <br><br>
-<img src="<?php echo IMG_PATH ?>homeAdmin.png" width="200" height="" alt=""/>
+<img src="<?php echo IMG_PATH ?>studentMenu.png" width="200" height="" alt=""/>
        </header>
     <!-- Header-->
     <br><br>
