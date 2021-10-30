@@ -163,5 +163,18 @@
            
         }
 
+        public function GetByStudentId($studentId)
+        {
+            $this->RetrieveData();
+    
+            foreach ($this->studentList as $student) {
+                if ($student->getStudentId() == $studentId){
+                    return $student;
+                }
+            }
+    
+            return null;
+        }
+
     }
 ?>

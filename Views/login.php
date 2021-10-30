@@ -14,17 +14,9 @@
                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Password requerid" required>
                </div>
                <button class="btn btn-dark btn-block btn-lg" type="submit" >Log In</button>
-               Opcion 1
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Registration</a>
+               
+               <a class="btn btn-dark btn-block btn-lg" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Registration</a>
             </form>
-          
-              //Opcion 2
-               <form action="<?php echo FRONT_ROOT ?>Home/ShowRegister" method="get" class="login-form  p-2 bg-none">
-                    <center>
-                         <button class="btn btn-dark" type="submit">Registration</button>
-                    </center>
-               </form>
-
      </div>
 </main>
 

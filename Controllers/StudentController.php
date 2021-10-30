@@ -9,10 +9,12 @@
      class StudentController
      {
          private $studentDAO;
+         private $studenList = array();
  
          public function __construct()
          {
              $this->studentDAO = new StudentDAO();
+             $this->careerDAO = new CareerDAO();
          }
  
          public function ExistsByEmail($student){
@@ -33,8 +35,8 @@
         public function ShowStudentList($message = "")
         {
             Utils::checkAdminSession();
-            $this->studenList= $this->studentDAO->GetAll();
-            /* $this->careerList= $this->careerDAO->GetAll(); */
+            $this->studenList = $this->studentDAO->GetAll();
+            //$this->careerList = $this->careerDAO->GetAll();
             require_once(VIEWS_PATH."list-student.php");
         }
 
@@ -53,7 +55,7 @@
         }
 
         public function getByEmail($email){
-            $student = $this->studentDAO->GetByStudentEmail($email);
+            $student = $this->studentDAO->getStudentByMail($email);
             return $student;
         }
 

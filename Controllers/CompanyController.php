@@ -55,10 +55,10 @@ class CompanyController
         require_once(VIEWS_PATH."modifyCompany.php");
     }
 
-    public function ShowCompany ($nameCompany, $email)
+    public function ShowCompany ($idCompany)
     {
 
-        $company = $this->companyDAO->GetCompany($nameCompany, $email);
+        $company = $this->companyDAO->GetCompanyXid($idCompany);
        
         if (isset($adminLoggedIn)) 
         {
