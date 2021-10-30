@@ -2,16 +2,20 @@
     namespace DAO;
     use Models\User as User;
     use DAO\Connection as Connection;
+    use DAO\UserTypeDAO as UserTypeDAO;
     use FFI\Exception;
+
 
     class UserDAO {
 
         private $connection;
         private $nameTable;
+        private $userTypeDao;
    
         public function __construct(){
             $this->connection = Connection::GetInstance();
             $this->nameTable = "user";
+            $this->userTypeDao = new UserTypeDAO;
         }
 
         public function Add(User $user){
@@ -82,6 +86,32 @@
             return $userExist;
         }
 
+
+        public function getUserByLog($email,$password){
+            $query = "SELECT * FROM " . $this->nameTable . " WHERE email = (:email) ";
+
+            $parameters ['email'] = $email;
+            //$parameters ['pass'] = $password;
+
+            try{
+                $result = $this->connection->Execute($query,$parameters);
+            } catch (Exception $ex){
+                throw $ex;
+            }
+
+            $user = null; 
+            if(!empty($result)){
+                foreach($result as $value){
+                    $user = new User();
+                    $user->setId($value['id_User']);
+                    $user->setEmail($value['email']);
+                    //$user->setPassword($value['pass']);
+                    $user->setUserType($this->userTypeDao->GetUserTypeXid($value['idUserType']));
+                }
+            }
+            return $user;
+        }
+
         public function GetUserXid($idUser) {
 
             $query = " SELECT * FROM " . $this->nameTable . " WHERE id_User = (:id_User)";
@@ -96,11 +126,8 @@
             }
     
             $user = null;
-    
             if(!empty($result)){
-    
                 foreach($result as $value){
-
                     $user = new User();
 
                     $user->setEmail($value['email']);

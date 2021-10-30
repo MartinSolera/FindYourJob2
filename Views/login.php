@@ -4,7 +4,7 @@
                <h1>Find Your Job </h1>
                <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
           </header>
-          <form action=<?php echo FRONT_ROOT.'Home/login'?> method="post" class="login-form bg-dark-alpha p-5 text-black">
+          <form action=<?php echo FRONT_ROOT.'Home/loginNew'?> method="post" class="login-form bg-dark-alpha p-5 text-black">
                <div class="form-group">
                     <label for="">USERNAME</label>
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Type email requerid" required>

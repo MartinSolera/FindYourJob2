@@ -25,6 +25,8 @@ class CompanyController
         $message = null;
     }
 
+
+    /// REVISAR !!!
     public function ShowListViewStudent($message = "")
     {
         Utils::checkStudentSession();
