@@ -175,16 +175,13 @@ class CompanyController
             if (Utils::completeSearch($companyName, $search)) 
             {
                  array_push($filteredCompanies, $company);
-            }
-            /*else
-            {
-                $this->ShowListViewStudent ("La Empresa no se encuentra registrada");
-            }*/
+            }            
         }
         $companies = $filteredCompanies;
+        if($companies == null){
+            $this->ShowListViewStudent ("The company you search dosen't exist");
+        }
         require_once(VIEWS_PATH . "list-companies-std.php");
     }
-
-
 
 }
