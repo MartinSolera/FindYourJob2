@@ -9,6 +9,9 @@
      </span>
      <ul class="navbar-nav ml-auto">
 
+          <!-- -----------Admin---------------- -->
+
+
           <?php if(isset($_SESSION['admin'])) { ?>
           
            <li class="nav-item">
@@ -25,6 +28,11 @@
           </li> 
           <?php } ?>   
           
+          <!-- -----------Student---------------- -->
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowStudentMenu">Menu</a>
+          </li>
+
           <?php if(isset($_SESSION['student'])) { ?>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies list</a>

@@ -66,6 +66,14 @@
         }
 
 
+        public function ShowStudentMenu()
+    {
+        Utils::checkStudentSession();
+
+        require_once(VIEWS_PATH."home-student.php");
+    }
+
+
 
     }
 
