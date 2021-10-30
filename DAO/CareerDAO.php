@@ -21,6 +21,11 @@
 
         }
 
+        public function GetAllActive()
+        {
+            
+        }
+
         public function Delete(Career $careerToDelete){
 
         }
@@ -52,7 +57,7 @@
           }
 
         }
-
+/*
       public function GetAllActive(){
             $this->consumeFromApi();
             return array_filter(
@@ -61,7 +66,7 @@
              );
 
         }
-
+*/
         public function GetCareerById($careerId){
             $this->consumeFromApi();
 
