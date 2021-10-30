@@ -84,12 +84,29 @@
             $this->JobOfferManagementView($message);
         }
 
+
+        public function updateJobOffer($jobOfferId, $datetime, $limitDate, $userState, $jobPosition)
+        {
+            Utils::checkSession();
+            $message = "The job offer had been updated successfully";
+
+            $jobOffer = new JobOffer();
+            $jobOffer->setIdJobOffer($jobOfferId);
+            $jobOffer->setDatetime($datetime);
+            $jobOffer->setLimitDate($limitDate);
+            $jobOffer->setUserState($userState);
+            $jobOffer->setJobPosition($jobPosition);
+
+            $this->JobOfferDAO->update($jobOffer);
+
+            $this->JobOfferManagementView($message);
+        }
         
 
               ///Filtro de job offers
         public function jobOffersForJobPosition($positionId){
             Utils::checkSession();
-            $this->jobOfferList = $this->jobOfferDAO->GetAllJobPosition();
+            $this->jobOfferList = $this->jobOfferDAO->GetAll();
             $results = array();
         
             foreach($this->jobOfferList as $offer){
