@@ -20,23 +20,25 @@ class UpdateController
 
     public function __construct()
     {
-        $this->jobPositionController = new JobPositionController();
-        $this->companyContoller = new CompanyContoller();
+        //$this->jobPositionController = new JobPositionController();
+        $this->companyContoller = new CompanyController();
         $this->careerController = new CareerController();
     }
 
     public function UpdateDB(){
         Utils::checkAdminSession();
         $message=null;
-        
-        
-    }
-    public function ShowAdminMenu($message = "")
-    {
-        Utils::checkAdminSession();
+        $resC = $this->careerController->UpdateCareerDB();
 
-        require_once(VIEWS_PATH."home-admin.php");
+        if($resC == 1){
+            $mensaje="";
+            $this->companyContoller->ShowAdminMenu($mensaje);
+        } else {
+            $mensaje="failed to update data";
+            $this->companyContoller->ShowAdminMenu($mensaje);
+        }
     }
+
 }
 
 ?>

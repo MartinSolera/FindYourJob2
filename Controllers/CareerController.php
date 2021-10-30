@@ -23,19 +23,13 @@ class CareerController
 
     public function UpdateCareerDB(){
         Utils::checkAdminSession();
-        $message=null;
-        $result=$this->careerDAO->updateCareersDB();
-        if($result==1){
-            $message = ""
-        }
-        $this->companyController->ShowAdminMenu();
+    
+        $result=$this->careerDAO->updateCareerDB();//si retorna 1 se agregaron todas las carreras con exito
+        
+        return $result;
     }
-    public function ShowAdminMenu($message = "")
-    {
-        Utils::checkAdminSession();
 
-        require_once(VIEWS_PATH."home-admin.php");
-    }
+   
 }
 
 ?>
