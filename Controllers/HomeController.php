@@ -4,17 +4,25 @@
     use Models\User as User;
     use Models\Student as Student;
     use Controllers\CompanyController as CompanyController;
+    use Controllers\UserController as UserController;
     use Utils\Utils as Utils;
     use DAO\StudentDAO as StudentDAO;
+    use DAO\UserDAO as UserDao;
+
+
     class HomeController
     {
         private $studentController;
         private $companyController;
         private $studentDAO;
+        private $userDao;
+        private $user;
 
         public function __construct(){
             $this->studentController = new StudentController();
             $this->companyController = new CompanyController();
+            $this->UserController = new UserController();
+            $this->userDao = new UserDao();
             $this->studentDAO = new StudentDAO();
         }
 
@@ -48,6 +56,55 @@
                 $this->Index("Error: el usuario no se encuentra en el sistema.");
             }
         }
+
+
+        public function loginNew ($email, $password){
+            $userController = new UserController();
+            $user = new User();
+
+            $user = $this->userDao->getUserByLog($email,$password);
+
+            if(!empty($user)){
+                
+                if($user->getUserType()->getId() == 1){
+                    $_SESSION['admin'] = $user;
+                    require_once(VIEWS_PATH . "home-admin.php");
+                }
+                elseif ($user->getUserType()->getId() == 2) {
+                    $_SESSION['student'] = $user;
+                    require_once(VIEWS_PATH . "home-student.php");
+                }
+            }
+            else{
+                $this->Index("Error: el usuario no se encuentra en el sistema.");
+            }
+
+            
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public function RedirectHome()
         {
