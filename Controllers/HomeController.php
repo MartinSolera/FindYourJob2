@@ -31,6 +31,7 @@
             require_once(VIEWS_PATH."login.php");
         }   
 
+        /*
         public function login($email, $password){
             $studentController = new StudentController();
             $student = new Student();
@@ -56,9 +57,9 @@
                 $this->Index("Error: el usuario no se encuentra en el sistema.");
             }
         }
+        */
 
-
-        public function loginNew ($email, $password){
+        public function login ($email, $password){
             $userController = new UserController();
             $user = new User();
 

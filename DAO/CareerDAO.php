@@ -16,12 +16,12 @@
             $nameTable = "career";
         }
 
-       /*  public function GetAll(){
+         public function GetAll(){
 
             $this->consumeFromApi();
             return $this->careerList;
 
-        } */
+        } 
 
         public function GetAllActive()
         {
