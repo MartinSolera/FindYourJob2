@@ -16,12 +16,12 @@
             $nameTable = "career";
         }
 
-       /*  public function GetAll(){
+        public function GetAll(){
 
             $this->consumeFromApi();
             return $this->careerList;
 
-        } */
+        }
 
         public function GetAllActive()
         {
@@ -85,7 +85,7 @@
 
     public function emptyCareerDB(){ //borra todas las filas de la tabla
         
-        $sql = "DELETE FROM" . $this->nameTable ;
+        $sql = "DELETE FROM " . $this->nameTable ;
         
         try {
             $result = $this->connection->ExecuteNonQuery($sql);
@@ -96,7 +96,7 @@
     }
     
 
-    public function updateCareersDB(){
+    public function updateCareerDB(){
         $this->getCareersFromAPI();
         $this->emptyCareerDB();
 
