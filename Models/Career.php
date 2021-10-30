@@ -4,7 +4,7 @@ namespace Models;
 class Career {
 
     private $careerId;
-    private $isActive;
+    private $active; //true or false
     private $description;
 
     public function __construct()
