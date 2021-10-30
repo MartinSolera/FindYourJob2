@@ -11,6 +11,7 @@
                     <input type="text" name="search" class="form-control form-control-ml" placeholder="Company Name"  required>
                     <br>
                     <button type="submit"  class="btn btn-dark ml-auto d-block" >Search</button>
+                    <button type="submit"  class="btn btn-dark ml-auto d-block"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">All Companies</a></button>
                     <br>
                </form>
                <table class="table bg-light-alpha">

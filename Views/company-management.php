@@ -5,7 +5,7 @@
      <section id="listado" class="mb-5">
           <div class="container">
           <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
-               <h2 class="mb-4">Company Management !</h2>
+               <h2 class="mb-4">Company Management</h2>
                <table class="table bg-light-alpha">
                     <thead>
                     <th>Name</th>

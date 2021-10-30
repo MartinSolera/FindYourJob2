@@ -35,7 +35,7 @@
 
           <?php if(isset($_SESSION['student'])) { ?>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies list</a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies List</a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/LogOut">Logout</a>
