@@ -3,12 +3,12 @@ namespace DAO;
 
 use Models\City as City;
 use DAO\Connection as Connection;
+use FFI\Exception;
 
 class CityDAO{
 
     private $connection;
     private $nameTable;
-   
 
     public function __construct(){
         $this->connection = Connection::GetInstance();
@@ -70,7 +70,6 @@ class CityDAO{
         }
         return $city;
      }
-
 
 }
 

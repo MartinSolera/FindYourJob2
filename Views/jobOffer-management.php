@@ -8,33 +8,27 @@
                <h2 class="mb-4">Job Offer Management</h2>
                <table class="table bg-light-alpha">
                     <thead>
-                    <th>Name</th>
-                    <th>Foundation Year</th>
-                    <th>City</th>
+                    <th>Company</th>
+                    <th>Job position</th>
                     <th>Description</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Logo</th>  
-                    <th>Modify</th> 
+                    <th>Limit date</th>
+                    <th>Status</th>
+                    <th>Modify</th>  
+                    <th>Delete</th> 
                     </thead>
                     <tbody>  
                    <form action="" method ="get">
-                   <?php if(!empty($jobOffers)){ 
-                  foreach($jobOffers as $jobOff){ ?>
+                   <?php if(!empty($jobOfferList)){ 
+                  foreach($jobOfferList as $jobOff){ ?>
                     <tr>
                          <td><?php echo $jobOff->getCompany()->getName(); ?></td>
-                         <td><?php echo $jobOff->get; ?></td>
-                         <td><?php echo $jobOff->get; ?></td>
-
-                        <td><?php echo $company->getName(); ?></td>
-                        <td><?php echo $company->getYearFoundation(); ?></td>
-                        <td><?php echo $company->getCity(); ?></td>
-                        <td><?php echo $company->getDescription(); ?></td>
-                        <td><?php echo $company->getEmail(); ?></td>
-                        <td><?php echo $company->getPhoneNumber(); ?></td>
-                        <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"></td> 
-                        <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?idCompany=".$company->getIdCompany();?> " style="color: white;">modify</a></button></td> 
-                        <td><button class="btn btn-danger"><a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany?idCompany=".$company->getIdCompany();}?> " style="color: white;">delete</a></button></td>
+                         <td><?php echo $jobOff->getJobPosition()->getCareer()->getName(); ?></td>
+                         <td><?php echo $jobOff->getDescription(); ?></td>
+                         <td><?php echo $jobOff->getLimitDate(); ?></td>
+                         <td><?php echo $jobOff->getUserState(); ?></td>
+                         
+                         <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."JobOffer/ModifyJobOfferView?idJobOffer=".$jobOff->getId();?> " style="color: white;">modify</a></button></td> 
+                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/DeleteJobOffer?idJobOffer=".$jobOff->getId();}?> " style="color: white;">delete</a></button></td>
                     </tr>
                              <?php }
                           }?>

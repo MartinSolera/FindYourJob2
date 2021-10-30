@@ -2,7 +2,6 @@
     namespace DAO;
 
     use Models\JobOffer as JobOffer;
-    use Models\JobPosition as JobPosition;
     use DAO\Connection as Connection;
     use DAO\JobPositionDAO as JobPositionDAO;
     use FFI\Exception;
@@ -148,9 +147,9 @@
                 $jobOffer->setTimeState($value['timeState']);
                 $jobOffer->setUserState($value['idUser']);
 
-                $jobOffer->setUser($this->GetUserXid($value['idUser']));
-                $jobOffer->setCompany($this->GetCompanyXid($value['idCompany']));
-                $jobOffer->setJobPosition($this->GetJobPositionXid($value['idJobPosition']));
+                $jobOffer->setUser($this->userDao->GetUserXid($value['idUser']));
+                $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
+                $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
     
                 array_push($listToReturn, $jobOffer);
             }

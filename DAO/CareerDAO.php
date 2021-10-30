@@ -7,19 +7,21 @@
 
     class CareerDAO implements ICareerDAO{
 
-        private $careerList = array();
+        private $careerList;
+        private $nameTable;
 
         public function __construct()
         {
-    
+            $careerList = array();
+            $nameTable = "career";
         }
 
-        public function GetAll(){
+       /*  public function GetAll(){
 
             $this->consumeFromApi();
             return $this->careerList;
 
-        }
+        } */
 
         public function GetAllActive()
         {
@@ -30,7 +32,7 @@
 
         }
 
-        private function consumeFromApi(){
+        /* private function consumeFromApi(){
          
             $this->careerList = array();
 
@@ -56,7 +58,71 @@
 
           }
 
+        } */
+        
+    public function getCareersFromAPI(){
+
+        $this->careerList = array();
+
+        $apiCareer = curl_init(API_URL.'Career');
+        curl_setopt($apiCareer, CURLOPT_HTTPHEADER, array(API_KEY));
+        curl_setopt($apiCareer, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($apiCareer);
+
+        $arrayToDecode = json_decode($response, true);
+
+        foreach($arrayToDecode as $valuesArray){
+            $career = new Career();
+
+            $career->setActive($valuesArray['active']);
+            $career->setCareerId($valuesArray['careerId']);
+            $career->setDescription($valuesArray['description']);
+
+            array_push($this->careerList, $career);
         }
+    }
+
+    public function emptyCareerDB(){ //borra todas las filas de la tabla
+        
+        $sql = "DELETE FROM" . $this->nameTable ;
+        
+        try {
+            $result = $this->connection->ExecuteNonQuery($sql);
+
+        }  catch (Exception $ex) {
+                throw $ex;
+        }
+    }
+    
+
+    public function updateCareersDB(){
+        $this->getCareersFromAPI();
+        $this->emptyCareerDB();
+
+        foreach ($this->careersList as $career) {
+            
+            $result = $this->AddCareerToDB($career);
+        }
+        return $result;//si retorna 1 se agregaron todas las carreras con exito
+    }
+
+    public function AddCareerToDB(Career $career){
+        $query = " INSERT INTO ". $this->nameTable . " (id_Career , description , active) value (:id_Career , :description , :active)";
+    
+        $parameters['id_Career'] = $career->getCareerId();
+        $parameters['description'] = $career->getDescription();
+        $parameters['active'] = $career->getActive();
+
+        try {
+            $result = $this->connection->ExecuteNonQuery($query, $parameters);
+
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+        return $result;
+    }
+
 /*
       public function GetAllActive(){
             $this->consumeFromApi();
