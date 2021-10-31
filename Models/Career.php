@@ -7,11 +7,6 @@ class Career {
     private $active; //true or false
     private $description;
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * Get the value of careerId
      */
@@ -23,7 +18,7 @@ class Career {
     /**
      * Set the value of careerId
      */
-    public function setCareerId($careerId): self
+    public function setCareerId($careerId)
     {
         $this->careerId = $careerId;
 
@@ -41,7 +36,7 @@ class Career {
     /**
      * Set the value of active
      */
-    public function setActive($active): self
+    public function setActive($active)
     {
         $this->active = $active;
 
@@ -59,7 +54,7 @@ class Career {
     /**
      * Set the value of description
      */
-    public function setDescription($description): self
+    public function setDescription($description)
     {
         $this->description = $description;
 

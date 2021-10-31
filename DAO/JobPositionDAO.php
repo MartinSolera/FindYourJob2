@@ -116,7 +116,7 @@
 
         public function GetJobPositionXid($idJobP){
 
-            $query = " SELECT * FROM " . $this->nameTable . " WHERE id_JobPosition = (:id_JobPosition)";
+            $query = " SELECT * FROM jobposition WHERE id_JobPosition = (:id_JobPosition)";
     
             $parameters['id_JobPosition'] = $idJobP;
     

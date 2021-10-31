@@ -98,7 +98,7 @@
 
          public function GetCompanyXid($idCompany){
 
-            $query = " SELECT * FROM " . $this->nameTable . " WHERE id_Company = (:idCompany)";
+            $query = " SELECT * FROM " . $this->nameTable . " WHERE id_Company = (:idCompany)"; //company WHERE id_Company = :idCompany";
     
             $parameters['idCompany'] = $idCompany;
     

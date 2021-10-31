@@ -22,7 +22,7 @@
                   foreach($jobOfferList as $jobOff){ ?>
                     <tr>
                          <td><?php echo $jobOff->getCompany()->getName(); ?></td>
-                         <td><?php echo $jobOff->getJobPosition()->getCareer()->getName(); ?></td>
+                         <td><?php echo $jobOff->getJobPosition()->getDescription(); ?></td>
                          <td><?php echo $jobOff->getDescription(); ?></td>
                          <td><?php echo $jobOff->getLimitDate(); ?></td>
                          <td><?php echo $jobOff->getUserState(); ?></td>

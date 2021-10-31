@@ -11,12 +11,14 @@
         private $careerList;
         private $nameTable;
         private $connection;
+        private $table;
 
         public function __construct()
         {
             $this->connection = Connection::GetInstance();
             $careerList = array();
             $nameTable = "career";
+            $table = "career";
         }
 
         
@@ -158,11 +160,10 @@
     }
     
     public function GetCareerXid($idCareer){
-
-        $query = " SELECT * FROM " . $this->nameTable . " WHERE id_Career = (:id_Career)";
-
-        $parameters['id_Career'] = $idCareer;
-
+        $query = " SELECT * FROM career WHERE id_Career = (:idCareer)";
+        
+        $parameters['idCareer'] = $idCareer;
+        
         try {
             $result = $this->connection->Execute($query, $parameters);
 
