@@ -25,9 +25,12 @@
                          <td><?php echo $jobOff->getJobPosition()->getDescription(); ?></td>
                          <td><?php echo $jobOff->getDescription(); ?></td>
                          <td><?php echo $jobOff->getLimitDate(); ?></td>
-                         <td><?php echo $jobOff->getUserState(); ?></td>
-                         
-                         <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."JobOffer/ModifyJobOfferView?idJobOffer=".$jobOff->getId();?> " style="color: white;">modify</a></button></td> 
+                         <td><?php  if($jobOff->getUserState() == 'true'){
+                                        echo 'active';
+                                   } else
+                                   echo 'inactive';
+                          ?></td>
+                    
                          <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/DeleteJobOffer?idJobOffer=".$jobOff->getId();}?> " style="color: white;">delete</a></button></td>
                     </tr>
                              <?php }

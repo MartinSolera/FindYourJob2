@@ -67,8 +67,7 @@
                     $jobOffer->setDateTime($value['datetime']);
                     $jobOffer->setLimitDate($value['limit_date']);
                     $jobOffer->setTimeState($value['timeState']);
-                    $jobOffer->setUserState($value['idUser']);
-
+                    $jobOffer->setUserState($value['userState']);
                     $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                     $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
@@ -85,7 +84,6 @@
             $parameters['id_JobOffer'] = $id_jobOffer;
      
             try {
-                $this->connection = Connection::getInstance();
                 $result = $this->connection->ExecuteNonQuery($sql, $parameters);
     
             }  catch (Exception $exception) {

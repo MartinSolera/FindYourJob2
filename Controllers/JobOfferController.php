@@ -78,7 +78,7 @@
 
         public function DeleteJobOffer($idJobOffer) {
             Utils::checkAdminSession();
-            $message = "Company deleted";
+            $message = "Job offer deleted";
             
             $removed = $this->JobOfferDAO->DeleteJobOffer($idJobOffer);
             $this->JobOfferManagementView($message);
