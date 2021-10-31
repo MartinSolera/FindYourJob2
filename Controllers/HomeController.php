@@ -77,7 +77,7 @@
                 }
             }
             else{
-                $this->Index("Error: el usuario no se encuentra en el sistema.");
+                $this->Index("Error, email or password are wrong");
             }
 
             

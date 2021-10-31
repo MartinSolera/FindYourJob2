@@ -87,11 +87,11 @@
         }
 
 
-        public function getUserByLog($email,$password){
-            $query = "SELECT * FROM " . $this->nameTable . " WHERE email = (:email) ";
+        public function getUserByLog($email,$pass){
+            $query = "SELECT * FROM " . $this->nameTable . " WHERE email = :email AND pass = :pass";
 
             $parameters ['email'] = $email;
-            //$parameters ['pass'] = $password;
+            $parameters ['pass'] = $pass;
 
             try{
                 $result = $this->connection->Execute($query,$parameters);
@@ -105,7 +105,7 @@
                     $user = new User();
                     $user->setId($value['id_User']);
                     $user->setEmail($value['email']);
-                    //$user->setPassword($value['pass']);
+                    $user->setPassword($value['pass']);
                     $user->setUserType($this->userTypeDao->GetUserTypeXid($value['idUserType']));
                 }
             }
