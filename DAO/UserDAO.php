@@ -86,7 +86,6 @@
             return $userExist;
         }
 
-
         public function getUserByLog($email,$pass){
             $query = "SELECT * FROM " . $this->nameTable . " WHERE email = :email AND pass = :pass";
 
@@ -138,6 +137,20 @@
             }
             return $user;
         }
+
+        public function getUserFromDB($email){
+            $query = " SELECT * FROM " . $this->nameTable . " WHERE email = (:email)";
+            $parameters['email'] = $email;
+            try{
+                $result = $this->connection->Execute($query, $parameters);
+            }catch (Exception $ex){
+                throw $ex;
+            }
+            return $result;
+        }
+
+
+
     }
 
 ?>

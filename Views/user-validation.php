@@ -10,7 +10,7 @@ require_once('header.php');
             <p>Ingrese su e-mail con el cuál se ha registrando en la Univeridad </p> 
             
         </section>
-        <form action="<?php echo FRONT_ROOT ?>Home/RegisterValidation" method="POST" class="login-form bg-dark-alpha p-5 text-black">
+        <form action="<?php echo FRONT_ROOT ?>Home/checkRegister" method="POST" class="login-form bg-dark-alpha p-5 text-black">
             <div class="form-group">
                 <label for="">Email</label>
                 <input type="email" name="email" class="form-control form-control-lg" placeholder="Email requerid" required>

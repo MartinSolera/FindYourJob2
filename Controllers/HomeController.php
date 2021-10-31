@@ -31,7 +31,6 @@
             require_once(VIEWS_PATH."login.php");
         }   
 
-
         public function login ($email, $password){
 
             $message = null;
@@ -84,7 +83,6 @@
                     return $active;
         }
 
-
         public function RedirectHome()
         {
             Utils::checkSession();
@@ -114,7 +112,16 @@
         {
             require_once(VIEWS_PATH . "user-validation.php");
         }
-    } 
-    
-    
+
+        public function checkRegister($email){
+            $statusUser = $this->userDao->getUserFromDB($email);
+
+            if ($statusUser != null){
+            require_once(VIEWS_PATH . "user-registration.php");
+        } else {
+            $message = "This mail is incorrect. Please try again";
+            require_once(VIEWS_PATH . "user-validation.php");
+        }
+    }
+}
 ?>
