@@ -15,7 +15,7 @@
         public function __construct(){
             $this->connection = Connection::GetInstance();
             $this->nameTable = "user";
-            $this->userTypeDao = new UserTypeDAO;
+            $this->userTypeDao = new UserTypeDAO();
         }
 
         public function Add(User $user){
@@ -131,8 +131,8 @@
                     $user = new User();
 
                     $user->setEmail($value['email']);
-                    $user->setPassword($value['password']);
-                    $user->setUserType($this->userTypeDAO->GetUserTypeXid($value['idUserType']));
+                    $user->setPassword($value['pass']);
+                    $user->setUserType($this->userTypeDao->GetUserTypeXid($value['idUserType']));
                     $user->setId($value['id_User']);
                 }
             }
