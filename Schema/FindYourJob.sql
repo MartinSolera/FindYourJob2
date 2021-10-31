@@ -17,7 +17,7 @@ INSERT INTO UserType (description) VALUES ('Student');
 create table if not exists User(
 id_User BIGINT UNSIGNED AUTO_INCREMENT not null,
 email VARCHAR(50) not null UNIQUE,
-password VARCHAR(50) not null , /*agregue el password */
+pass VARCHAR(45) not null , /*agregue el password */
 idUserType BIGINT UNSIGNED not null,
 constraint pk_idUser primary key(id_User),
 constraint fk_idUserType foreign key (idUserType) references UserType(id_UserType)
@@ -26,9 +26,10 @@ constraint fk_idUserType foreign key (idUserType) references UserType(id_UserTyp
 INSERT INTO User (email , password,iduserType) VALUES ('admin@utn.com','holaMundo',1); /*inserte el admid .. en la base */
 
 create table if not exists Career(
-id_Career BIGINT UNSIGNED AUTO_INCREMENT not null,
-description VARCHAR(30) not null ,
-constraint pk_idCarrer primary key(id_Career)
+	id_Career BIGINT UNSIGNED AUTO_INCREMENT not null,
+	description VARCHAR(30) not null ,
+    active char(10) not null,
+	constraint pk_idCarrer primary key(id_Career)
 )ENGINE=INNODB;
 
 create table if not exists City(
@@ -63,19 +64,19 @@ constraint fk_idCareer foreign key (idCareer) references Career(id_Career) on up
 
 
 create table if not exists JobOffer(
-id_JobOffer BIGINT UNSIGNED AUTO_INCREMENT not null,
-description VARCHAR(30) not null ,
-dateTime DATETIME  not null,
-limit_date DATE not null ,
-timeState TIME  not null,
-userState varchar(30) not null,
-idUser BIGINT UNSIGNED not null,
-idJobPosition BIGINT UNSIGNED not null,
-idCompany BIGINT UNSIGNED not null,
-constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
-constraint fk_idUser foreign key (iduser) references User(id_User) ,
-constraint fk_idJobPosition foreign key (idJobPosition) references JobPosition(id_JobPosition),
-constraint fk_idCompany foreign key (idCompany) references Company(id_Company) on update CASCADE
+	id_JobOffer BIGINT UNSIGNED AUTO_INCREMENT not null,
+	description VARCHAR(30) not null ,
+	dateTime DATE  not null,
+	limit_date DATE not null ,
+	timeState char(10)  not null,
+	userState char(10) not null,
+	idUser BIGINT UNSIGNED not null,
+	idJobPosition BIGINT UNSIGNED not null,
+	idCompany BIGINT UNSIGNED not null,
+	constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
+	constraint fk_idUser foreign key (iduser) references User(id_User) ,
+	constraint fk_idJobPosition foreign key (idJobPosition) references JobPosition(id_JobPosition),
+	constraint fk_idCompany foreign key (idCompany) references Company(id_Company) on update CASCADE
 )ENGINE=INNODB;
 
 
