@@ -94,7 +94,7 @@
             }
            
         }
-
+/*
         public function RegisterValidation($email)
         {
                 $student = $this->studentDAO->getStudentByMail($email);
@@ -107,7 +107,7 @@
                 require_once(VIEWS_PATH . "user-validation.php");
             }
         }
-
+*/
         public function ShowRegister()
         {
             require_once(VIEWS_PATH . "user-validation.php");
@@ -119,15 +119,13 @@
             if ($statusUser != null){
                 ///El usuario ya existe en el sistema.
                 ///Tengo que mostrar un cartel que diga "el usuario ya se encuentra en el sistema"
-
-            require_once(VIEWS_PATH . "user-registration.php");
+                echo "<script> if(confirm('This email is already in use ')); </script>";
+                require_once(VIEWS_PATH . "user-validation.php");
         } else {
-
-            ///El usuario no se encuentra en el sistema
-            
-
-            $message = "This mail is incorrect. Please try again";
-            require_once(VIEWS_PATH . "user-validation.php");
+            ///El usuario no se encuentra en el sistema, por lo tanto esta en condiciones de crear un nuevo user.
+            /// Pero antes tiene que pegar contra la api yfijarse si esta ahi.
+            /// Si se encuentra en la api, se puede registrar. Si NOO se encuentra en la api NO se puede registrar
+            require_once(VIEWS_PATH . "user-registration.php");
         }
     }
 }

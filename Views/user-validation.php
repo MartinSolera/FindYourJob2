@@ -7,13 +7,13 @@ require_once('header.php');
         </header>
         <section class ="text-center">
             <h3>REGISTRATION:</h3>
-            <p>Ingrese su e-mail con el cuál se ha registrando en la Univeridad </p> 
+            <p>Enter the email with you want to register</p> 
             
         </section>
         <form action="<?php echo FRONT_ROOT ?>Home/checkRegister" method="POST" class="login-form bg-dark-alpha p-5 text-black">
             <div class="form-group">
                 <label for="">Email</label>
-                <input type="email" name="email" class="form-control form-control-lg" placeholder="Email requerid" required>
+                <input type="email" name="email" class="form-control form-control-lg" placeholder="email@example.com" required>
             </div>
             <button class="btn btn-dark btn-block btn-lg" type="submit">Check Mail</button>
         </form>
