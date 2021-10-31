@@ -15,7 +15,7 @@ require_once('header.php');
                 <label for="">Email</label>
                 <input type="email" name="email" class="form-control form-control-lg" placeholder="email@example.com" required>
             </div>
-            <button class="btn btn-dark btn-block btn-lg" type="submit">Check Mail</button>
-        </form>
+            <button class="btn btn-dark btn-block btn-lg" type="submit">Check Email</button>
+        </form
     </div>
 </main>
