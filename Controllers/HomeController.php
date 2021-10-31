@@ -31,35 +31,11 @@
             require_once(VIEWS_PATH."login.php");
         }   
 
-        /*
-        public function login($email, $password){
-            $studentController = new StudentController();
-            $student = new Student();
-            $student->setEmail($email);
-
-            if(($email == 'admin@utn.com') && ($password == "admin")){
-                $user = new User();
-                $user->setEmail($email);
-                $user->setPassword($password);
-                $_SESSION['admin'] = $user;
-
-                require_once(VIEWS_PATH . "home-admin.php");
-
-            }
-            else if($studentController->existsByEmail($student)){
-                $_SESSION['student'] = $student;
-
-                //$this->companyController->ShowListViewStudent("Welcome!"); 
-                require_once(VIEWS_PATH . "home-student.php");
-
-            }
-            else{
-                $this->Index("Error: el usuario no se encuentra en el sistema.");
-            }
-        }
-        */
 
         public function login ($email, $password){
+
+            $message = null;
+
             $userController = new UserController();
             $user = new User();
 
@@ -67,44 +43,46 @@
 
             if(!empty($user)){
                 
+                /// 1 = ADMIN
                 if($user->getUserType()->getId() == 1){
                     $_SESSION['admin'] = $user;
                     require_once(VIEWS_PATH . "home-admin.php");
                 }
+                /// 2 = Student
                 elseif ($user->getUserType()->getId() == 2) {
-                    $_SESSION['student'] = $user;
-                    require_once(VIEWS_PATH . "home-student.php");
+
+                    $status = $this->searchApiStudent($user->getEmail(),$user);
+
+                    if($status == true){
+                        $_SESSION['student'] = $user;
+                        require_once(VIEWS_PATH . "home-student.php");
+                    }else{
+                        $message = "This Student is not available";
+                        $this->Index($message);
+                    }
                 }
             }
             else{
-                $this->Index("Error, email or password are wrong");
-            }
-
-            
+                $message = "Error, email or password are wrong";
+                $this->Index($message);
+            }  
         }
 
-        
+        public function searchApiStudent($studentEmail,$user){
 
+            $studentEmail = ($user->getEmail());
+                    $studentList = $this->StudentDAO->GetAll();
+                    
+                    $active = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    foreach($studentList as $student){
+                        if($student->getEmail() == $studentEmail){
+                            $active = true;
+                            break;
+                        }
+                    }
+                    return $active;
+        }
 
 
         public function RedirectHome()
