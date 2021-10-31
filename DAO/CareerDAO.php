@@ -3,15 +3,18 @@
 
     use Models\Career as Career;
     use DAO\ICareerDAO as ICareerDAO;
+    use DAO\Connection as Connection;
     use FFI\Exception;
 
     class CareerDAO implements ICareerDAO{
 
         private $careerList;
         private $nameTable;
+        private $connection;
 
         public function __construct()
         {
+            $this->connection = Connection::GetInstance();
             $careerList = array();
             $nameTable = "career";
         }
@@ -177,7 +180,7 @@
 
                 $career->setCareerId($value['id_Career']);
                 $career->setDescription($value['description']); 
-                $career->setActive($value['isActive']); //todavia no esta la columna en la bdd
+                $career->setActive($value['active']); //todavia no esta la columna en la bdd
             }
         }
         return $career;

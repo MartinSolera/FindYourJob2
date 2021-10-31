@@ -25,6 +25,7 @@
              <!--<a class="btn btn-primary btn-xl" href="#">Lista de Propuestas</a>-->
             <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Student/ShowStudentList">Students List</a>
             <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Update/UpdateDB">Update data</a>
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView">Job Offer Management</a>
         </div>
     </header>
 

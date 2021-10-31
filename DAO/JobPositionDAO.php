@@ -7,7 +7,7 @@
     use DAO\CareerDAO as CareerDAO;
     use FFI\Exception;
 
-    class JobPositionDAO implements IJobPosition {
+    class JobPositionDAO {
 
         private $jobPositionList = array();
         private $tableName = "jobposition";

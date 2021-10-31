@@ -117,8 +117,15 @@
             $statusUser = $this->userDao->getUserFromDB($email);
 
             if ($statusUser != null){
+                ///El usuario ya existe en el sistema.
+                ///Tengo que mostrar un cartel que diga "el usuario ya se encuentra en el sistema"
+
             require_once(VIEWS_PATH . "user-registration.php");
         } else {
+
+            ///El usuario no se encuentra en el sistema
+            
+
             $message = "This mail is incorrect. Please try again";
             require_once(VIEWS_PATH . "user-validation.php");
         }
