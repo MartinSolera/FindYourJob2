@@ -10,7 +10,7 @@
     class JobPositionDAO {
 
         private $jobPositionList = array();
-        private $tableName = "jobposition";
+        private $tableName;
         private $connection;
         private $careerDAO;
 
@@ -22,21 +22,24 @@
         }
 
         public function Add(JobPosition $jobPosition) {
-            try {
-                $query = "INSERT INTO ".$this->tableName." (id_JobPosition, description, idCareer) VALUES (:id_JobPosition, :description, :idCareer);";
+        
+            $query = "INSERT INTO jobposition (id_JobPosition, description, idCareer) VALUES (:id_JobPosition, :description, :idCareer);";
                 
-                $parameters["id_JobPosition"] = $jobPosition->getId();
-                $parameters["description"] = $jobPosition->getDescription();
-                $parameters["idCareer"] = $jobPosition->getCareer()->getCareerId();
+            $parameters["id_JobPosition"] = $jobPosition->getId();
+            $parameters["description"] = $jobPosition->getDescription();
+            $parameters["idCareer"] = $jobPosition->getCareer()->getCareerId();
 
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query, $parameters);
+            try {
+                $result = $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch(Exception $ex)
             {
                 throw $ex;
             } 
+            return $result;
         }
+
+
 
         public function GetAll() {
             try {
@@ -62,7 +65,22 @@
             }
         }
 
-        private function RetrieveData() {
+        public function updateJobPositionDB(){
+            $this->getJobPositionsFromAPI();
+            //funcion para actualizar o vaciar bdd
+    
+            foreach ($this->jobPositionList as $jobP) {
+                
+                $result = $this->Add($jobP);
+            }
+            return $result;//si retorna 1 se agregaron todas las job position con exito
+        }
+
+        public function update(){
+            
+        }
+
+        private function getJobPositionsFromAPI() { //ex RetrieveData
 
             $this->jobPositionList = array();
             
@@ -80,12 +98,13 @@
                 $jobPosition = new JobPosition();
 
                 $jobPosition->setId($valuesArray['id_JobPosition']);
-                $jobPosition->setCareer($this->careerDAO->GetCareerXid($valuesArray['careerId']));
+                $jobPosition->setCareer($this->careerDAO->GetCareerXid($valuesArray['idCareer']));
                 $jobPosition->setDescription($valuesArray['description']);
 
                 array_push($this->jobPositionList, $jobPosition);
             }
         }
+
        
         public function updateJobPosition(JobPosition $jobPosition)
         {

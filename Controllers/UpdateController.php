@@ -6,7 +6,7 @@ use DAO\CareerDAO as CareerDAO;
 use Models\Career as Career;
 use Utils\Utils as Utils;
 use DAO\Connection as Connection;
-use Controllers\JobPositionController as JobPositionController;
+use DAO\JobPositionDAO as JobPositionDAO;
 use Controllers\CareerController as CareerController;
 use Controllers\CompanyController as CompanyController;
 use Controllers\Functions;//para mensajes de dbb
@@ -14,13 +14,13 @@ use PDOException;
 
 class UpdateController
 {
-    private $jobPositionController;
+    private $jobPositionDAO;
     private $careerDAO;
     private $companyContoller;
 
     public function __construct()
     {
-        //$this->jobPositionController = new JobPositionController();
+        $this->jobPositionDAO = new JobPositionDAO();
         $this->companyContoller = new CompanyController();
         $this->careerDAO = new CareerDAO();
     }
@@ -29,9 +29,10 @@ class UpdateController
         Utils::checkAdminSession();
         $message=null;
         $resC = $this->UpdateCareerDB();
+        //$resJP = $this->UpdateJobPositionDB();
 
-        if($resC == 1){
-            $mensaje="";
+        if($resC==1){
+            $mensaje="updated data successfully";
             $this->AdminMenuView($mensaje);
         } else {
             $mensaje="failed to update data";
@@ -46,6 +47,15 @@ class UpdateController
         
         return $result;
     }
+
+    public function UpdateJobPositionDB(){
+        Utils::checkAdminSession();
+    
+        $result=$this->careerDAO->updateCareerDB();//si retorna 1 se agregaron todas las carreras con exito
+        
+        return $result;
+    }
+
 
     public function AdminMenuView($message = "")
     {
