@@ -27,7 +27,7 @@ INSERT INTO User (email , password,iduserType) VALUES ('admin@utn.com','holaMund
 
 create table if not exists Career(
 	id_Career BIGINT UNSIGNED AUTO_INCREMENT not null,
-	description VARCHAR(30) not null ,
+	description VARCHAR(60) not null ,
     active char(10) not null,
 	constraint pk_idCarrer primary key(id_Career)
 )ENGINE=INNODB;

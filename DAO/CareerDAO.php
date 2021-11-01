@@ -104,9 +104,9 @@
 
     public function updateCareerDB(){
         $this->getCareersFromAPI();
-        $this->emptyCareerDB();
+        //$this->emptyCareerDB();
 
-        foreach ($this->careersList as $career) {
+        foreach ($this->careerList as $career) {
             
             $result = $this->AddCareerToDB($career);
         }
@@ -114,7 +114,7 @@
     }
 
     public function AddCareerToDB(Career $career){
-        $query = " INSERT INTO ". $this->nameTable . " (id_Career , description , active) value (:id_Career , :description , :active)";
+        $query = " INSERT INTO career (id_Career , description , active) value (:id_Career , :description , :active)";
     
         $parameters['id_Career'] = $career->getCareerId();
         $parameters['description'] = $career->getDescription();
