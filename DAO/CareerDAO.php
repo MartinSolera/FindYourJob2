@@ -91,7 +91,7 @@
 
     public function emptyCareerDB(){ //borra todas las filas de la tabla
         
-        $sql = "DELETE FROM " . $this->nameTable ;
+        $sql = "DELETE FROM career" ;
         
         try {
             $result = $this->connection->ExecuteNonQuery($sql);
@@ -101,14 +101,23 @@
         }
     }
     
+    public function update(Career $career){
+        $sql = "UPDATE career SET description = ". $career->getDescription().", active = ". $career->getActive() ." WHERE id_Career = ". $career->getCareerId() .";" ;
+        
+        $parameters['id_Career'] = $career->getCareerId();
+        $parameters['description'] = $career->getDescription();
+        $parameters['active'] = $career->getActive();
+
+        $result = $this->connection->ExecuteNonQuery($sql, $parameters);
+    }
 
     public function updateCareerDB(){
         $this->getCareersFromAPI();
-        //$this->emptyCareerDB();
-
+        
         foreach ($this->careerList as $career) {
             
-            $result = $this->AddCareerToDB($career);
+            $result = $this->update($career);
+            //$result = $this->AddCareerToDB($career);
         }
         return $result;//si retorna 1 se agregaron todas las carreras con exito
     }
