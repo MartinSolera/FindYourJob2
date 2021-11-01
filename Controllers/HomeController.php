@@ -31,6 +31,22 @@
             require_once(VIEWS_PATH."login.php");
         }   
 
+        public function searchApiStudent($studentEmail,$user){
+
+            $studentEmail = ($user->getEmail());
+            $studentList = $this->StudentDAO->GetAll();
+                    
+             $active = false;
+
+                foreach($studentList as $student){
+                    if($student->getEmail() == $studentEmail){
+                          $active = true;
+                         break;
+                     }
+                 }
+                return $active;
+        }
+
         public function login ($email, $password){
 
             $message = null;
@@ -67,21 +83,7 @@
             }  
         }
 
-        public function searchApiStudent($studentEmail,$user){
-
-            $studentEmail = ($user->getEmail());
-                    $studentList = $this->StudentDAO->GetAll();
-                    
-                    $active = false;
-
-                    foreach($studentList as $student){
-                        if($student->getEmail() == $studentEmail){
-                            $active = true;
-                            break;
-                        }
-                    }
-                    return $active;
-        }
+        
 
         public function RedirectHome()
         {
@@ -92,7 +94,6 @@
                 $student = $_SESSION['student'];
                 require_once(VIEWS_PATH . "home-student.php");
             }
-           
         }
 /*
         public function RegisterValidation($email)
@@ -118,14 +119,23 @@
 
             if ($statusUser != null){
                 ///El usuario ya existe en el sistema.
-                ///Tengo que mostrar un cartel que diga "el usuario ya se encuentra en el sistema"
                 echo "<script> if(confirm('This email is already in use ')); </script>";
                 require_once(VIEWS_PATH . "user-validation.php");
+
         } else {
             ///El usuario no se encuentra en el sistema, por lo tanto esta en condiciones de crear un nuevo user.
-            /// Pero antes tiene que pegar contra la api yfijarse si esta ahi.
+            /// Pero antes tiene que pegar contra la api y fijarse si esta ahi.
             /// Si se encuentra en la api, se puede registrar. Si NOO se encuentra en la api NO se puede registrar
-            require_once(VIEWS_PATH . "user-registration.php");
+
+            //$allStudents = $this->studentDAO->GetAll();
+            $checkStudent = $this->studentDAO->getStudentByMail($email);
+
+            if($checkStudent == false){
+                echo "<script> if(confirm('Este mail no esta en el campus, no te podes registrar')); </script>";
+                require_once(VIEWS_PATH . "user-validation.php");
+            }else{
+                require_once(VIEWS_PATH . "user-registration.php");
+            }
         }
     }
 }
