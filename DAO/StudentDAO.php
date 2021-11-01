@@ -150,6 +150,7 @@
             }
             return $exists;
         }
+        
         public function getStudentByMail($email)
         {
             $this->RetrieveData();
@@ -159,7 +160,7 @@
                     return $student;
                 }
             }
-                return null;
+                return false;
            
         }
 
