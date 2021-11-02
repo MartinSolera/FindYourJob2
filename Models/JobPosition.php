@@ -19,7 +19,7 @@
             return $this->career;
         }
 
-        public function setCareer($career){
+        public function setCareer(Career $career){
             $this->careerId = $career;
         }
 

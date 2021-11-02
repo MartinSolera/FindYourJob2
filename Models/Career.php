@@ -21,8 +21,6 @@ class Career {
     public function setCareerId($careerId)
     {
         $this->careerId = $careerId;
-
-        return $this;
     }
 
     /**
@@ -39,8 +37,6 @@ class Career {
     public function setActive($active)
     {
         $this->active = $active;
-
-        return $this;
     }
 
     /**
@@ -57,7 +53,5 @@ class Career {
     public function setDescription($description)
     {
         $this->description = $description;
-
-        return $this;
     }
 }

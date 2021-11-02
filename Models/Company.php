@@ -21,8 +21,6 @@
         public function setIdCompany($id_Company)
         {
                 $this->id_Company = $id_Company;
-
-                return $this;
         }
 
         
@@ -34,8 +32,6 @@
         public function setName($name)
         {
                 $this->name = $name;
-
-                return $this;
         }
     
         public function getYearFoundation()
@@ -46,8 +42,6 @@
         public function setYearFoundation($yearFoundation)
         {
                 $this->yearFoundation = $yearFoundation;
-
-                return $this;
         }
 
         
@@ -60,8 +54,6 @@
         public function setDescription($description)
         {
                 $this->description = $description;
-
-                return $this;
         }
 
         public function getLogo()
@@ -73,8 +65,6 @@
         public function setLogo($logo)
         {
                 $this->logo = $logo;
-
-                return $this;
         }
 
         
@@ -87,8 +77,6 @@
         public function setEmail($email)
         {
                 $this->email = $email;
-
-                return $this;
         }
 
         
@@ -100,8 +88,6 @@
         public function setPhoneNumber($phoneNumber)
         {
                 $this->phoneNumber = $phoneNumber;
-
-                return $this;
         }
 
     
@@ -114,8 +100,6 @@
         public function setCity(City $city)
         {
                 $this->city = $city;
-
-                return $this;
         }
     }
 

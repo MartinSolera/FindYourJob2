@@ -37,7 +37,7 @@
             return $this->company;
         }
 
-        public function setJobPosition($jobPosition){
+        public function setJobPosition(JobPosition $jobPosition){
             $this->jobPosition = $jobPosition;
         }
 
