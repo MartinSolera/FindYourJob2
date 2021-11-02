@@ -11,22 +11,12 @@
         private $careerList;
         private $nameTable;
         private $connection;
-        private $table;
 
         public function __construct()
         {
             $this->connection = Connection::GetInstance();
             $careerList = array();
             $nameTable = "career";
-            $table = "career";
-        }
-
-        
-        public function GetAll(){
-
-            $this->consumeFromApi();
-            return $this->careerList;
-
         }
 
         public function GetAllActive()
@@ -38,105 +28,125 @@
 
         }
 
-        /* private function consumeFromApi(){
-         
+        public function GetAll() { //from DB
+            $careerList = [];
+
+            $query = "SELECT * FROM career;";
+
+            try {
+                $result = $this->connection->Execute($query);
+            } catch (Exception $ex){
+                throw $ex;
+            }
+
+            if(!empty($result)) { 
+                foreach($result as $value) {
+                    $career = new Career();
+
+                    $career->setActive($value['active']);
+                    $career->setCareerId($value['id_Career']);
+                    $career->setDescription($value['description']);
+            
+                    array_push($careerList, $career);
+                }
+            }
+            return $careerList;
+        }
+
+        public function existsById($id){
+            $exists = null;
+            $careers = $this->GetAll();
+
+            foreach($careers as $career){
+                if($career->getCareerId() == $id){
+                    $exists = $career;
+                }
+            }
+            return $exists;
+        }
+
+
+        public function getCareersFromAPI(){
+
             $this->careerList = array();
 
-            $options = array(
-                'http' => array(
-                'method'=>"GET",
-                'header'=>"x-api-key: " . API_KEY)
-            );
+            $apiCareer = curl_init(API_URL.'Career');
+            curl_setopt($apiCareer, CURLOPT_HTTPHEADER, array(API_KEY));
+            curl_setopt($apiCareer, CURLOPT_RETURNTRANSFER, true);
 
-            $context = stream_context_create($options);
-
-            $response = file_get_contents(API_URL .'Career', false, $context);
+            $response = curl_exec($apiCareer);
 
             $arrayToDecode = json_decode($response, true);
-          
-          foreach($arrayToDecode as $valuesArray){
-            $career = new Career();
-            $career->setCareerId($valuesArray['careerId']);
-            $career->setDescription($valuesArray['description']);
-            $career->setActive($valuesArray['active']);
 
-            array_push($this->careerList, $career);
+            foreach($arrayToDecode as $valuesArray){
+                $career = new Career();
 
-          }
+                $career->setActive($valuesArray['active']);
+                $career->setCareerId($valuesArray['careerId']);
+                $career->setDescription($valuesArray['description']);
 
-        } */
-        
-    public function getCareersFromAPI(){
-
-        $this->careerList = array();
-
-        $apiCareer = curl_init(API_URL.'Career');
-        curl_setopt($apiCareer, CURLOPT_HTTPHEADER, array(API_KEY));
-        curl_setopt($apiCareer, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($apiCareer);
-
-        $arrayToDecode = json_decode($response, true);
-
-        foreach($arrayToDecode as $valuesArray){
-            $career = new Career();
-
-            $career->setActive($valuesArray['active']);
-            $career->setCareerId($valuesArray['careerId']);
-            $career->setDescription($valuesArray['description']);
-
-            array_push($this->careerList, $career);
+                array_push($this->careerList, $career);
+            }
         }
-    }
 
-    public function emptyCareerDB(){ //borra todas las filas de la tabla
-        
-        $sql = "DELETE FROM career" ;
-        
-        try {
-            $result = $this->connection->ExecuteNonQuery($sql);
-
-        }  catch (Exception $ex) {
-                throw $ex;
-        }
-    }
-    
-    public function update(Career $career){
-        $sql = "UPDATE career SET description = ". $career->getDescription().", active = ". $career->getActive() ." WHERE id_Career = ". $career->getCareerId() .";" ;
-        
-        $parameters['id_Career'] = $career->getCareerId();
-        $parameters['description'] = $career->getDescription();
-        $parameters['active'] = $career->getActive();
-
-        $result = $this->connection->ExecuteNonQuery($sql, $parameters);
-    }
-
-    public function updateCareerDB(){
-        $this->getCareersFromAPI();
-        
-        foreach ($this->careerList as $career) {
+        public function emptyCareerDB(){ //borra todas las filas de la tabla
             
-            $result = $this->update($career);
-            //$result = $this->AddCareerToDB($career);
-        }
-        return $result;//si retorna 1 se agregaron todas las carreras con exito
-    }
+            $sql = "DELETE FROM career" ;
+            
+            try {
+                $result = $this->connection->ExecuteNonQuery($sql);
 
-    public function AddCareerToDB(Career $career){
-        $query = " INSERT INTO career (id_Career , description , active) value (:id_Career , :description , :active)";
+            }  catch (Exception $ex) {
+                    throw $ex;
+            }
+        }
     
-        $parameters['id_Career'] = $career->getCareerId();
-        $parameters['description'] = $career->getDescription();
-        $parameters['active'] = $career->getActive();
-
-        try {
-            $result = $this->connection->ExecuteNonQuery($query, $parameters);
-
-        } catch (Exception $ex) {
-            throw $ex;
+        public function updateCareer(Career $career){
+            $sql = "UPDATE career SET description = :description , active = :active WHERE (id_Career = :id_Career);" ;
+            
+            $parameters['id_Career'] = $career->getCareerId();
+            $parameters['description'] = $career->getDescription();
+            $parameters['active'] = $career->getActive();
+            
+            try {
+                $result = $this->connection->ExecuteNonQuery($sql, $parameters);
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+            return $result;
         }
-        return $result;
-    }
+
+        public function updateCareerDB(){
+            $this->getCareersFromAPI();
+            
+            foreach ($this->careerList as $career) {
+                
+                $exists= $this->existsById($career->getCareerId()); //funcion que se fije si ya existe el id de la carrera en la bdd
+                if($exists == null) {
+                    $this->AddCareerToDB($career);
+                }
+                else{
+                    $result = $this->updateCareer($career);
+                }
+            }
+            return $result;//si retorna 0 se agregaron todas las carreras con exito
+        }
+
+        public function AddCareerToDB(Career $career){
+            $query = " INSERT INTO career (id_Career , description , active) value (:id_Career , :description , :active)";
+        
+            $parameters['id_Career'] = $career->getCareerId();
+            $parameters['description'] = $career->getDescription();
+            $parameters['active'] = $career->getActive();
+
+            try {
+                $result = $this->connection->ExecuteNonQuery($query, $parameters);
+
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+            return $result;
+        }
 
 /*
       public function GetAllActive(){
@@ -148,7 +158,7 @@
 
         }
 */
-        public function GetCareerById($careerId){
+   /*      public function GetCareerById($careerId){
             $this->consumeFromApi();
 
             foreach ($this->careerList as $career) {
@@ -166,35 +176,35 @@
                 return $career;
             }
         
-    }
+    } */
     
-    public function GetCareerXid($idCareer){
-        $query = " SELECT * FROM career WHERE id_Career = (:idCareer)";
-        
-        $parameters['idCareer'] = $idCareer;
-        
-        try {
-            $result = $this->connection->Execute($query, $parameters);
+        public function GetCareerXid($idCareer){
+            $query = " SELECT * FROM career WHERE id_Career = (:idCareer)";
+            
+            $parameters['idCareer'] = $idCareer;
+            
+            try {
+                $result = $this->connection->Execute($query, $parameters);
 
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-
-        $career = null;
-
-        if(!empty($result)){
-
-            foreach($result as $value){
-
-                $career = new Career();
-
-                $career->setCareerId($value['id_Career']);
-                $career->setDescription($value['description']); 
-                $career->setActive($value['active']); //todavia no esta la columna en la bdd
+            } catch (Exception $ex) {
+                throw $ex;
             }
+
+            $career = null;
+
+            if(!empty($result)){
+
+                foreach($result as $value){
+
+                    $career = new Career();
+
+                    $career->setCareerId($value['id_Career']);
+                    $career->setDescription($value['description']); 
+                    $career->setActive($value['active']); //todavia no esta la columna en la bdd
+                }
+            }
+            return $career;
         }
-        return $career;
-     }
 
     }
 

@@ -29,9 +29,9 @@ class UpdateController
         Utils::checkAdminSession();
         $message=null;
         $resC = $this->UpdateCareerDB();
-        //$resJP = $this->UpdateJobPositionDB();
-
-        if($resC==1){
+        $resJP = $this->UpdateJobPositionDB();
+        //echo $resJP;
+        if($resC==0 && $resJP==0){
             $mensaje="updated data successfully";
             $this->AdminMenuView($mensaje);
         } else {
@@ -51,7 +51,7 @@ class UpdateController
     public function UpdateJobPositionDB(){
         Utils::checkAdminSession();
     
-        $result=$this->careerDAO->updateCareerDB();//si retorna 1 se agregaron todas las carreras con exito
+        $result=$this->jobPositionDAO->updateJobPositionDB();//si retorna 1 se agregaron todas las carreras con exito
         
         return $result;
     }
