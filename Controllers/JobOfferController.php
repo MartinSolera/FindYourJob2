@@ -63,10 +63,9 @@ use PDOException;
             $newJobOff->setTimeState(1);
             $newJobOff->setUser(1);
             
-            var_dump($newJobOff);
             try {
                 $result = $this->jobOfferDAO->Add($newJobOff);
-               echo $result;
+        
                 if($result==1){
                     $message="Job offer added successfully";
                     

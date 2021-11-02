@@ -33,12 +33,10 @@
             $parameters['idUser'] = $jobOffer->getUser();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
-            echo 'id job position:'. $jobOffer->getJobPosition()->getId();
-            echo 'id job company:'. $jobOffer->getCompany()->getIdCompany();
-
+        
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);
-                echo $result;
+    
             } catch (Exception $ex) {
                 throw $ex;
             }
