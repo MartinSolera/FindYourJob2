@@ -200,7 +200,7 @@
 
                     $career->setCareerId($value['id_Career']);
                     $career->setDescription($value['description']); 
-                    $career->setActive($value['active']); //todavia no esta la columna en la bdd
+                    $career->setActive($value['active']); 
                 }
             }
             return $career;

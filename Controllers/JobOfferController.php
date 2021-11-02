@@ -44,24 +44,24 @@
             require_once(VIEWS_PATH."jobOffer-management.php");
         }
 
-        public function AddJobOffer($idCompany, $description, $datetime, $limitdate, $idJobPosition)
+        public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
         {
             Utils::checkAdminSession();
 
             $message=null;
             $company = $this->companyDAO->GetCompanyXid($idCompany);
             $jobPosition = $this->jobPositionDAO->GetJobPositionXid($idJobPosition);
-
+            
             $newJobOff = new JobOffer();
             $newJobOff->setDescription($description);
             $newJobOff->setDatetime($datetime);
             $newJobOff->setLimitDate($limitdate);
             $newJobOff->setCompany($company);
             $newJobOff->setJobPosition($jobPosition);
-            $newJobOff->setUserState(0); //disponible 
-            $newJobOff->setTimeState(0);
-            $newJobOff->setUser(0);
-
+            $newJobOff->setUserState(1); //disponible 
+            $newJobOff->setTimeState(1);
+            $newJobOff->setUser(1);
+            
             try {
                 $result = $this->jobOfferDAO->Add($newJobOff);
                echo $result;
@@ -108,7 +108,7 @@
         }
         
 
-              ///Filtro de job offers
+         ///Filtro de job offers
         public function jobOffersForJobPosition($positionId){
             Utils::checkSession();
             $this->jobOfferList = $this->jobOfferDAO->GetAll();

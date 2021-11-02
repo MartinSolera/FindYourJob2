@@ -8,7 +8,7 @@
     use Models\Career as Career;
     use FFI\Exception;
 
-    class JobPositionDAO {
+    class JobPositionDAO{
 
         private $jobPositionList;
         private $tableName;
@@ -55,12 +55,13 @@
             }
             if(!empty($result)){
                 foreach($result as $value){
+
                     $jobP = new JobPosition();
 
                     $jobP->setId($value['id_JobPosition']);
-                    $jobP->setCareer($this->careerDAO->GetCareerXid($value['idCareer']));
                     $jobP->setDescription($value['description']);
-
+                    $jobP->setCareer($this->careerDAO->GetCareerXid($value['idCareer']));
+                    
                     array_push($jobPList, $jobP);
                 }
             }

@@ -23,7 +23,7 @@
         }
 
         public function Add(JobOffer $jobOffer) {
-            $query = "INSERT INTO joboffer (description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany) value (:description, :dateTime, :limit_date, :timeState, :userState, :idUser, :idJobPosition, :idCompany)";
+            $query = "INSERT INTO joboffer (description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany) value (:description, :dateTime, :limit_date, :timeState, :userState, :idUser, :idJobPosition, :idCompany);";
             
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
@@ -33,10 +33,11 @@
             $parameters['idUser'] = $jobOffer->getUser();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
-            
+            echo 'id job position:'. $jobOffer->getJobPosition()->getId();
+            echo 'id job company:'. $jobOffer->getCompany()->getIdCompany();
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);
-    
+                echo $result;
             } catch (Exception $ex) {
                 throw $ex;
             }
@@ -63,6 +64,7 @@
 
                     $jobOffer = new JobOffer();
                     
+                    $jobOffer->setIdJobOffer($value['id_JobOffer']);
                     $jobOffer->setDescription($value['description']);
                     $jobOffer->setDateTime($value['datetime']);
                     $jobOffer->setLimitDate($value['limit_date']);
@@ -90,7 +92,7 @@
                 throw $exception;
             }
         }
-        /*******/
+     
 
         public function updateJobOffer(JobOffer $jobOffer)
         {

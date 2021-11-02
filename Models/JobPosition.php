@@ -20,7 +20,7 @@
         }
 
         public function setCareer(Career $career){
-            $this->careerId = $career;
+            $this->career = $career;
         }
 
         public function getDescription(){
