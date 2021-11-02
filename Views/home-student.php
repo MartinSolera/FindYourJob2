@@ -15,7 +15,7 @@
         <div class="container-menu px-8 px-lg-1 text-center ">
         <!-- <div class="view-container"> -->
      
-        <h1 p class="text-primary" class="mb-1">You are Welcome</h1>
+        <h1 p class="text-primary" class="mb-1">Welcome</h1>
         
             <h2> Home Student </h2>
             <h5 class="mb-5"><em>Please choose one of the next actions</em></h5>
