@@ -133,7 +133,9 @@
                 echo "<script> if(confirm('Este mail no esta en el campus, no te podes registrar')); </script>";
                 require_once(VIEWS_PATH . "user-validation.php");
             }else{
+                $student= $checkStudent;
                 require_once(VIEWS_PATH . "user-registration.php");
+
             }
         }
     }

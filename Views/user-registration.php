@@ -6,13 +6,7 @@
                 <thead>
                     <th>Name</th>
                     <th>Last Name</th>
-                    <th>DNI</th>
-                    <th>Gender</th>
-                    <th>Birthday</th>
-                    <th>Id</th>
-                    <th>Career</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
+                    <th>email</th>
                 </thead>
                 <tbody>
 
@@ -20,13 +14,8 @@
                     if (isset($student)) {
                         echo  "<td>" . $student->getFirstName() . "</td>";
                         echo  "<td>" . $student->getLastName() . "</td>";
-                        echo  "<td>" . $student->getDni() . "</td>";
-                        echo  "<td>" . $student->getGender() . "</td>";
-                        echo  "<td>" . $student->getBirthDate() . "</td>";
-                        echo  "<td>" . $student->getFileNumber() . "</td>";
-                        echo  "<td>" . $student->getCareerId() . "</td>";
                         echo  "<td>" . $student->getEmail() . "</td>";
-                        echo  "<td>" . $student->getPhoneNumber() . "</tdv>";
+
                     }
                     ?>
                 </tbody>
@@ -47,9 +36,7 @@
                     <center>
                         <button class="btn btn-warning btn-block btn-sm " type="submit">Registration</button>
                     </center>
-
                 </div>
-
             </div>
         </form>
     </section>
