@@ -1,12 +1,10 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
 <script src="https://kit.fontawesome.com/4fa39b8df5.js" crossorigin="anonymous"></script>
      <div >
-		<a href="https://mdp.utn.edu.ar" title="Sitio Oficial">
-            <img width="180" height="" padding="500px" src="https://mdp.utn.edu.ar/wp-content/uploads/2021/02/UTN_IsoLogoBcoNeg.png"  alt="" loading="lazy" srcset="https://mdp.utn.edu.ar/wp-content/uploads/2021/02/UTN_IsoLogoBcoNeg.png 512w, https://mdp.utn.edu.ar/wp-content/uploads/2021/02/UTN_IsoLogoBcoNeg-300x98.png 300w" sizes="(max-width: 512px) 100vw, 512px"  >								
-          </a>
+		<a href="https://mdp.utn.edu.ar" title="Sitio Oficial" target="_blank" > <img src="<?php echo IMG_PATH ?>utnLogo.png" padding="500px" width="50" height="" alt=""  /></a>
 	</div>
      <span class="navbar-text">
-          <strong> FindYourJob</strong>
+          <strong > FindYourJob</strong>
      </span>
      <ul class="navbar-nav ml-auto">
 
