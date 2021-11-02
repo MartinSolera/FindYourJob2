@@ -56,17 +56,18 @@
             $newJobOff->setDescription($description);
             $newJobOff->setDatetime($datetime);
             $newJobOff->setLimitDate($limitdate);
-            $newJobOff->setCompany($this->companyDAO->GetCompanyXid($idCompany));
-            $newJobOff->setJobPosition($this->jobPositionDAO->GetJobPositionXid($idJobPosition));
+            $newJobOff->setCompany($company);
+            $newJobOff->setJobPosition($jobPosition);
             $newJobOff->setUserState(0); //disponible 
             $newJobOff->setTimeState(0);
             $newJobOff->setUser(0);
 
             try {
                 $result = $this->jobOfferDAO->Add($newJobOff);
-                echo $result;
+               echo $result;
                 if($result==1){
                     $message="Job offer added successfully";
+                    
                     $this->AddJobOfferView($message);
                 } else {
                     $message="error: failed to add the job offer";
