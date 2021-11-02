@@ -206,6 +206,34 @@
             return $career;
         }
 
+        public function GetAllByCareerId($idCareer) { //from DB
+            $careerList = [];
+
+            $query = "SELECT * FROM career;";
+
+            try {
+                $result = $this->connection->Execute($query);
+            } catch (Exception $ex){
+                throw $ex;
+            }
+
+            if(!empty($result)) { 
+                foreach($result as $value) {
+                    
+                    $career = new Career();
+
+                    if($career->getCareerId() == $idCareer){
+                        $career->setActive($value['active']);
+                        $career->setCareerId($value['id_Career']);
+                        $career->setDescription($value['description']);
+                
+                        array_push($careerList, $career);
+                    }
+                }
+            }
+            return $careerList;
+        }
+
     }
 
 ?> 

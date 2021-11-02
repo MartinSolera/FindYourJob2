@@ -11,15 +11,17 @@
      <ul class="navbar-nav ml-auto">
 
           <!-- -----------Admin---------------- -->
-
-
+          
           <?php if(isset($_SESSION['admin'])) { ?>
           
-           <li class="nav-item">
+          <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAdminMenu"> <i class="fas fa-home"> </i> Menu</a>
           </li>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView"><i class="fas fa-list"></i> Job Offer management</a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView"><i class="fas fa-list"></i> Job offer management</a>
+          </li>
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/AddJobOfferView"><i class="fas fa-plus-square"> </i> Add job offer </a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin"><i class="fas fa-list"></i> Company management</a>
@@ -33,7 +35,6 @@
           <?php } ?>   
           
           <!-- -----------Student---------------- -->
-         
 
           <?php if(isset($_SESSION['student'])) { ?>
           <li class="nav-item">

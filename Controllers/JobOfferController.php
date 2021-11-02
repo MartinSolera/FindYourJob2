@@ -30,7 +30,9 @@
         public function AddJobOfferView($message = "") {
             Utils::checkAdminSession();
 
-            
+            $companyList = $this->companyDAO->GetAll();
+            $jobPositionList = $this->jobPositionDAO->GetAll();
+
             require_once(VIEWS_PATH."addJobOffer.php");
         }
 
@@ -42,38 +44,40 @@
             require_once(VIEWS_PATH."jobOffer-management.php");
         }
 
-        public function AddJobOffer($description, $datetime, $limitDate, $idCompany, $idJobPosition)
+        public function AddJobOffer($idCompany, $description, $datetime, $limitdate, $idJobPosition)
         {
             Utils::checkAdminSession();
+
             $message=null;
+            $company = $this->companyDAO->GetCompanyXid($idCompany);
+            $jobPosition = $this->jobPositionDAO->GetJobPositionXid($idJobPosition);
 
-            if($description != "" && $datetime != "" && $limitDate != "" && $idJobPosition && $idCompany != "" )
-            {
-                $newJobOff = new JobOffer();
-                $newJobOff->setDescription($description);
-                $newJobOff->setDatetime($datetime);
-                $newJobOff->setLimitDate($limitDate);
-                $newJobOff->setCompany($this->companyDAO->GetCompanyXid($idCompany));
-                $newJobOff->setJobPosition($this->jobPositionDAO->GetJobPositionXid($idJobPosition));
-                $newJobOff->setUserState(0); //disponible 
-                $newJobOff->setTimeState(0);
-                $newJobOff->setUser(null);
+            $newJobOff = new JobOffer();
+            $newJobOff->setDescription($description);
+            $newJobOff->setDatetime($datetime);
+            $newJobOff->setLimitDate($limitdate);
+            $newJobOff->setCompany($this->companyDAO->GetCompanyXid($idCompany));
+            $newJobOff->setJobPosition($this->jobPositionDAO->GetJobPositionXid($idJobPosition));
+            $newJobOff->setUserState(0); //disponible 
+            $newJobOff->setTimeState(0);
+            $newJobOff->setUser(0);
 
-                try {
-                    $result = $this->JobOfferDAO->Add($newJobOff);
-                    if($result==1){
-                        $message="Job offer added successfully";
-                        $this->AddJobOfferView($message);
-                    } else {
-                        $message="error: failed to add the job offer";
-                        $this->AddJobOfferView($message);
-                    }
-                } catch (PDOException $ex) {
-                    if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
-                    $message = $ex->getMessage();
+            try {
+                $result = $this->jobOfferDAO->Add($newJobOff);
+                echo $result;
+                if($result==1){
+                    $message="Job offer added successfully";
+                    $this->AddJobOfferView($message);
+                } else {
+                    $message="error: failed to add the job offer";
                     $this->AddJobOfferView($message);
                 }
+            } catch (PDOException $ex) {
+                if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
+                $message = $ex->getMessage();
+                $this->AddJobOfferView($message);
             }
+           
         }
 
         public function DeleteJobOffer($idJobOffer) {

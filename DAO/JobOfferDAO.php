@@ -22,15 +22,15 @@
             $this->companyDAO = new CompanyDAO();
         }
 
-        public function Add(JobOffer $jobOffer){
-            $query = "INSERT INTO" . $this->nameTable . " (description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany) value (:description, :dateTime, :limit_date, :timeState, :userState, :idUser, :idJobPosition, :idCompany)";
+        public function Add(JobOffer $jobOffer) {
+            $query = "INSERT INTO joboffer (description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany) value (:description, :dateTime, :limit_date, :timeState, :userState, :idUser, :idJobPosition, :idCompany)";
             
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
             $parameters['limit_date'] = $jobOffer->getLimitDate();
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['userState'] = $jobOffer->getUserState();
-            $parameters['idUser'] = $jobOffer->getUser()->getId();
+            $parameters['idUser'] = $jobOffer->getUser();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
             
@@ -41,7 +41,7 @@
                 throw $ex;
             }
             return $result;
-         }
+        }
 
 
         public function GetAll() {
