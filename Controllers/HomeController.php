@@ -65,11 +65,9 @@
                 }
                 /// 2 = Student
                 elseif ($user->getUserType()->getId() == 2) {
-                    ///$status = $this->searchApiStudent($user->getEmail(),$user);
-                    ///Esta andando mal esta funcion, probar de captura directamente con la email
                     $status = $this->studentDAO->getStudentByMail($email);
 
-                    if($status != null){
+                    if($status != null && $status->getActive() == true){ ///Preguntar de que pegue contra la api
                         $_SESSION['student'] = $user;
                         require_once(VIEWS_PATH . "home-student.php");
                     }else{
