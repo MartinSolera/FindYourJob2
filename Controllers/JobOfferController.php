@@ -10,7 +10,8 @@
     use Models\JobPosition as JobPosition; 
     use Models\JobOffer as JobOffer;
     use Controllers\Functions;
-    use PDOException;
+use Exception;
+use PDOException;
 
     class JobOfferController {
 
@@ -62,6 +63,7 @@
             $newJobOff->setTimeState(1);
             $newJobOff->setUser(1);
             
+            var_dump($newJobOff);
             try {
                 $result = $this->jobOfferDAO->Add($newJobOff);
                echo $result;
@@ -73,8 +75,8 @@
                     $message="error: failed to add the job offer";
                     $this->AddJobOfferView($message);
                 }
-            } catch (PDOException $ex) {
-                if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
+            } catch (Exception $ex) {
+                //if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
                 $message = $ex->getMessage();
                 $this->AddJobOfferView($message);
             }

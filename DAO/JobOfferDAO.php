@@ -35,6 +35,7 @@
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
             echo 'id job position:'. $jobOffer->getJobPosition()->getId();
             echo 'id job company:'. $jobOffer->getCompany()->getIdCompany();
+
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);
                 echo $result;
@@ -66,7 +67,7 @@
                     
                     $jobOffer->setIdJobOffer($value['id_JobOffer']);
                     $jobOffer->setDescription($value['description']);
-                    $jobOffer->setDateTime($value['datetime']);
+                    $jobOffer->setDateTime($value['dateTime']);
                     $jobOffer->setLimitDate($value['limit_date']);
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setUserState($value['userState']);

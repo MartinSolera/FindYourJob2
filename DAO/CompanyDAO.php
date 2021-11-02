@@ -35,11 +35,9 @@
             
             try {
                 $result = $this->connection->ExecuteNonQuery($query,$parameters);
-    
             } catch (Exception $ex) {
                 throw $ex;
             }
-          
             return $result;
          }
 

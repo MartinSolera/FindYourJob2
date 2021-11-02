@@ -62,7 +62,7 @@
         }
 
         public function setLimitDate($limitDate){
-            $this->limitDate = $this->limitDate;
+            $this->limitDate = $limitDate;
         }
 
         public function getLimitDate(){
