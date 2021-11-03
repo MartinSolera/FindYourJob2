@@ -34,9 +34,8 @@
 
         public function ShowStudentList($message = "")
         {
-            Utils::checkAdminSession();
-            $this->studenList = $this->studentDAO->GetAll();
-            //$this->careerList = $this->careerDAO->GetAll();
+            Utils::checkSession();
+            $students = $this->studentDAO->GetAll();
             require_once(VIEWS_PATH."list-student.php");
         }
 

@@ -6,40 +6,23 @@
                
                <h2 class="mb-15 text-center" >Students List</h2>
                <br>
-               <div class="container" style="width: 2000px; height: 400px; overflow-y: scroll;">
-               <table class="table bg-light-alpha">
+               <div class="container" >
+               <table class="table bg-light-alpha table-fixed ">
                     <thead class="thead-dark">
-                         <th class="header" scope="col" position="sticky">Name</th>
-                         <th class="header" scope="col" position="sticky">SurName</th>
-                         <th class="header" scope="col" position="sticky">ID</th>
-                         <th class="header" scope="col" position="sticky">Carrer</th>
-                       <!--  <th class="header" scope="col" position="sticky">Ver</th> -->
-                         
+                         <th style="width: 200px" class="" scope="col" position="sticky">Name</th>
+                         <th  style="width: 230px"class="header"scope="col" position="sticky">LastName</th>
+                         <th style="width: 150px" scope="col" position="sticky">ID</th>
                     </thead>
-                    
                     
                     <tbody>
                          
                          <?php
-                         if (isset($this->studentList)) {
-                              foreach($this->studentList as $student) {
-                                   echo "<tr>";
-                                   echo  "<td>" . $student->getFirstName() . "</td>";
-                                   echo  "<td>" . $student->getLastName() . "</td>";
-                                   echo  "<td>" . $student->getFileNumber() . "</td>";
-                                   if (isset($careers)) {
-                                        foreach ($careers as $career) {
-                                             if ($career->getCareerId() == $student->getCareerId()) {
-                                                  echo  "<td>" . $career->getDescription()  . "</td>";
-                                                  $careerName = $career->getDescription();
-                                             }
-                                        }
-                                   }
-                                   $studentId = $student->getstudentId();
-                                   //$careerName = $career->getDescription();
-
-                                   echo "<td><a href=" . FRONT_ROOT . "Student/ShowStudent/" . $studentId . ">+ info</a></td>";
-                                   echo "</tr>";
+                         if (isset($students)) {
+                              foreach($students as $student) {
+                                   echo "<tr style='width: 400px'>";
+                                   echo  "<td style='width: 200px'>" . $student->getFirstName() . "</td>";
+                                   echo  "<td style='width: 200px'>" . $student->getLastName() . "</td>";
+                                   echo  "<td style='width: 200px'>" . $student->getFileNumber() . "</td>";
                               }
                          }
                          ?>
