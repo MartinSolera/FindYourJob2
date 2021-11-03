@@ -19,15 +19,13 @@
         
             <h2> Administrator </h2>
             <h5 class="mb-5"><em>Please choose one of the next actions</em></h5>
-            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ViewAddCompany">Add Company</a>
-           <!-- <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/RedirectDeleteForm">Delete Company</a>  -->
-            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin">Company Management</a>
-             <!--<a class="btn btn-primary btn-xl" href="#">Lista de Propuestas</a>-->
-            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Student/ShowStudentList">Students List</a>
-            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Update/UpdateDB">Update data</a>
-            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView">Job Offer Management</a>
-            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>JobOffer/AddJobOfferView">Add Job Offer</a>
             
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Student/ShowStudentList" >Students List</a>
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Update/UpdateDB" style="background-color: #006666;">Update Data</a>
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView" style="background-color: #000033;">Job Offer Management</a>
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>JobOffer/AddJobOfferView" style="background-color: #000033;">Add Job Offer</a>
+            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin" style="background-color: #006633;">Company Management</a>
+            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ViewAddCompany" style="background-color: #006633;">Add Company</a>
         </div>
     </header>
 
