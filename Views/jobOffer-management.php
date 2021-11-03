@@ -32,7 +32,7 @@
                                    echo 'inactive';?></td>
                          <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">Modify </a><i class="fas fa-edit"></button></td> 
                          
-                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/DeleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">Delete </a><i class="fas fa-trash-alt"></i></button></td>
+                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/deleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">Delete </a><i class="fas fa-trash-alt"></i></button></td>
                     </tr>
                              <?php }
                           }?>
