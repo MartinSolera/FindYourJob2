@@ -27,7 +27,6 @@
                    <form action=<?php echo FRONT_ROOT.'JobOffer/ShowListViewStudent'?> method ="get">  
                    <?php if(!empty($jobOfferList)){ 
                     foreach($jobOfferList as $jobOffer){ ?>
-                    
                     <tr>
                         <td><?php echo $jobOffer->getCompany()->getName(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
