@@ -181,7 +181,7 @@
                     $jobOffer->setDateTime($value['dateTime']);
                     $jobOffer->setLimitDate($value['limitDate']);
                     $jobOffer->setTimeState($value['timeState']);
-                    $jobOffer->setUserState($value['idUser']);
+                    $jobOffer->setUserState($value['userState']);
     
                     $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));

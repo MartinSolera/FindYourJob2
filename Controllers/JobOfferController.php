@@ -49,7 +49,10 @@ use PDOException;
             Utils::checkAdminSession();
 
             $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
-            
+            if($jobOffer->getUserState()==2){ 
+                $message = "Cannot update job offer because a student has already applied";
+                $this->JobOfferManagementView($message);
+            }
             require_once(VIEWS_PATH."modifyJobOffer.php");
         }
 
@@ -90,11 +93,11 @@ use PDOException;
            
         }
 
-        public function DeleteJobOffer($idJobOffer) {
+        public function deleteJobOffer($idJobOffer) {
             Utils::checkAdminSession();
             $message = "Job offer deleted";
             
-            $removed = $this->JobOfferDAO->DeleteJobOffer($idJobOffer);
+            $removed = $this->jobOfferDAO->DeleteJobOffer($idJobOffer);
             $this->JobOfferManagementView($message);
         }
 
