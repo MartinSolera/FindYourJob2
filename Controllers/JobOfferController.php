@@ -45,11 +45,11 @@ use PDOException;
             require_once(VIEWS_PATH."jobOffer-management.php");
         }
 
-        public function JobOfferModifyView($message = "") {
+        public function JobOfferModifyView($idJobOffer) {
             Utils::checkAdminSession();
 
-            $jobOfferList = $this->jobOfferDAO->GetAll();
-
+            $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+            
             require_once(VIEWS_PATH."modifyJobOffer.php");
         }
 
@@ -99,21 +99,19 @@ use PDOException;
         }
 
 
-        public function updateJobOffer($jobOfferId, $datetime, $limitDate, $userState, $jobPosition)
+        public function modifyJobOffer($limitDate, $description, $idJobOffer)
         {
             Utils::checkSession();
-            $message = "The job offer had been updated successfully";
-
-            $jobOffer = new JobOffer();
-            $jobOffer->setIdJobOffer($jobOfferId);
-            $jobOffer->setDatetime($datetime);
-            $jobOffer->setLimitDate($limitDate);
-            $jobOffer->setUserState($userState);
-            $jobOffer->setJobPosition($jobPosition);
-
-            $this->JobOfferDAO->update($jobOffer);
-
-            $this->JobOfferManagementView($message);
+        
+            $result=$this->jobOfferDAO->modifyJobOffer($limitDate, $description, $idJobOffer);
+            
+            if($result==1) {
+                $message = "The job offer has been updated successfully";
+                $this->JobOfferManagementView($message);
+            } else {
+                $message = "Error: could not update the job offer";
+                $this->JobOfferManagementView($message);
+            }
         }
         
 

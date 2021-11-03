@@ -154,13 +154,13 @@ class CompanyController
         else
         $this->ShowListViewAdmin("ERROR: Failed in Company modify");
 
-    }catch(PDOException $ex){
+        }catch(PDOException $ex){
 
-        if(Functions::contains_substr($ex->getMessage(), "Duplicate entry")) 
-        $this->ShowListViewAdmin("Datos repetidos ");
+            if(Functions::contains_substr($ex->getMessage(), "Duplicate entry")) 
+            $this->ShowListViewAdmin("Datos repetidos ");
 
-          
-     }
+            
+        }
 
     }
 

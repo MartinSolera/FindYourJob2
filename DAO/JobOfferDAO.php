@@ -141,12 +141,12 @@
             foreach ($this->jobOfferList as $value) {
                 $jobOffer = new JobOffer();
                 $jobOffer->setDescription($value['description']);
-                $jobOffer->setDateTime($value['datetime']);
+                $jobOffer->setDateTime($value['dateTime']);
                 $jobOffer->setLimitDate($value['limitDate']);
                 $jobOffer->setTimeState($value['timeState']);
                 $jobOffer->setUserState($value['idUser']);
 
-                $jobOffer->setUser($this->userDao->GetUserXid($value['idUser']));
+                $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
                 $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                 $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
     
@@ -155,7 +155,58 @@
             return  $listToReturn;
         }
 
+        public function GetJobOfferXid($idJobOffer){
 
+            $query = " SELECT * FROM joboffer WHERE id_JobOffer = (:idJobOffer)"; //company WHERE id_Company = :idCompany";
+    
+            $parameters['idJobOffer'] = $idJobOffer;
+    
+            try {
+                $result = $this->connection->Execute($query, $parameters);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            $jobOffer = null;
+    
+            if(!empty($result)){
+    
+                foreach($result as $value){
+
+                    $jobOffer = new JobOffer();
+
+                    $jobOffer->setIdJobOffer($value['id_JobOffer']);
+                    $jobOffer->setDescription($value['description']);
+                    $jobOffer->setDateTime($value['dateTime']);
+                    $jobOffer->setLimitDate($value['limitDate']);
+                    $jobOffer->setTimeState($value['timeState']);
+                    $jobOffer->setUserState($value['idUser']);
+    
+                    $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
+                    $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
+                    $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
+                }
+            }
+            return $jobOffer;
+        }
+
+
+        public function modifyJobOffer($limitDate, $description, $idJobOffer) {
+
+            $sql = "UPDATE joboffer SET description = :description , limitDate = :limitDate WHERE (id_JobOffer = :idJobOffer);" ;
+            
+            $parameters['limitDate'] = $limitDate;
+            $parameters['description'] = $description;
+            $parameters['idJobOffer'] = $idJobOffer;
+            
+            try {
+                $result = $this->connection->ExecuteNonQuery($sql, $parameters);
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+            return $result; //si retorna 1 actualizó si retorna 0 no actualizó
+        }
     }
 
 ?>
