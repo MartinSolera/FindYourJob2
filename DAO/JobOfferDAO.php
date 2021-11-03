@@ -142,7 +142,7 @@
                 $jobOffer = new JobOffer();
                 $jobOffer->setDescription($value['description']);
                 $jobOffer->setDateTime($value['datetime']);
-                $jobOffer->setLimitDate($value['limit_date']);
+                $jobOffer->setLimitDate($value['limitDate']);
                 $jobOffer->setTimeState($value['timeState']);
                 $jobOffer->setUserState($value['idUser']);
 
