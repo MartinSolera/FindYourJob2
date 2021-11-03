@@ -126,12 +126,28 @@ use PDOException;
         
             foreach($this->jobOfferList as $offer){
                 if($offer['jobPositionId'] == $positionId){
-                        array_push($results, $offer); 
-                    }
+                    array_push($results, $offer); 
                 }
-                return $results;
             }
+            return $results;
+        }
         
+        public function showJobOffer($idJobOffer) {
+
+            $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+        
+            require_once(VIEWS_PATH."show-jobOffer.php");
+        }
+
+        public function jobOfferList($message = "") {
+            Utils::checkStudentSession();
+
+            $jobOfferList = $this->jobOfferDAO->GetAll();
+
+            require_once(VIEWS_PATH."list-jobOffers-std.php");
+        }
+        
+
 
     }
 

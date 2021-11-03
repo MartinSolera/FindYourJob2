@@ -22,7 +22,7 @@
 
             <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies List</a>
 
-            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>User/">Job Offers List</a>
+            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>JobOffer/jobOfferList">Job Offers List</a>
             
 
         </div>
