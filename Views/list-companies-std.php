@@ -8,11 +8,11 @@
           <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
                <h2 class="mb-4">Companies List</h2>
                <form action="<?php echo FRONT_ROOT ?>Company/FilterCompanies" method="POST" enctype="multipart/form-data">
-                    <input type="text" name="search" class="form-control form-control-ml" placeholder="Company Name"  required>
-                    <br>
-
-                    <button type="submit"  class="btn btn-dark ml-auto d-block" >Search</button>
-                    <button type="submit"  class="btn btn-dark ml-auto d-block"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">All Companies</a></button>
+                    <div id="outer">
+                         <input type="text" name="search" class="" placeholder="Company Name"  required>
+                         <button type="submit"  class="btn btn-dark " >Search</button>
+                         <button type="submit"  class="btn btn-dark " > <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent" style="color: white;">Clean</a></button>
+                    </div>
                     <br>
                </form>
                <table class="table bg-light-alpha">
