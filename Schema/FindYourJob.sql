@@ -67,7 +67,7 @@ create table if not exists JobOffer(
 	id_JobOffer BIGINT UNSIGNED AUTO_INCREMENT not null,
 	description VARCHAR(30) not null ,
 	dateTime DATE  not null,
-	limit_date DATE not null ,
+	limitDate DATE not null ,
 	timeState int  not null,
 	userState int not null,
 	idUser BIGINT UNSIGNED not null,

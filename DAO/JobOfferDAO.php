@@ -23,11 +23,11 @@
         }
 
         public function Add(JobOffer $jobOffer) {
-            $query = "INSERT INTO joboffer (description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany) value (:description, :dateTime, :limit_date, :timeState, :userState, :idUser, :idJobPosition, :idCompany);";
+            $query = "INSERT INTO joboffer (description, dateTime, limitDate, timeState, userState, idUser, idJobPosition, idCompany) value (:description, :dateTime, :limitDate, :timeState, :userState, :idUser, :idJobPosition, :idCompany);";
             
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
-            $parameters['limit_date'] = $jobOffer->getLimitDate();
+            $parameters['limitDate'] = $jobOffer->getLimitDate();
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['userState'] = $jobOffer->getUserState();
             $parameters['idUser'] = $jobOffer->getUser();
@@ -66,7 +66,7 @@
                     $jobOffer->setIdJobOffer($value['id_JobOffer']);
                     $jobOffer->setDescription($value['description']);
                     $jobOffer->setDateTime($value['dateTime']);
-                    $jobOffer->setLimitDate($value['limit_date']);
+                    $jobOffer->setLimitDate($value['limitDate']);
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setUserState($value['userState']);
                     $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
@@ -95,12 +95,12 @@
 
         public function updateJobOffer(JobOffer $jobOffer)
         {
-            $query = "UPDATE joboffer SET name=:name, description, dateTime, limit_date, timeState, userState, idUser, idJobPosition, idCompany WHERE  id_JobOffer = :id_JobOffer" ;
+            $query = "UPDATE joboffer SET name=:name, description, dateTime, limitDate, timeState, userState, idUser, idJobPosition, idCompany WHERE  id_JobOffer = :id_JobOffer" ;
             
 
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
-            $parameters['limit_date'] = $jobOffer->getLimitDate();
+            $parameters['limitDate'] = $jobOffer->getLimitDate();
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['userState'] = $jobOffer->getUserState();
             $parameters['idUser'] = $jobOffer->getUser()->getId();
