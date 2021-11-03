@@ -28,8 +28,13 @@
 
         public function Index($message = "")
         {
-            require_once(VIEWS_PATH."login.php");
+            require_once(VIEWS_PATH."presentation.php");
         }   
+
+        public function Home($message = "")
+        {
+            require_once(VIEWS_PATH."login.php");
+        }
 
         public function searchApiStudent($studentEmail,$user){
 
@@ -78,7 +83,7 @@
             }
             else{
                 $message = "Error, email or password are wrong";
-                $this->Index($message);
+                $this->Home($message);
             }  
         }
 
