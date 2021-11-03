@@ -34,7 +34,7 @@
                     <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Password required" required>
 
                     <center>
-                        <button class="btn btn-warning btn-block btn-sm " type="submit">Registration</button>
+                        <button class="btn btn-dark btn-block btn-sm " type="submit">Registration</button>
                     </center>
                 </div>
             </div>

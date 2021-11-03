@@ -2,6 +2,7 @@
     require_once('nav.php');
 ?>
 <main class="py-5">
+<script src="https://kit.fontawesome.com/4fa39b8df5.js" crossorigin="anonymous"></script>
      <section id="listado" class="mb-5">
           <div class="container">
           <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
@@ -28,10 +29,10 @@
                          <td><?php  if($jobOff->getUserState() == 'true'){
                                         echo 'active';
                                    } else
-                                   echo 'inactive';
-                          ?></td>
-                         <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getId();?> " style="color: white;">modify </a><i class="fas fa-edit"></i> </button></td> 
-                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/DeleteJobOffer?idJobOffer=".$jobOff->getId();}?> " style="color: white;">delete</a></button></td>
+                                   echo 'inactive';?></td>
+                         <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">Modify </a><i class="fas fa-edit"></button></td> 
+                         
+                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/DeleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">Delete </a><i class="fas fa-trash-alt"></i></button></td>
                     </tr>
                              <?php }
                           }?>
