@@ -35,7 +35,8 @@
                          <td><?php echo $company->getCity()->getName(); ?></td>
 
                          <td>
-                              <a href="<?php echo FRONT_ROOT."Company/ShowCompany/?nameCompany=".$company->getName()."&email=".$company->getEmail();?>" class="btn btn-dark" style="color: white;">+</a>
+                              <?php $companyId = $company->getIdCompany();?>
+                              <a href="<?php echo FRONT_ROOT."Company/ShowCompany/?idCompany=".$companyId;?>" class="btn btn-dark" style="color: white;">+</a>
                          </td>
      
                              <?php }
