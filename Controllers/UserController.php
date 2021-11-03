@@ -30,7 +30,7 @@ class UserController{
                     $newUser = new User();
                     $newUser->setEmail($email);
                     $newUser->setPassword($password);
-                    $newUser->setId($student->getId());
+                    $newUser->setId($student->getStudentId());
                     $newUser->setUserType(2);
             
                     $this->UserDAO->Add($newUser);

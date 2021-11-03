@@ -23,19 +23,18 @@
         </div>
     </section>
     <section>
-        <form action='<?php echo FRONT_ROOT ?>User/userRegister' method="post" class="bg-light-alpha p-5">
-            <div>
+        <form action='<?php echo FRONT_ROOT ?>User/userRegister' method="post" class=" d-flex align-items-center justify-content-center height-100">
+            <div class="form-group">
                 <div class="form-group">
                     <label for="" align="center"></label>
-                    <input type="email" name="email" class="form-control form-control-lg" placeholder="<?php echo $student->getEmail()?>" required>
+                    <input type="hidden" name="email" class="form-control form-control-lg" value="<?php echo $student->getEmail()?>" required>
+                    <input type="password" alt="strongPass" name="password" class="form-control form-control-lg" placeholder="Password required" required>
                     <label for="" align="center">Password</label>
-                    <input type="password" alt="strongPass" name="password" class="form-control form-control-lg" placeholder="User required" required>
-                    <label for="" align="center">Confirm Password</label>
+                    
                     <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Password required" required>
-
-                    <center>
-                        <button class="btn btn-dark btn-block btn-sm " type="submit">Registration</button>
-                    </center>
+                    <label for="" align="center">Confirm Password</label>
+                    <br><br>
+                    <button class="btn btn-dark btn-block btn-m " type="submit">Registration</button>
                 </div>
             </div>
         </form>
