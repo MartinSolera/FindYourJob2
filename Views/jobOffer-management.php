@@ -30,7 +30,7 @@
                                    } else
                                    echo 'inactive';
                           ?></td>
-                    
+                         <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getId();?> " style="color: white;">modify </a><i class="fas fa-edit"></i> </button></td> 
                          <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/DeleteJobOffer?idJobOffer=".$jobOff->getId();}?> " style="color: white;">delete</a></button></td>
                     </tr>
                              <?php }

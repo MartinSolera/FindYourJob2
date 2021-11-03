@@ -45,6 +45,14 @@ use PDOException;
             require_once(VIEWS_PATH."jobOffer-management.php");
         }
 
+        public function JobOfferModifyView($message = "") {
+            Utils::checkAdminSession();
+
+            $jobOfferList = $this->jobOfferDAO->GetAll();
+
+            require_once(VIEWS_PATH."modifyJobOffer.php");
+        }
+
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
         {
             Utils::checkAdminSession();
