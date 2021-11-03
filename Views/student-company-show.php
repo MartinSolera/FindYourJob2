@@ -10,7 +10,7 @@
                     {
                          echo  "<h4> Name: " . $company->getName() . "</h4>";
                          echo  "<h4> Year Foundation: " . $company->getYearFoundation() . "</h4>";
-                         echo  "<h4> City: " . $company->getCity() . "</h4>";
+                         echo  "<h4> City: " . $company->getCity()->getName() . "</h4>";
                          echo  "<h4> Description: " . $company->getDescription() . "</h4>";
                          echo  "<h4> Email: " . $company->getEmail() . "</h4>";
                          echo  "<h4> PhoneNumber: " . $company->getPhoneNumber() . "</h4>";
