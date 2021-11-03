@@ -19,12 +19,10 @@
         
             <h2> Home Student </h2>
             <h5 class="mb-5"><em>Please choose one of the next actions</em></h5>
-            
-            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Student/ShowStudentList">Student List</a>
 
-            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Show Companies View</a>
+            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies List</a>
 
-            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>Student/JobOfferManagment">Job Offers List</a>
+            <a class="btn btn-success btn-x2" href="<?php echo FRONT_ROOT ?>User/">Job Offers List</a>
             
 
         </div>
