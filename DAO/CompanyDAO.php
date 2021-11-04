@@ -80,7 +80,7 @@
 
          public function DeleteCompany($idCompany)
          {
-             $sql = "DELETE FROM " . $this->nameTable  ." WHERE id_Company = :id_Company";
+             $sql = "DELETE FROM company WHERE id_Company = :id_Company";
 
              $parameters['id_Company'] = $idCompany;
      

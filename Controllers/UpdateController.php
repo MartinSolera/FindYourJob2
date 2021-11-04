@@ -29,7 +29,6 @@ class UpdateController
         $message=null;
         $resC = $this->UpdateCareerDB();
         $resJP = $this->UpdateJobPositionDB();
-        echo $resJP;
         if($resC==0 && $resJP==0){
             $mensaje="updated data successfully";
             $this->AdminMenuView($mensaje);

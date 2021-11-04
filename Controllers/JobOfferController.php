@@ -134,7 +134,7 @@
             }
             $jobOffers = $filteredJobPositions;
             if($jobOffers == null){
-                $this->jobOfferList("The job offer you are searching for doesn´t exist");
+                $this->jobOfferList("The job position you are searching for doesn´t exist");
             }
             require_once(VIEWS_PATH."list-JobOffers-std.php");
         }

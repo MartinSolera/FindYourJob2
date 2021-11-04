@@ -123,7 +123,7 @@
                 
                 $exists= $this->existsById($career->getCareerId()); //funcion que se fije si ya existe el id de la carrera en la bdd
                 if($exists == null) {
-                    $this->AddCareerToDB($career);
+                    $result = $this->AddCareerToDB($career);
                 }
                 else{
                     $result = $this->updateCareer($career);
@@ -147,36 +147,6 @@
             }
             return $result;
         }
-
-/*
-      public function GetAllActive(){
-            $this->consumeFromApi();
-            return array_filter(
-                $this->careerList,
-                fn($activeCareer) => $activeCareer->getActive() == true
-             );
-
-        }
-*/
-   /*      public function GetCareerById($careerId){
-            $this->consumeFromApi();
-
-            foreach ($this->careerList as $career) {
-                if ($career->getCareerId() == $careerId){
-                    return $career;
-                }
-            }
-            return null;
-    }
-
-    public function getCareerStudent($student){
-        $this->consumeFromApi();
-            foreach($this->careerList as $career){
-                if($student->getCareerId() == $career->getCareerId())
-                return $career;
-            }
-        
-    } */
     
         public function GetCareerXid($idCareer){
             $query = " SELECT * FROM career WHERE id_Career = (:idCareer)";

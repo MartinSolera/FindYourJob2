@@ -6,12 +6,12 @@
           </header>
           <form action=<?php echo FRONT_ROOT.'Home/login'?> method="post" class="login-form bg-dark-alpha p-5 text-black">
                <div class="form-group">
-                    <label for="">USERNAME</label>
-                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Type email requerid" required>
+                    <label for="">EMAIL</label>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Type email required" required>
                </div>
                <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Password requerid" required>
+                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Type password required" required>
                </div>
                <button class="btn btn-dark btn-block btn-lg" type="submit" >Log In</button>
                
