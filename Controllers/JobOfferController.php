@@ -7,7 +7,7 @@
     use DAO\CompanyDAO as CompanyDAO;
     use DAO\UserDAO as UserDAO;
     use Utils\Utils as Utils;
-    use Models\JobPosition as JobPosition; 
+    use Models\User as User; 
     use Models\JobOffer as JobOffer;
     use Controllers\Functions;
     use Exception;
@@ -58,20 +58,21 @@
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
         {
             Utils::checkSession();
-
+        
             $message=null;
             $company = $this->companyDAO->GetCompanyXid($idCompany);
             $jobPosition = $this->jobPositionDAO->GetJobPositionXid($idJobPosition);
-            
+            $user = $this->userDAO->GetUserXid(1); //id admin
+
             $newJobOff = new JobOffer();
             $newJobOff->setDescription($description);
             $newJobOff->setDatetime($datetime);
             $newJobOff->setLimitDate($limitdate);
             $newJobOff->setCompany($company);
+            $newJobOff->setUser($user);
             $newJobOff->setJobPosition($jobPosition);
             $newJobOff->setUserState(1); //disponible 
-            $newJobOff->setTimeState(1);
-            $newJobOff->setUser(1);
+            $newJobOff->setTimeState(1); //disponible
             
             try {
                 $result = $this->jobOfferDAO->Add($newJobOff);
@@ -156,12 +157,16 @@
         }
 
 
-        public function Apply($jobOfferId)
-        {
+        public function apply($idUser, $idJobOffer) {
             
-    
-
-            require_once(VIEWS_PATH . "show-jobOffer.php");
+            $result = $this->jobOfferDAO->applyToJobOffer($idUser, $idJobOffer);
+            if($result == 1){
+                $message = "applied successfully";
+            }
+            else{
+                $message = "could not apply";
+            }
+            $this->jobOfferList($message);
         }
         
 

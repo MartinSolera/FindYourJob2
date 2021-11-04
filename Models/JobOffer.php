@@ -21,7 +21,7 @@
             return $this->idJobOffer;
         }
 
-        public function setUser($user){
+        public function setUser(User $user){
             $this->user = $user;
         }
 
@@ -29,7 +29,7 @@
             return $this->user;
         }
 
-        public function setCompany($company){
+        public function setCompany(Company $company){
             $this->company = $company;
         }
 
