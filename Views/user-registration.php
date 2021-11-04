@@ -32,15 +32,20 @@
                     
                     <input type="hidden" name="email" class="form-control form-control-lg" value="<?php echo $student->getEmail()?>" required>
 
-                    <input type="password" alt="strongPass" name="password" class="form-control form-control-lg" placeholder="Password required" required>
+                    <input type="password" alt="strongPass" name="password" class="form-control form-control-lg" placeholder="Password required" minlength="5" maxlength="25" required>
                     <label for="" align="center">Password</label>
                     
-                    <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Confirm password" required>
+                    <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Confirm password" minlength="5" maxlength="25"required>
                    
                     <label for="" align="center">Confirm Password</label>
                     
                     <br><br>
                     <button class="btn btn-dark btn-block btn-m " type="submit">Registration</button>
+                    <center> 
+                    <br>
+                    <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Home/Home" > Back to Login</a>
+                    <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Home/ShowRegister" > Back to Registration Menu</a>
+                    </center>
                 </div>
             </div>
         </form>
