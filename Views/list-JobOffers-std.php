@@ -20,6 +20,7 @@
                     <th>Company Name</th>
                     <th>Job position</th>
                     <th>Limit date</th>
+                    <th>Status</th>
                     <th>Info</th>  
                     </thead>
                     <tbody>  
@@ -31,6 +32,11 @@
                         <td><?php echo $jobOffer->getCompany()->getName(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getLimitDate(); ?></td>
+                        <td><?php if($jobOffer->getUserState() == 1){
+                                        echo 'active';
+                                   } else
+                                   echo 'inactive';?></td>
+                        
                         <td>
                             <?php $jobOfferId = $jobOffer->getIdJobOffer();?>
                             <a href="<?php echo FRONT_ROOT."JobOffer/ShowJobOffer/?jobOfferId=".$jobOfferId;?>" class="btn btn-dark" style="color: white;">+</a>

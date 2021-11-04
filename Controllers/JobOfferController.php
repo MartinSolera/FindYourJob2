@@ -134,6 +134,8 @@ use PDOException;
         
         public function showJobOffer($idJobOffer) {
 
+            Utils::checkSession();
+
             $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
         
             require_once(VIEWS_PATH."show-jobOffer.php");
@@ -146,7 +148,18 @@ use PDOException;
 
             require_once(VIEWS_PATH."list-jobOffers-std.php");
         }
+
+
+        public function Apply($jobOfferId)
+        {
+            
+    
+
+            require_once(VIEWS_PATH . "show-jobOffer.php");
+        }
         
+
+
 
 
     }
