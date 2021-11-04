@@ -19,7 +19,7 @@
         }
 
         public function Add(User $user){
-            $query = " INSERT INTO ". $this->nameTable . " (email , password , idUserType) value (:email , :password , :idUserType)";
+            $query = " INSERT INTO ". $this->nameTable . " (email , pass , idUserType) value (:email , :password , :idUserType)";
     
             $parameters['email'] = $user->getEmail();
             $parameters['password'] = $user->getPassword();
@@ -37,7 +37,7 @@
         public function GetAll() {
             $listUsers = [];
 
-            $query = "SELECT * FROM" . $this->nameTable;
+            $query = "SELECT * FROM  " . $this->nameTable;
 
             try {
                 $result = $this->connection->Execute($query);
@@ -50,8 +50,8 @@
                     $user = new User();
 
                     $user->setEmail($value['email']);
-                    $user->setPassword($value['password']);
-                    $user->setUserType($this->userTypeDAO->GetUserTypeXid($value['idUserType']));
+                    $user->setPassword($value['pass']);
+                    $user->setUserType($this->userTypeDao->GetUserTypeXid($value['idUserType']));
                     $user->setId($value['id_User']);
                     
                     array_push($listUsers, $user);

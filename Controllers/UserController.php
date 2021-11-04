@@ -6,6 +6,7 @@ use Controllers\StudentController as StudentController;
 use Models\Student as Student;
 use Models\User as User;
 use DAO\UserDAO as UserDAO;
+use Models\UserType as UserType;
 
 class UserController{
 
@@ -30,17 +31,20 @@ class UserController{
                 
                 if($this->UserDAO->getUserByEmail($email) == null){
                     $newUser = new User();
+                    $newUserType = new UserType();
+                    $newUserType->setId(2);
+
                     $newUser->setEmail($email);
                     $newUser->setPassword($password);
                     $newUser->setId($student->getStudentId());
-                    $newUser->setUserType(2);
+                    $newUser->setUserType($newUserType);
             
                     $this->UserDAO->Add($newUser);
     
-                    $succesfulRegistration = true;
+                    
                     require_once(VIEWS_PATH . "login.php");
                 } else {
-                    $registedEmail = true;
+                    
                     require_once(VIEWS_PATH . "login.php");
                 }
                 

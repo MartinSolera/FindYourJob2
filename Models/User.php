@@ -60,7 +60,7 @@ class User
         return $this->userType;
     }
 
-    public function setUserType($userType){
+    public function setUserType(UserType $userType){
         $this->userType = $userType;
     }
 }
