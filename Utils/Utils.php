@@ -27,6 +27,12 @@
             header("Location: ".FRONT_ROOT);
         }
 
+        public static function getIdUser(){
+            if(isset($_SESSION['student'])){
+                $idUser = $_SESSION['student']->getId();
+            }
+            return $idUser;
+        }
 
         public static function completeSearch(String $haystack, String $needle)
         {

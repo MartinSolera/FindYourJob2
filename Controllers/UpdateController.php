@@ -7,7 +7,6 @@ use Models\Career as Career;
 use Utils\Utils as Utils;
 use DAO\Connection as Connection;
 use DAO\JobPositionDAO as JobPositionDAO;
-use Controllers\CareerController as CareerController;
 use Controllers\CompanyController as CompanyController;
 use Controllers\Functions;//para mensajes de dbb
 use PDOException;

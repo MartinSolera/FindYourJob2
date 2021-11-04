@@ -95,8 +95,7 @@
 
         public function updateJobOffer(JobOffer $jobOffer)
         {
-            $query = "UPDATE joboffer SET name=:name, description, dateTime, limitDate, timeState, userState, idUser, idJobPosition, idCompany WHERE  id_JobOffer = :id_JobOffer" ;
-            
+            $query = "UPDATE joboffer SET name=:name, description=:description, dateTime=:dateTime, limitDate=:limitDate, timeState=:timeState, userState=:userState, idUser=:idUser, idJobPosition=:idJobPosition, idCompany=:idCompany WHERE  id_JobOffer = :id_JobOffer" ;
 
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
@@ -212,12 +211,28 @@
             $applied=null;
             
             if($idUser != 1){
-                $jobOffer = $this->GetJobOfferXid($idJobOffer);
-                $jobOffer->setUser($this->userDAO->GetUserXid($idUser));
-                $jobOffer->setUserState(2); //inactive
-                $applied = $this->updateJobOffer($jobOffer);
+                /* $jobOffer = $this->GetJobOfferXid($idJobOffer);
+                $jobOffer->setUser($this->userDAO->GetUserXid($idUser)); */
+               /*  $jobOffer->setUserState(2);  */
+                $applied = $this->updateApplyJobOffer($idUser, $idJobOffer);
             }
             return $applied; //si retorna 1 actualizó si retorna 0 no actualizó
+        }
+
+        public function updateApplyJobOffer($idUser, $idJobOffer)
+        {
+            $query = "UPDATE joboffer SET idUser=:idUser, userState=:userState WHERE (id_JobOffer = :idJobOffer);" ;
+
+            $parameters['idUser'] = $idUser;
+            $parameters['userState'] = 2; //inactive
+            $parameters['idJobOffer'] = $idJobOffer;
+            
+            try {
+                $this->connection = Connection::getInstance();
+                return $this->connection->executeNonQuery($query, $parameters);
+            } catch (Exception $exception) {
+                throw $exception;
+            }
         }
     }
 

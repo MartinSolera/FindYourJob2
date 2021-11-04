@@ -142,7 +142,7 @@
         public function showJobOffer($idJobOffer) {
 
             Utils::checkSession();
-
+            
             $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
         
             require_once(VIEWS_PATH."show-jobOffer.php");
@@ -157,9 +157,12 @@
         }
 
 
-        public function apply($idUser, $idJobOffer) {
+        public function apply($idJobOffer) {
+            
+            $idUser = Utils::getIdUser();
             
             $result = $this->jobOfferDAO->applyToJobOffer($idUser, $idJobOffer);
+
             if($result == 1){
                 $message = "applied successfully";
             }
