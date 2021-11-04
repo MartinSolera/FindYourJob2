@@ -47,13 +47,13 @@ class UserController{
             } else {
                 //$invalidEmail = true;
                 $message = "There aren't student with this email in the system";
-                $this->userRegisterView($message);
+                $this->userValidationView($message);
             }
 
         }
         else{
-            $message = "No coinciden las password";
-            $this->userRegisterView($message);
+            $message = "The passwords do not match";
+            $this->userValidationView($message);
         }
 
     }
@@ -63,7 +63,7 @@ class UserController{
         return $user;
     }
 
-    public function userRegisterView($message = "")
+    public function userValidationView($message = "")
         {
             require_once(VIEWS_PATH."user-validation.php");
         }   

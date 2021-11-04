@@ -87,8 +87,6 @@
             }  
         }
 
-        
-
         public function RedirectHome()
         {
             Utils::checkSession();
@@ -99,20 +97,7 @@
                 require_once(VIEWS_PATH . "home-student.php");
             }
         }
-/*
-        public function RegisterValidation($email)
-        {
-                $student = $this->studentDAO->getStudentByMail($email);
-                // $career = $this->careerDAO->getCareerStudent($student);
-            if ($student != null)
-            {
-                require_once(VIEWS_PATH . "user-registration.php");
-            } else {
-                $message = "This mail is incorrect. Please try again";
-                require_once(VIEWS_PATH . "user-validation.php");
-            }
-        }
-*/
+
         public function ShowRegister()
         {
             require_once(VIEWS_PATH . "user-validation.php");
@@ -128,7 +113,7 @@
                 ///El usuario ya existe en el sistema.
 
                 $message = "This email is already in use ";
-                 $this->userRegisterView($message);
+                 $this->userValidationView($message);
 
         } else {
     
@@ -137,9 +122,13 @@
 
             if($checkStudent == false){
                 $message = "Your email is not register in campus <br> You can't register "; 
-                $this->userRegisterView($message);
-
-            }else{
+                $this->userValidationView($message);
+            }
+            if($checkStudent->getActive() == false){
+                $message = "Your email is not active in the campus "; 
+                $this->userValidationView($message);
+            }
+            else{
                 $student= $checkStudent;
                 require_once(VIEWS_PATH . "user-registration.php");
 
@@ -147,7 +136,7 @@
         }
     }
 
-    public function userRegisterView($message = "")
+    public function userValidationView($message = "")
         {
             require_once(VIEWS_PATH."user-validation.php");
         }   
