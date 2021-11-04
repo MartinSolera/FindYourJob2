@@ -10,8 +10,7 @@
     use Models\JobPosition as JobPosition; 
     use Models\JobOffer as JobOffer;
     use Controllers\Functions;
-use Exception;
-use PDOException;
+    use Exception;
 
     class JobOfferController {
 
@@ -119,17 +118,24 @@ use PDOException;
         
 
         //Filtro de job offers
-        public function jobOffersForJobPosition($positionId){
-            Utils::checkSession();
-            $this->jobOfferList = $this->jobOfferDAO->GetAll();
-            $results = array();
-        
-            foreach($this->jobOfferList as $offer){
-                if($offer->getJobPosition()->getId() == $positionId){
-                    array_push($results, $offer); 
-                }
+        public function filterJobOffersForJobPosition($search){
+            
+            $search = strtolower($search);
+            $filteredJobPositions = array();
+            foreach ($this->jobPositionDAO->getAll() as $jobPosition) 
+            {
+                $jobPosDescription = strtolower($jobPosition->getDescription());
+    
+                if (Utils::completeSearch($jobPosDescription, $search)) 
+                {
+                    array_push($filteredJobPositions, $jobPosition);
+                }            
             }
-            return $results;
+            $jobOffers = $filteredJobPositions;
+            if($jobOffers == null){
+                $this->jobOfferList("The job offer you are searching for doesn´t exist");
+            }
+            require_once(VIEWS_PATH."list-JobOffers-std.php");
         }
         
         public function showJobOffer($idJobOffer) {
