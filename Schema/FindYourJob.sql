@@ -56,7 +56,7 @@ constraint fk_idCity foreign key (idCity) references City(id_City) on update CAS
 
 create table if not exists JobPosition(
 id_JobPosition BIGINT UNSIGNED AUTO_INCREMENT not null,
-description VARCHAR(30) not null ,
+description VARCHAR(50) not null ,
 idCareer  BIGINT UNSIGNED not null,
 constraint pk_idJobPosition primary key(id_JobPosition),
 constraint fk_idCareer foreign key (idCareer) references Career(id_Career) on update CASCADE

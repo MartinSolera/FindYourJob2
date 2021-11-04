@@ -9,7 +9,7 @@
                <form action="<?php echo FRONT_ROOT."JobOffer/modifyJobOffer";?>" method="POST" class="bg-light-alpha p-5">
                     <div class="row">
                         <div class="col-lg-3">
-                            <div class="form-group">
+                            
                                 <label for="">Company:</label>
                                 <?php echo $jobOffer->getCompany()->getName(); ?><br><br>
 
@@ -22,7 +22,7 @@
                                 <label for="">Description</label>
                                 <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="1000" required>
                                 <!-- <textarea class="input" name="description"  value = " " id="description" cols="30" rows="3" required></textarea> -->
-                            </div>
+                            
                         </div>
                     </div>
                     <button type="submit" name = "idJobOffer" value ="<?php echo $jobOffer->getIdJobOffer();?>" class="btn btn-dark ml-auto d-block">Modify</button>
