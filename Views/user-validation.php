@@ -18,6 +18,6 @@ require_once('header.php');
                 <input type="email" name="email" class="form-control form-control-lg" placeholder="email@example.com" required>
             </div>
             <button class="btn btn-dark btn-block btn-lg" type="submit">Check Email</button>
-        </form
+        </form>
     </div>
 </main>

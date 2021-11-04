@@ -119,24 +119,26 @@
         }
 
         public function checkRegister($email){
+
+            $message = null;
+
             $statusUser = $this->userDao->getUserFromDB($email);
 
             if ($statusUser != null){
                 ///El usuario ya existe en el sistema.
-                echo "<script> if(confirm('This email is already in use ')); </script>";
-                require_once(VIEWS_PATH . "user-validation.php");
+
+                $message = "This email is already in use ";
+                 $this->userRegisterView($message);
 
         } else {
-            ///El usuario no se encuentra en el sistema, por lo tanto esta en condiciones de crear un nuevo user.
-            /// Pero antes tiene que pegar contra la api y fijarse si esta ahi.
-            /// Si se encuentra en la api, se puede registrar. Si NOO se encuentra en la api NO se puede registrar
-
+    
             //$allStudents = $this->studentDAO->GetAll();
             $checkStudent = $this->studentDAO->getStudentByMail($email);
 
             if($checkStudent == false){
-                echo "<script> if(confirm('Este mail no esta en el campus, no te podes registrar')); </script>";
-                require_once(VIEWS_PATH . "user-validation.php");
+                $message = "Your email is not register in campus <br> You can't register "; 
+                $this->userRegisterView($message);
+
             }else{
                 $student= $checkStudent;
                 require_once(VIEWS_PATH . "user-registration.php");
@@ -144,5 +146,11 @@
             }
         }
     }
+
+    public function userRegisterView($message = "")
+        {
+            require_once(VIEWS_PATH."user-validation.php");
+        }   
+
 }
 ?>

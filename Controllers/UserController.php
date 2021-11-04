@@ -45,17 +45,15 @@ class UserController{
                 }
                 
             } else {
-                $invalidEmail = true;
-                $message = "Error al ingresar";
+                //$invalidEmail = true;
+                $message = "There aren't student with this email in the system";
                 $this->userRegisterView($message);
-                //require_once(VIEWS_PATH . "login.php");
             }
 
         }
         else{
             $message = "No coinciden las password";
             $this->userRegisterView($message);
-            require_once(VIEWS_PATH . "login.php");
         }
 
     }
