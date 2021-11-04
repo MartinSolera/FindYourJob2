@@ -5,7 +5,7 @@
     <section id="listado" class="mb-5">
         
             <div class="container">
-            <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
+                
                 <h3 class="mb-3">Job offer</h3><hr>
                 <?php
                     if(isset($jobOffer))

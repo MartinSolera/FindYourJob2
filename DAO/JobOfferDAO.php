@@ -208,12 +208,8 @@
         }
 
         public function applyToJobOffer($idUser, $idJobOffer) {
-            $applied=null;
             
             if($idUser != 1){
-                /* $jobOffer = $this->GetJobOfferXid($idJobOffer);
-                $jobOffer->setUser($this->userDAO->GetUserXid($idUser)); */
-               /*  $jobOffer->setUserState(2);  */
                 $applied = $this->updateApplyJobOffer($idUser, $idJobOffer);
             }
             return $applied; //si retorna 1 actualizó si retorna 0 no actualizó
@@ -234,6 +230,19 @@
                 throw $exception;
             }
         }
+
+        public function checkAlreadyApplied($idUser){
+            $applied=1;
+            $jobOfferList = $this->GetAll();
+
+            foreach ($jobOfferList as $jobOff){
+                if ($jobOff->getUser()->getId() == $idUser){
+                    $applied=0;
+                }
+            }
+            return $applied; // retorna 1 si no aplicó a ninguna job offer y 0 si esta presentado para una
+        }
+
     }
 
 ?>

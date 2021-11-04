@@ -160,15 +160,21 @@
         public function apply($idJobOffer) {
             
             $idUser = Utils::getIdUser();
+            $alreadyApp=$this->jobOfferDAO->checkAlreadyApplied($idUser);
             
-            $result = $this->jobOfferDAO->applyToJobOffer($idUser, $idJobOffer);
+            if($alreadyApp == 1){
+                $result = $this->jobOfferDAO->applyToJobOffer($idUser, $idJobOffer);
 
-            if($result == 1){
-                $message = "applied successfully";
+                if($result == 1){
+                    $message = "applied successfully";
+                }
+                else{
+                    $message = "could not apply";
+                }
+            }else{
+                $message = "you have already applied to a job offer";
             }
-            else{
-                $message = "could not apply";
-            }
+            
             $this->jobOfferList($message);
         }
         
