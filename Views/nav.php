@@ -39,6 +39,9 @@
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowStudentMenu">Menu <i class="fas fa-home"> </i></a>
           </li>
           <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/jobOfferList">Job Offers List <i class="fas fa-list"></i></a>
+          </li>
+          <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies List <i class="fas fa-list"></i></a>
           </li>
           <li class="nav-item">

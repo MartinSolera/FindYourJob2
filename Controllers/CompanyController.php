@@ -29,7 +29,7 @@ class CompanyController
     /// REVISAR !!!
     public function ShowListViewStudent($message = "")
     {
-        Utils::checkStudentSession();
+        Utils::checkSession();
 
         $companies = $this->companyDAO->GetAll();
 
@@ -38,7 +38,7 @@ class CompanyController
 
    public function ViewAddCompany($message = ""){
 
-        Utils::checkAdminSession();
+        Utils::checkSession();
 
         $listCity = $this->cityDao->GetCitys();
        
@@ -48,7 +48,7 @@ class CompanyController
     public function ShowModifyCompany($idCompany)
     {
 
-        Utils::checkAdminSession();
+        Utils::checkSession();
         
        $company = $this->companyDAO->GetCompanyXid($idCompany);
 
@@ -73,7 +73,7 @@ class CompanyController
 
     public function ShowListViewAdmin($message = "")
     {
-        Utils::checkAdminSession();
+        Utils::checkSession();
 
         $companies = $this->companyDAO->GetAll();
 
@@ -82,7 +82,7 @@ class CompanyController
 
     public function ShowAdminMenu($message = "")
     {
-        Utils::checkAdminSession();
+        Utils::checkSession();
 
         require_once(VIEWS_PATH."home-admin.php");
     }
@@ -101,7 +101,7 @@ class CompanyController
 
     public function AddCompany($name,$year,$idcity,$description,$email,$phone,$logo)
     {
-        Utils::checkAdminSession();
+        Utils::checkSession();
 
         $city = $this->cityDao->GetCityXid($idcity);
 
@@ -135,7 +135,7 @@ class CompanyController
 
     public function DeleteCompany($email)
     {
-        Utils::checkAdminSession();
+        Utils::checkSession();
 
         $removed = $this->companyDAO->DeleteCompany($email);
         $this->ShowListViewAdmin("Company deleted");
@@ -143,7 +143,7 @@ class CompanyController
 
     public function ModifyCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $logo,$idCompany)
     {
-        Utils::checkAdminSession();
+        Utils::checkSession();
 
         try{
 

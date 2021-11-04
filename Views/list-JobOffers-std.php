@@ -7,11 +7,11 @@
           <div class="container">
           <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
                <h2 class="mb-4">Job Offers</h2>
-               <form action="<?php echo FRONT_ROOT ?>JobOffer/FilterCompanies" method="POST" enctype="multipart/form-data">
+               <form action="<?php echo FRONT_ROOT ?>JobOffer/jobOffersForJobPosition" method="POST" enctype="multipart/form-data">
                     <div id="outer">
-                         <input type="text" name="search" class="" placeholder="Job position name"  required>
+                         <input type="text" name="positionId" class="" placeholder="Job position name"  required>
                          <button type="submit"  class="btn btn-dark " >Search</button>
-                         <button type="submit"  class="btn btn-dark " > <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent" style="color: white;">Clean</a></button>
+                         <button type="submit"  class="btn btn-dark " > <a href="<?php echo FRONT_ROOT ?>JobOffer/jobOfferList" style="color: white;">Clean</a></button>
                     </div>
                     <br>
                </form>

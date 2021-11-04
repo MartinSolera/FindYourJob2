@@ -29,7 +29,7 @@ use PDOException;
         }
 
         public function AddJobOfferView($message = "") {
-            Utils::checkAdminSession();
+            Utils::checkSession();
 
             $companyList = $this->companyDAO->GetAll();
             $jobPositionList = $this->jobPositionDAO->GetAll();
@@ -38,7 +38,7 @@ use PDOException;
         }
 
         public function JobOfferManagementView($message = "") {
-            Utils::checkAdminSession();
+            Utils::checkSession();
 
             $jobOfferList = $this->jobOfferDAO->GetAll();
 
@@ -46,7 +46,7 @@ use PDOException;
         }
 
         public function JobOfferModifyView($idJobOffer) {
-            Utils::checkAdminSession();
+            Utils::checkSession();
 
             $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
             if($jobOffer->getUserState()==2){ 
@@ -58,7 +58,7 @@ use PDOException;
 
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
         {
-            Utils::checkAdminSession();
+            Utils::checkSession();
 
             $message=null;
             $company = $this->companyDAO->GetCompanyXid($idCompany);
@@ -94,7 +94,7 @@ use PDOException;
         }
 
         public function deleteJobOffer($idJobOffer) {
-            Utils::checkAdminSession();
+            Utils::checkSession();
             $message = "Job offer deleted";
             
             $removed = $this->jobOfferDAO->DeleteJobOffer($idJobOffer);
@@ -118,14 +118,14 @@ use PDOException;
         }
         
 
-         ///Filtro de job offers
+        //Filtro de job offers
         public function jobOffersForJobPosition($positionId){
             Utils::checkSession();
             $this->jobOfferList = $this->jobOfferDAO->GetAll();
             $results = array();
         
             foreach($this->jobOfferList as $offer){
-                if($offer['jobPositionId'] == $positionId){
+                if($offer->getJobPosition()->getId() == $positionId){
                     array_push($results, $offer); 
                 }
             }
@@ -142,7 +142,7 @@ use PDOException;
         }
 
         public function jobOfferList($message = "") {
-            Utils::checkStudentSession();
+            Utils::checkSession();
 
             $jobOfferList = $this->jobOfferDAO->GetAll();
 
