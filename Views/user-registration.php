@@ -1,7 +1,9 @@
 <main class="py-5">
     <section id="listado" class="mb-5">
         <div class="container">
+        
             <h2 class="mb-4">Profile</h2>
+            
             <table class="table bg-light-alpha">
                 <thead>
                     <th>Name</th>
@@ -27,12 +29,16 @@
             <div class="form-group">
                 <div class="form-group">
                     <label for="" align="center"></label>
+                    
                     <input type="hidden" name="email" class="form-control form-control-lg" value="<?php echo $student->getEmail()?>" required>
+
                     <input type="password" alt="strongPass" name="password" class="form-control form-control-lg" placeholder="Password required" required>
                     <label for="" align="center">Password</label>
                     
-                    <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Password required" required>
+                    <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Confirm password" required>
+                   
                     <label for="" align="center">Confirm Password</label>
+                    
                     <br><br>
                     <button class="btn btn-dark btn-block btn-m " type="submit">Registration</button>
                 </div>

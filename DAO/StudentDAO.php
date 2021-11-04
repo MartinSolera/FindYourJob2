@@ -161,7 +161,6 @@
                 }
             }
                 return false;
-           
         }
 
         public function GetByStudentId($studentId)

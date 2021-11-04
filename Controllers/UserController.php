@@ -12,12 +12,14 @@ class UserController{
     private $UserDAO;
 
     public function __construct()
+
         {
             $this->UserDAO = new UserDAO();
         }
 
-    public function userRegister($email, $password, $confirmPass){
-        
+        public function userRegister($email, $password, $confirmPass){
+        $message = null;
+
         if ($password == $confirmPass)
         {
             $studentController = new StudentController();
@@ -44,9 +46,16 @@ class UserController{
                 
             } else {
                 $invalidEmail = true;
-                require_once(VIEWS_PATH . "login.php");
+                $message = "Error al ingresar";
+                $this->userRegisterView($message);
+                //require_once(VIEWS_PATH . "login.php");
             }
 
+        }
+        else{
+            $message = "No coinciden las password";
+            $this->userRegisterView($message);
+            require_once(VIEWS_PATH . "login.php");
         }
 
     }
@@ -55,5 +64,10 @@ class UserController{
         $user = $this->UserDAO->getUserByEmail($email);
         return $user;
     }
+
+    public function userRegisterView($message = "")
+        {
+            require_once(VIEWS_PATH."user-validation.php");
+        }   
 
 }
