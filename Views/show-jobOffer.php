@@ -3,11 +3,13 @@
 ?>
 <main class="py-5">
     <section id="listado" class="mb-5">
-        <form action="<?php echo FRONT_ROOT ?>JobOffer/Apply" method="POST" >
+        
             <div class="container">
+            <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
                 <h3 class="mb-3">Job offer</h3>
                 <h4 style="color: rgb(145, 39, 177)"></h4>
-                <input type="number" name="jobOfferId" class="form-control form-control-ml" hidden value="<?php echo $jobOffer->getIdJobOffer(); ?>">
+                
+                
                 <div>
                     <div class="row">
                         <div class="col-lg-4">
@@ -57,15 +59,16 @@
 
                             <button type="submit"  class="btn btn-dark float-right" ><a href="<?php echo FRONT_ROOT ?>JobOffer/jobOfferList/" style="color: white;">JobOffer List</a></button>
                             <br><br>
-                            <button type="submit" name="Apply" class="btn btn-dark float-right">Apply</button>
+                            
                         </div>
 
                     </div>
 
                 </div>
-
+                <button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."JobOffer/apply?idUser=".$jobOffer->getUser()->getId()." ?idJobOffer=".$jobOffer->getIdJobOffer();?> " style="color: white;">apply</a></button>
+                <!-- <button type="submit" name = "idJobOffer" value ="" class="btn btn-dark ml-auto d-block">apply</button>     -->        
+                
             </div>
 
-        </form>
     </section>
 </main>

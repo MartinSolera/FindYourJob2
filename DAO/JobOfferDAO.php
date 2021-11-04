@@ -30,7 +30,7 @@
             $parameters['limitDate'] = $jobOffer->getLimitDate();
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['userState'] = $jobOffer->getUserState();
-            $parameters['idUser'] = $jobOffer->getUser();
+            $parameters['idUser'] = $jobOffer->getUser()->getId();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
         
@@ -206,6 +206,18 @@
                 throw $ex;
             }
             return $result; //si retorna 1 actualizó si retorna 0 no actualizó
+        }
+
+        public function applyToJobOffer($idUser, $idJobOffer) {
+            $applied=null;
+            
+            if($idUser != 1){
+                $jobOffer = $this->GetJobOfferXid($idJobOffer);
+                $jobOffer->setUser($this->userDAO->GetUserXid($idUser));
+                $jobOffer->setUserState(2); //inactive
+                $applied = $this->updateJobOffer($jobOffer);
+            }
+            return $applied; //si retorna 1 actualizó si retorna 0 no actualizó
         }
     }
 
