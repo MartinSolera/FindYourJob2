@@ -18,6 +18,12 @@ require_once('header.php');
                 <input type="email" name="email" class="form-control form-control-lg" placeholder="email@example.com" required>
             </div>
             <button class="btn btn-dark btn-block btn-lg" type="submit">Check Email</button>
+
+            <center>
+                <br>
+                <br>
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Home/Home" > Back to Login</a>
+            </center>
         </form>
     </div>
 </main>
