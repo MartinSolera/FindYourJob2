@@ -132,7 +132,6 @@
         }
         
 
-        //Filtro de job offers
         public function filterJobOffersForJobPosition($search){
             
             $search = strtolower($search); //paso a minuscula la busqueda
