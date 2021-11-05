@@ -43,7 +43,7 @@
                           }?>
                           </form>    
                     </tbody>
-            </form>
+            
                </table>
           </div>
      </section>

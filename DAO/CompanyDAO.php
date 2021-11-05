@@ -129,16 +129,15 @@
             return $company;
          }
 
-         public function UpdateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $logo,$idCompany) {
+         public function updateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $idCompany) {
 
            
-            $query = "UPDATE " . $this->nameTable . " SET name = :name, yearFoundation = :yearFoundation , description = :description, logo = :logo, email = :email, phoneNumber = :phoneNumber , idCity = :idCity  WHERE (id_Company = :id_Company)";
+            $query = "UPDATE " . $this->nameTable . " SET name = :name, yearFoundation = :yearFoundation , description = :description, email = :email, phoneNumber = :phoneNumber , idCity = :idCity  WHERE (id_Company = :id_Company)";
             
       
             $parameters['name'] = $name;
              $parameters['yearFoundation'] = $yearFoundation;
              $parameters['description'] = $description;
-             $parameters['logo'] = $logo;
              $parameters['email'] = $email;
              $parameters['phoneNumber'] = $phoneNumber;
              $parameters['idCity'] = $idCity;

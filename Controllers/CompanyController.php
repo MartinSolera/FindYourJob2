@@ -141,13 +141,13 @@ class CompanyController
         $this->ShowListViewAdmin("Company deleted");
     }
 
-    public function ModifyCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $logo,$idCompany)
+    public function ModifyCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $idCompany)
     {
         Utils::checkSession();
 
         try{
 
-        $result = $this->companyDAO->UpdateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $logo,$idCompany);
+        $result = $this->companyDAO->updateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber,$idCompany);
        
         if($result == 1)
         $this->ShowListViewAdmin("Company modified");
@@ -176,7 +176,7 @@ class CompanyController
 
             if (Utils::completeSearch($companyName, $search)) 
             {
-                 array_push($filteredCompanies, $company);
+                array_push($filteredCompanies, $company);
             }            
         }
         $companies = $filteredCompanies;

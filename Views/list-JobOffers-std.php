@@ -26,7 +26,7 @@
                     </thead>
                     <tbody>  
                     
-                   <form action=<?php echo FRONT_ROOT.'JobOffer/ShowListViewStudent'?> method ="get">  
+                   
                    <?php if(!empty($jobOfferList)){ 
                     foreach($jobOfferList as $jobOffer){ ?>
                     <tr>
@@ -46,9 +46,9 @@
      
                             <?php }
                           }?>
-                    </form>    
+                      
                 </tbody>
-            </form>
+            
                </table>
           </div>
      </section>

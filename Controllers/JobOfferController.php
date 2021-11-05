@@ -121,23 +121,24 @@
         //Filtro de job offers
         public function filterJobOffersForJobPosition($search){
             
-            $search = strtolower($search);
-            $filteredJobPositions = array();
-            foreach ($this->jobPositionDAO->getAll() as $jobPosition) 
+            $search = strtolower($search); //paso a minuscula la busqueda
+            $filteredJobOffers = array();  //creo un array para las job offer que filtre
+            foreach ($this->jobOfferDAO->getAll() as $jobOffer) 
             {
-                $jobPosDescription = strtolower($jobPosition->getDescription());
-    
-                if (Utils::completeSearch($jobPosDescription, $search)) 
+                $jobPosDescription = strtolower($jobOffer->getJobPosition()->getDescription()); //creo una variable para comparar con la busqueda, con la descripcion de la job position
+                
+                if (Utils::completeSearch($jobPosDescription, $search)) //si coinciden agrego la busqueda al array de las job offer que coinciden con las posiciones filtradas
                 {
-                    array_push($filteredJobPositions, $jobPosition);
+                    array_push($filteredJobOffers, $jobOffer);
                 }            
             }
-            $jobOffers = $filteredJobPositions;
-            if($jobOffers == null){
-                $this->jobOfferList("The job position you are searching for doesn´t exist");
+            $jobOfferList = $filteredJobOffers;
+            if($jobOfferList == null){
+                $this->jobOfferList("The job position you are searching for doesn't exist");
             }
             require_once(VIEWS_PATH."list-JobOffers-std.php");
         }
+     
         
         public function showJobOffer($idJobOffer) {
 
@@ -174,7 +175,7 @@
             }else{
                 $applied=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idUser, $idJobOffer);
                 if($applied == 1){
-                    $message = "you have already applied to this job offer";
+                    $message = "you have already applied to a job offer";
                 } else{
                     $message = "you have already applied to a job offer";
                 }   
