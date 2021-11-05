@@ -3,7 +3,7 @@ require_once('nav.php');
 ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
-          <div class="conteiner">
+          <div class="container">
                <div class="bg-light-alpha p-5">
                          <?php
                          if (isset($student)) {

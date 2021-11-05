@@ -9,20 +9,17 @@
                <form action="<?php echo FRONT_ROOT."JobOffer/modifyJobOffer";?>" method="POST" class="bg-light-alpha p-5">
                     <div class="row">
                         <div class="col-lg-3">
-                            
-                                <label for="">Company:</label>
-                                <?php echo $jobOffer->getCompany()->getName(); ?><br><br>
+                              <label for="">Company:</label>
+                              <?php echo $jobOffer->getCompany()->getName(); ?><br><br>
 
-                                <label for="">Job Position:</label>
-                                <?php echo $jobOffer->getJobPosition()->getDescription(); ?><br><br>
+                              <label for="">Job Position:</label>
+                              <?php echo $jobOffer->getJobPosition()->getDescription(); ?><br><br>
 
-                                <label for="">Limit Date</label>
-                                <input type="date" name="limitDate" value="<?php echo $jobOffer->getLimitDate(); ?>" required>
+                              <label for="">Limit Date</label>
+                              <input type="date" name="limitDate" value="<?php echo $jobOffer->getLimitDate(); ?>" required>
 
-                                <label for="">Description</label>
-                                <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="1000" required>
-                                <!-- <textarea class="input" name="description"  value = " " id="description" cols="30" rows="3" required></textarea> -->
-                            
+                              <label for="">Description</label>
+                              <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="1000" required>
                         </div>
                     </div>
                     <button type="submit" name = "idJobOffer" value ="<?php echo $jobOffer->getIdJobOffer();?>" class="btn btn-dark ml-auto d-block">Modify</button>

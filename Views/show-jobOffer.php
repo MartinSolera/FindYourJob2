@@ -24,9 +24,7 @@
 
                     <div id="outer">
                          <button type="submit"  class="btn btn-dark ml-auto d-block " ><a href="<?php echo FRONT_ROOT."JobOffer/apply/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">Apply</a></button>
-                         <br>
-                         <button type="submit"  class="btn btn-dark ml-auto d-block" > <a href="<?php echo FRONT_ROOT?>JobOffer/jobOfferList" class="btn btn-dark" style="color: white;">Job Offers List</a></button>
-                         <br>
+                        <br>
                          <button type="submit"  class="btn btn-danger ml-auto d-block" > <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-danger" style="color: white;">Cancel application</a></button>
                          
                     </div>
