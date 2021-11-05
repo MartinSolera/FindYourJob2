@@ -17,7 +17,7 @@
 						<h1 style="color:black">Find Your Job</h1>
 						<p style="color:black">Metodología &nbsp;&bull;&nbsp; Laboratorio &nbsp;&bull;&nbsp; 2021</p>
 						<nav>
-								<a href="<?php echo FRONT_ROOT ?>Home/Home"><img src="views/presentation/home/assets/css/images/icons8-entrar-50.png"/></a>
+								<a href="<?php echo FRONT_ROOT ?>View/Home"><img src="views/presentation/home/assets/css/images/icons8-entrar-50.png"/></a>
 						</nav>
 					</header>
 

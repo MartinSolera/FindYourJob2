@@ -22,7 +22,7 @@ require_once('header.php');
             <center>
                 <br>
                 <br>
-            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Home/Home" > Back to Login</a>
+            <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>View/Home" > Back to Login</a>
             </center>
         </form>
     </div>

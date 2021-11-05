@@ -47,7 +47,7 @@
                     <button class="btn btn-dark btn-block btn-m " type="submit">Registration</button>
                     <center> 
                     <br>
-                    <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Home/Home" > Back to Login</a>
+                    <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>View/Home" > Back to Login</a>
                     <a class="btn btn-success btn-xl" href="<?php echo FRONT_ROOT ?>Home/ShowRegister" > Back to Registration Menu</a>
                     </center>
                 </div>

@@ -33,11 +33,6 @@
             require_once(VIEWS_PATH."presentation.php");
         }   
 
-        public function Home($message = "")
-        {
-            require_once(VIEWS_PATH."login.php");
-        }
-
         public function searchApiStudent($studentEmail,$user){
 
             $studentEmail = ($user->getEmail());
