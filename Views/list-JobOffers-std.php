@@ -17,7 +17,7 @@
                </form>
                <table class="table bg-light-alpha">
                     <thead>
-                    <th>Company Name</th>
+                    <th>Company</th>
                     <th>Job position</th>
                     <th>Career</th>
                     <th>Limit date</th>
@@ -34,10 +34,10 @@
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getLimitDate(); ?></td>
-                        <td><?php if($jobOffer->getUserState() == 1){
-                                        echo 'active';
+                        <td style="color: red"><?php if($jobOffer->getUserState() == 1){
+                                        echo '<b>Active</b>';
                                    } else
-                                   echo 'inactive';?></td>
+                                   echo '<b>Inactive</b>';?></td>
                         
                         <td>
                             <?php $jobOfferId = $jobOffer->getIdJobOffer();?>

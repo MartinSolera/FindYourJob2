@@ -3,28 +3,36 @@
 ?>
 <main class="py-5">
     <section id="listado" class="mb-5">
-        
             <div class="container">
                 <div class="bg-light-alpha p-5">
                     <h3 class="mb-3">Job offer</h3><hr>
                     <?php
                         if(isset($jobOffer))
                         {
-                            echo  "<h4> Company: " . $jobOffer->getCompany()->getName() . "</h4>";
-                            echo  "<h4> Job Position: " . $jobOffer->getJobPosition()->getDescription() . "</h4>";
-                            echo  "<h4> Limit date for application: " . $jobOffer->getLimitDate() . "</h4>";
-                            echo  "<h4> Status: </h4>" ;
+                            echo  "<h5><b> Company: " . $jobOffer->getCompany()->getName() . "</b></h5>";
+                            echo  "<h5><b> Job Position: </b>" . $jobOffer->getJobPosition()->getDescription() . "</h5>";
+                            echo  "<h5><b> Limit date for application: </b>" . $jobOffer->getLimitDate() . "</h5>";
+                            //echo  "<h5><b> Status:</b> </h5> " ;
                                                 if ($jobOffer->getUserState() == 1) {
-                                                    echo "<h4> active </h4>";
+                                                    echo "<h4><b> Active </h4>";
                                                 } else {
-                                                    echo "<h4> inactive </h4>";
+                                                    echo "<h4><b> inactive </h4>";
                                                 }
                         }
                     ?>        
                     <br>
-                    <a href="<?php echo FRONT_ROOT."JobOffer/apply/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">apply</a>
+
+                    <div id="outer">
+                         <button type="submit"  class="btn btn-dark ml-auto d-block " ><a href="<?php echo FRONT_ROOT."JobOffer/apply/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">Apply</a></button>
+                         <br>
+                         <button type="submit"  class="btn btn-dark ml-auto d-block" > <a href="<?php echo FRONT_ROOT?>JobOffer/jobOfferList" class="btn btn-dark" style="color: white;">Job Offers List</a></button>
+                         <br>
+                         <button type="submit"  class="btn btn-danger ml-auto d-block" > <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-danger" style="color: white;">Cancel application</a></button>
+                         
+                    </div>
                     
-                    <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">cancel application</a>
+                    
+                    
                 </div>
             </div>
 
