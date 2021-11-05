@@ -6,6 +6,7 @@ use Controllers\StudentController as StudentController;
 use Models\Student as Student;
 use Models\User as User;
 use DAO\UserDAO as UserDAO;
+use DAO\StudentDAO as StudentDAO;
 use Models\UserType as UserType;
 
 class UserController{
@@ -16,9 +17,10 @@ class UserController{
 
         {
             $this->UserDAO = new UserDAO();
+            $this->StudentDAO = new StudentDAO();
         }
 
-        public function userRegister($email, $password, $confirmPass){
+        public function userRegister($email, $password, $confirmPass, $personalEmail){
         $message = null;
 
         if ($password == $confirmPass)
@@ -40,7 +42,6 @@ class UserController{
                     $newUser->setUserType($newUserType);
             
                     $this->UserDAO->Add($newUser);
-    
                     
                     require_once(VIEWS_PATH . "login.php");
                 } else {
@@ -60,7 +61,22 @@ class UserController{
             $this->userValidationView($message);
         }
 
+
+
+        if(!empty($personalEmail)){
+            $this->StudentDAO->generateEmail($personalEmail, $student);
+        }
+        else{
+            echo "No quizo meter un mail personal ...";
+        }
+
     }
+
+
+
+
+
+
 
     public function getUserByEmail($email){
         $user = $this->UserDAO->getUserByEmail($email);

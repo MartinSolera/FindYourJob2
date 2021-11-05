@@ -25,7 +25,7 @@
         </div>
     </section>
     <section>
-        <form action='<?php echo FRONT_ROOT ?>User/userRegister' method="post" class=" d-flex align-items-center justify-content-center height-100">
+        <form action='<?php echo FRONT_ROOT ?>User/userRegister' method="POST" class=" d-flex align-items-center justify-content-center height-100">
             <div class="form-group">
                 <div class="form-group">
                     <label for="" align="center"></label>
@@ -38,6 +38,10 @@
                     <input type="password" alt="strongPass" name="confirmPass" class="form-control form-control-lg" placeholder="Confirm password" minlength="5" maxlength="25"required>
                    
                     <label for="" align="center">Confirm Password</label>
+
+                    <input type="email"  name="personalEmail" class="form-control form-control-lg" placeholder="Type your personal email" minlength="2" maxlength="65">
+                   
+                   <label for="" align="center">OPTIONAL ! Email to recive</label>
                     
                     <br><br>
                     <button class="btn btn-dark btn-block btn-m " type="submit">Registration</button>

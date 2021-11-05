@@ -16,5 +16,9 @@ define("DB_NAME", "FindYourJob");
 define("DB_USER", "root");
 define("DB_PASS", "");
 
+
+define('EMAIL','findyourjob.utn@gmail.com');
+define('EMAILPASS','Findyourjob123');
+
 ?>
 
