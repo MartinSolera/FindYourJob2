@@ -8,6 +8,7 @@
     use Utils\Utils as Utils;
     use DAO\StudentDAO as StudentDAO;
     use DAO\UserDAO as UserDao;
+    use Controllers\ViewController as ViewController;
 
 
     class HomeController
@@ -17,6 +18,7 @@
         private $studentDAO;
         private $userDao;
         private $user;
+       
 
         public function __construct(){
             $this->studentController = new StudentController();

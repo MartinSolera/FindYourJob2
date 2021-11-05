@@ -12,16 +12,19 @@ use Models\UserType as UserType;
 class UserController{
 
     private $UserDAO;
+    private $viewController;
 
     public function __construct()
 
         {
             $this->UserDAO = new UserDAO();
             $this->StudentDAO = new StudentDAO();
+            $this->viewController = new ViewController();
         }
 
         public function userRegister($email, $password, $confirmPass, $personalEmail){
         $message = null;
+        $register = null;
 
         if ($password == $confirmPass)
         {
@@ -43,49 +46,41 @@ class UserController{
             
                     $this->UserDAO->Add($newUser);
                     
-                    require_once(VIEWS_PATH . "login.php");
-                } else {
-                    
-                    require_once(VIEWS_PATH . "login.php");
-                }
+                    $register=true;
+                } 
                 
             } else {
                 //$invalidEmail = true;
                 $message = "There aren't student with this email in the system";
                 $this->userValidationView($message);
             }
-
         }
         else{
             $message = "The passwords do not match";
             $this->userValidationView($message);
         }
 
+        if(!empty($personalEmail) && $register==true){
+            $message = "Succesful registration and email sent to " . "<br>" . $personalEmail;
+            $this->viewController->Home($message);
 
-
-        if(!empty($personalEmail)){
             $this->StudentDAO->generateEmail($personalEmail, $student);
         }
         else{
-            echo "No quizo meter un mail personal ...";
+            $message = "Succesful registration" ;
+            $this->viewController->Home($message);
         }
 
     }
-
-
-
-
-
-
 
     public function getUserByEmail($email){
         $user = $this->UserDAO->getUserByEmail($email);
         return $user;
     }
 
-    public function userValidationView($message = "")
-        {
-            require_once(VIEWS_PATH."user-validation.php");
-        }   
+    public function userValidationView($message = "") {
+        
+        require_once(VIEWS_PATH."user-validation.php");
+    }   
 
 }

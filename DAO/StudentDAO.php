@@ -139,18 +139,10 @@
         public function generateEmail($emailInfo, $student){
 
             if(!empty($emailInfo)){
-                $message = "El CORREO FUE ENVIADO";
+                
                 $mail = new Mail();
                 $mail->sendMail($emailInfo,$student); 
-                $this->HomeController->Home($message);
-                
-            }else{
-                $message = "NOOO se pudo enviar el email";
-                $this->HomeController->Home($message);
             }
-
-           
-        
         }
 
 
