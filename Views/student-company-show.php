@@ -8,17 +8,22 @@
                <?php
                     if(isset($company))
                     {
-                         echo  "<h3>Company: " . $company->getName() . "</h3><br>";
-                         echo  "<h4> Year Foundation: " . $company->getYearFoundation() . "</h4>";
-                         echo  "<h4> City: " . $company->getCity()->getName() . "</h4>";
-                         echo  "<h4> Description: " . $company->getDescription() . "</h4>";
-                         echo  "<h4> Email: " . $company->getEmail() . "</h4>";
-                         echo  "<h4> PhoneNumber: " . $company->getPhoneNumber() . "</h4>";
-                        ?> 
-                         <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="90" height="60">
+                         echo  "<h3><b>Company: " . $company->getName() . "</h3></b>";
+                         ?>
+                         <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" width="120" height="80">
+                         
                          <?php
+                         echo  "<h5><b> Year Foundation: </b>" . $company->getYearFoundation() . "</h4>";
+                         echo  "<h5><b> City: </b>" . $company->getCity()->getName() . "</h4>";
+                         echo  "<h5><b> Description: </b>" . $company->getDescription() . "</h4>";
+                         echo  "<h5><b> Email: </b> " . $company->getEmail() . "</h4>";
+                         echo  "<h5><b> PhoneNumber: </b>" . $company->getPhoneNumber() . "</h4>";
+                        
+                         
+
                     }
-               ?>     
+                    ?>
+                    <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent" class="btn btn-dark btn-lg btn-block" style="margin-top: 5vh;">Companies List</a> 
                </div>          
           </div>
      </section>
