@@ -13,13 +13,13 @@
           <?php if(isset($_SESSION['admin'])) { ?>
           
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAdminMenu"> <i class="fas fa-home"> </i> Menu</a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>View/showAdminMenu"> <i class="fas fa-home"> </i> Menu</a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView"><i class="fas fa-list"></i> Job offer management</a>
           </li>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/AddJobOfferView"><i class="fas fa-plus-square"> </i> Add job offer </a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/addJobOfferView"><i class="fas fa-plus-square"> </i> Add job offer </a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin"><i class="fas fa-list"></i> Company management</a>
@@ -28,7 +28,7 @@
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ViewAddCompany"><i class="fas fa-plus-square"> </i> Add company </a>
           </li>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/LogOut">Logout <i class="fas fa-sign-out-alt"></i> </a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>View/LogOut">Logout <i class="fas fa-sign-out-alt"></i> </a>
           </li> 
           <?php } ?>   
           
@@ -36,7 +36,7 @@
 
           <?php if(isset($_SESSION['student'])) { ?>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowStudentMenu">Menu <i class="fas fa-home"> </i></a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>View/showStudentMenu">Menu <i class="fas fa-home"> </i></a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/jobOfferList">Job Offers List <i class="fas fa-list"></i></a>
@@ -45,7 +45,7 @@
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListViewStudent">Companies List <i class="fas fa-list"></i></a>
           </li>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/LogOut">Logout <i class="fas fa-sign-out-alt"></i></a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>View/LogOut">Logout <i class="fas fa-sign-out-alt"></i></a>
           </li> 
           <?php } 
           ?>

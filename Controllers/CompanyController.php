@@ -9,8 +9,7 @@ use Models\City as City;
 use Utils\Utils as Utils;
 use DAO\Connection as Connection;
 use Controllers\Functions;//para mensajes de dbb
-use PDOException;
-
+use Exception;
 
 class CompanyController
 {
@@ -80,25 +79,6 @@ class CompanyController
         require_once(VIEWS_PATH."company-management.php");
     }
 
-    public function ShowAdminMenu($message = "")
-    {
-        Utils::checkSession();
-
-        require_once(VIEWS_PATH."home-admin.php");
-    }
-
-    public function LogOut(){
-
-        Utils::logout();
-    }
-
-   /* public function RedirectAddForm($message ="")
-    {
-        Utils::checkAdminSession();
-        require_once(VIEWS_PATH . "addCompany.php");
-    }*/ // esta repetida y no la usamos 
-
-
     public function AddCompany($name,$year,$idcity,$description,$email,$phone,$logo)
     {
         Utils::checkSession();
@@ -124,7 +104,7 @@ class CompanyController
              else
              $this->ViewAddCompany("ERROR: Failed in Company Add, reintente");
 
-            } catch (PDOException $ex) {// si encuentra un error de dbb
+            } catch (Exception $ex) {// si encuentra un error de dbb
     
                 if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
                 $this->ViewAddCompany($ex->getMessage());// devuelve este mensage 
@@ -154,7 +134,7 @@ class CompanyController
         else
         $this->ShowListViewAdmin("ERROR: Failed in Company modify");
 
-        }catch(PDOException $ex){
+        }catch(Exception $ex){
 
             if(Functions::contains_substr($ex->getMessage(), "Duplicate entry")) 
             $this->ShowListViewAdmin("Datos repetidos ");
@@ -167,7 +147,6 @@ class CompanyController
 
     public function FilterCompanies($search)
     {
-
         $search = strtolower($search);
         $filteredCompanies = array();
         foreach ($this->companyDAO->getAll() as $company) 

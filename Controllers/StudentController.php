@@ -23,10 +23,6 @@
              return $exists;
          }
 
-         public function LogOut(){
-             Utils::logout();
-         }
-
          public function ShowCompaniesView(){
             Utils::checkStudentSession(); 
             require_once(VIEWS_PATH."list-companies-std.php");
@@ -62,13 +58,6 @@
             require_once(VIEWS_PATH."jobOffer-managment.php");
         }
 
-
-        public function ShowStudentMenu()
-    {
-        Utils::checkStudentSession();
-
-        require_once(VIEWS_PATH."home-student.php");
-    }
 
     }
 

@@ -9,6 +9,7 @@
     use Utils\Utils as Utils;
     use Models\User as User; 
     use Models\JobOffer as JobOffer;
+    use Controllers\ViewController as ViewController;
     use Controllers\Functions;
     use Exception;
 
@@ -18,6 +19,7 @@
         private $jobPositionDAO;
         private $userDAO;
         private $companyDAO;
+        private $viewController;
 
         public function __construct()
         {
@@ -25,9 +27,10 @@
             $this->jobPositionDAO = new JobPositionDAO();
             $this->userDAO = new UserDAO();
             $this->companyDAO = new CompanyDAO();
+            $this->viewController = new ViewController();
         }
 
-        public function AddJobOfferView($message = "") {
+        public function addJobOfferView($message = "") {
             Utils::checkSession();
 
             $companyList = $this->companyDAO->GetAll();
@@ -82,17 +85,16 @@
                 if($result==1){
                     $message="Job offer added successfully";
                     
-                    $this->AddJobOfferView($message);
+                    $this->addJobOfferView($message);
                 } else {
                     $message="error: failed to add the job offer";
-                    $this->AddJobOfferView($message);
+                    $this->addJobOfferView($message);
                 }
             } catch (Exception $ex) {
                 //if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
                 $message = $ex->getMessage();
-                $this->AddJobOfferView($message);
+                $this->addJobOfferView($message);
             }
-           
         }
 
         public function deleteJobOffer($idJobOffer) {
