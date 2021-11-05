@@ -8,7 +8,7 @@
                <?php
                     if(isset($company))
                     {
-                         echo  "<h3>Company: " . $company->getName() . "</h3><hr>";
+                         echo  "<h3>Company: " . $company->getName() . "</h3><br>";
                          echo  "<h4> Year Foundation: " . $company->getYearFoundation() . "</h4>";
                          echo  "<h4> City: " . $company->getCity()->getName() . "</h4>";
                          echo  "<h4> Description: " . $company->getDescription() . "</h4>";
