@@ -2,11 +2,12 @@
     namespace DAO;
 
     use Models\JobOffer as JobOffer;
+    use DAO\IJobOfferDAO as IJobOfferDAO;
     use DAO\Connection as Connection;
     use DAO\JobPositionDAO as JobPositionDAO;
     use FFI\Exception;
 
-    class JobOfferDAO {
+    class JobOfferDAO implements IJobOfferDAO {
 
         private $connection;
         private $nameTable;

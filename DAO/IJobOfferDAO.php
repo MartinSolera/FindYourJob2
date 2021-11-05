@@ -7,5 +7,6 @@
     {
         function Add(JobOffer $jobOffer);
         function GetAll();
+        function DeleteJobOffer($id_jobOffer);
     }
 ?>

@@ -3,10 +3,10 @@
     use Models\User as User;
     use DAO\Connection as Connection;
     use DAO\UserTypeDAO as UserTypeDAO;
+    use DAO\IUserDAO as IUserDAO;
     use FFI\Exception;
 
-
-    class UserDAO {
+    class UserDAO implements IUserDAO {
 
         private $connection;
         private $nameTable;

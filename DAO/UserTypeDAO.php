@@ -2,9 +2,10 @@
     namespace DAO;
     use Models\UserType as UserType;
     use DAO\Connection as Connection;
+    use DAO\IUserTypeDAO as IUserTypeDAO;
     use FFI\Exception;
 
-    class UserTypeDAO {
+    class UserTypeDAO implements IUserTypeDAO{
 
         private $connection;
         private $nameTable;

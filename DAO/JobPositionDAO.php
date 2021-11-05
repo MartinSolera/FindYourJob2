@@ -8,7 +8,7 @@
     use Models\Career as Career;
     use FFI\Exception;
 
-    class JobPositionDAO{
+    class JobPositionDAO implements IJobPositionDAO{
 
         private $jobPositionList;
         private $tableName;

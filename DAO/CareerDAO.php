@@ -19,15 +19,6 @@
             $nameTable = "career";
         }
 
-        public function GetAllActive()
-        {
-            
-        }
-
-        public function Delete(Career $careerToDelete){
-
-        }
-
         public function GetAll() { //from DB
             $careerList = [];
 
@@ -86,18 +77,6 @@
                 $career->setDescription($valuesArray['description']);
 
                 array_push($this->careerList, $career);
-            }
-        }
-
-        public function emptyCareerDB(){ //borra todas las filas de la tabla
-            
-            $sql = "DELETE FROM career" ;
-            
-            try {
-                $result = $this->connection->ExecuteNonQuery($sql);
-
-            }  catch (Exception $ex) {
-                    throw $ex;
             }
         }
     

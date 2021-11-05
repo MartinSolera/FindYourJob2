@@ -5,7 +5,7 @@ use Models\City as City;
 use DAO\Connection as Connection;
 use FFI\Exception;
 
-class CityDAO{
+class CityDAO {
 
     private $connection;
     private $nameTable;

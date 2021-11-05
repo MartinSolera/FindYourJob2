@@ -12,7 +12,7 @@ CONSTRAINT pk_idUserType PRIMARY KEY (id_UserType)
 
 INSERT INTO UserType (description) VALUES ('Admin');
 INSERT INTO UserType (description) VALUES ('Student');
-
+INSERT INTO UserType (description) VALUES ('Company');
 
 create table if not exists User(
 id_User BIGINT UNSIGNED AUTO_INCREMENT not null,
