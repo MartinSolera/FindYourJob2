@@ -7,6 +7,13 @@
           <h4 style="color:#C70039 "><p><?php if(isset($message)){ echo $message; }?></p></h4>
                <h2 class="mb-4">Add Job Offer</h2>
                <form action="<?php echo FRONT_ROOT."JobOffer/AddJobOffer";?>" method="post" class="bg-light-alpha p-5">
+                                   <h4 >
+                                        <?php
+                                        if (isset($invalidDate)) {
+                                             echo "La fecha limite no puede ser menor a la actual";
+                                        }                                  
+                                        ?>
+                                   </h4>
                     <div class="row">
                          <div class="col-lg-3">
                               <div class="form-group">
@@ -29,7 +36,7 @@
                                    </div>
                                    
                                  <label for="">Datetime</label>
-                                 <input type="date" name="datetime" min="<?php echo date('d-m-y')?>"  placeholder="initial date for inscriptions" required>
+                                 <input type="date" name="datetime" value="<?php echo date('d-m-y')?>"  placeholder="initial date for inscriptions" required>
                                  
                                  <label for="">Limit Date</label>
                                  <input type="date" name="limitdate" placeholder="limit date for inscriptions" required>
