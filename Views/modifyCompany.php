@@ -29,9 +29,8 @@
                                  <input type="email" name="email"  value = "<?php  echo $company->getEmail();?>" required>
                                  <label for="">Phone Number</label>
                                  <input type="text" name="phoneNumber" value = "<?php  echo $company->getPhoneNumber();?>" required><br>
-                                 <label for="">Photo</label><br>
-                                 <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30">
-                                 <input type="file" name ="logo" value ="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>"> 
+                                 <label for="">Logo</label><br>
+                                 <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"> 
                               </div>
                          </div>
                     </div>
