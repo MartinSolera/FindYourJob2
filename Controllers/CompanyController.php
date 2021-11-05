@@ -116,13 +116,13 @@ class CompanyController
         $this->ShowListViewAdmin("Company deleted");
     }
 
-    public function ModifyCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $idCompany)
+    public function ModifyCompany($yearFoundation, $idCity, $description, $phoneNumber, $idCompany)
     {
         Utils::checkSession();
 
         try{
 
-        $result = $this->companyDAO->updateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber,$idCompany);
+        $result = $this->companyDAO->updateCompany($yearFoundation, $idCity, $description, $phoneNumber, $idCompany);
        
         if($result == 1)
         $this->ShowListViewAdmin("Company modified");

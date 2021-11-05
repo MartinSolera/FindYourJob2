@@ -129,22 +129,17 @@
             return $company;
          }
 
-         public function updateCompany($name, $yearFoundation, $idCity, $description, $email, $phoneNumber, $idCompany) {
+         public function updateCompany($yearFoundation, $idCity, $description, $phoneNumber, $idCompany) {
 
-           
-            $query = "UPDATE " . $this->nameTable . " SET name = :name, yearFoundation = :yearFoundation , description = :description, email = :email, phoneNumber = :phoneNumber , idCity = :idCity  WHERE (id_Company = :id_Company)";
+            $query = "UPDATE " . $this->nameTable . " SET yearFoundation = :yearFoundation , description = :description, phoneNumber = :phoneNumber , idCity = :idCity  WHERE (id_Company = :id_Company)";
             
-      
-            $parameters['name'] = $name;
-             $parameters['yearFoundation'] = $yearFoundation;
-             $parameters['description'] = $description;
-             $parameters['email'] = $email;
-             $parameters['phoneNumber'] = $phoneNumber;
-             $parameters['idCity'] = $idCity;
-             $parameters['id_Company'] = $idCompany;
+            $parameters['yearFoundation'] = $yearFoundation;
+            $parameters['description'] = $description;
+            $parameters['phoneNumber'] = $phoneNumber;
+            $parameters['idCity'] = $idCity;
+            $parameters['id_Company'] = $idCompany;
     
-            try {
-                
+            try { 
                 return $this->connection->ExecuteNonQuery($query, $parameters);
             } catch (Exception $ex) {
                 throw $ex;
@@ -152,23 +147,7 @@
     
         }
  
-         public function Search($companyId)
-         {
-             $sql = "SELECT * FROM companies WHERE companyId=:companyId";
-             $parameters['companyId'] = $companyId;
-     
-             try {
-              
-                 $companiesList = $this->connection->execute($sql, $parameters);
-             } catch (\PDOException $exception) {
-                 throw $exception;
-             }
-             if (!empty($companiesList)) {
-                 return $this->retrieveData();
-             } else {
-                 return false;
-             }
-         }
+        
 
     }
 
