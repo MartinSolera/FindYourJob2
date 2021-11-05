@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Controllers\ViewController as ViewController;
 use Controllers\StudentController as StudentController;
 use Models\Student as Student;
 use Models\User as User;

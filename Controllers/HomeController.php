@@ -10,7 +10,6 @@
     use DAO\UserDAO as UserDao;
     use Controllers\ViewController as ViewController;
 
-
     class HomeController
     {
         private $studentController;
@@ -18,7 +17,7 @@
         private $studentDAO;
         private $userDao;
         private $user;
-       
+        private $viewController;
 
         public function __construct(){
             $this->studentController = new StudentController();
@@ -26,6 +25,7 @@
             $this->UserController = new UserController();
             $this->userDao = new UserDao();
             $this->studentDAO = new StudentDAO();
+            $this->viewController = new ViewController();
         }
 
         public function Index($message = "")
@@ -80,7 +80,7 @@
             }
             else{
                 $message = "Error, email or password are wrong";
-                $this->Home($message);
+                $this->viewController->Home($message);
             }  
         }
 
