@@ -2,7 +2,7 @@
      <div class="content">
           <header class="text-center">
                <h1>Find Your Job </h1>
-               <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
+               <h4 style="color: #C70039"><p><?php if(isset($message)){ echo $message; }?></p></h4>
           </header>
           <form action=<?php echo FRONT_ROOT.'Home/login'?> method="post" class="login-form bg-dark-alpha p-5 text-black">
                <div class="form-group">

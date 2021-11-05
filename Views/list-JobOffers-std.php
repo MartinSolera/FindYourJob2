@@ -5,7 +5,7 @@
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
-          <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
+          <h4 style="color:#C70039 "><p><?php if(isset($message)){ echo $message; }?></p></h4>
                <h2 class="mb-4">Job Offers</h2>
                <form action="<?php echo FRONT_ROOT ?>JobOffer/filterJobOffersForJobPosition" method="POST" enctype="multipart/form-data">
                     <div id="outer">

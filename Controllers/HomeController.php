@@ -73,7 +73,7 @@
                         $_SESSION['student'] = $user;
                         require_once(VIEWS_PATH . "home-student.php");
                     }else{
-                        $message = "This Student is not available";
+                        $message = "This student is not available";
                         $this->Index($message);
                     }
                 }
@@ -118,11 +118,11 @@
             $checkStudent = $this->studentDAO->getStudentByMail($email);
 
             if($checkStudent == false){
-                $message = "Your email is not register in campus <br> You can't register "; 
+                $message = "Your email is not registered in campus <br> you can't register "; 
                 $this->userValidationView($message);
             }
-            if($checkStudent->getActive() == false){
-                $message = "Your email is not active in the campus "; 
+            else if($checkStudent->getActive() == false){
+                $message = "Your email is not active in the campus <br> try contacting the university administration"; 
                 $this->userValidationView($message);
             }
             else{

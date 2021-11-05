@@ -150,7 +150,7 @@
             
             $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
         
-            require_once(VIEWS_PATH."show-jobOffer.php");
+            require_once(VIEWS_PATH."jobOffer-show.php");
         }
 
         public function jobOfferList($message = "") {
@@ -179,9 +179,9 @@
             }else{
                 $applied=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idUser, $idJobOffer);
                 if($applied == 1){
-                    $message = "you have already applied to a job offer";
+                    $message = "you have already applied to this job offer";
                 } else{
-                    $message = "you have already applied to a job offer";
+                    $message = "you have already applied to another job offer";
                 }   
             }
             

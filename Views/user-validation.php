@@ -8,7 +8,7 @@ require_once('header.php');
         <section class ="text-center">
         
             <h3>REGISTRATION:</h3>
-            <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
+            <h4 style="color:#C70039 "><p><?php if(isset($message)){ echo $message; }?></p></h4>
             <p>Enter the email that you want to register with</p> 
             
         </section>

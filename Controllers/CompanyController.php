@@ -56,18 +56,13 @@ class CompanyController
         require_once(VIEWS_PATH."modifyCompany.php");
     }
 
-    public function ShowCompany ($idCompany)
-    {
+    public function ShowCompany ($idCompany) {
+        Utils::checkSession();
 
         $company = $this->companyDAO->GetCompanyXid($idCompany);
        
-        if (isset($adminLoggedIn)) 
-        {
-            require_once(VIEWS_PATH."admin-company-show.php");
-        }else
-        {
-            require_once(VIEWS_PATH."student-company-show.php");
-        }
+        require_once(VIEWS_PATH."company-show.php");
+        
     }
 
     public function ShowListViewAdmin($message = "")
@@ -98,7 +93,7 @@ class CompanyController
              $result = $this->companyDAO->Add($newCompany);
 
              if($result == 1){
-             $message = "Company added";
+             $message = "Company added successfully";
              $this->ViewAddCompany($message);
             }
              else
