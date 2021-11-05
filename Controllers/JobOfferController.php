@@ -161,7 +161,7 @@
             
             $idUser = Utils::getIdUser();
             $alreadyApp=$this->jobOfferDAO->checkAlreadyApplied($idUser);
-            
+
             if($alreadyApp == 1){
                 $result = $this->jobOfferDAO->applyToJobOffer($idUser, $idJobOffer);
 
@@ -169,16 +169,44 @@
                     $message = "applied successfully";
                 }
                 else{
-                    $message = "could not apply";
+                    $message = "could not apply, try again later";
                 }
             }else{
-                $message = "you have already applied to a job offer";
+                $applied=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idUser, $idJobOffer);
+                if($applied == 1){
+                    $message = "you have already applied to this job offer";
+                } else{
+                    $message = "you have already applied to a job offer";
+                }   
             }
             
             $this->jobOfferList($message);
         }
         
+        public function cancelApplication ($idJobOffer){
+            $idUser = Utils::getIdUser();
+            $alreadyApp=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idUser, $idJobOffer);
 
+            if($alreadyApp == 1){
+                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer);
+
+                if($result == 1){
+                    $message = "canceled your application successfully";
+                }
+                else{
+                    $message = "could not cancel your application, try again later";
+                }
+            }else{
+                $applied = $this->jobOfferDAO->checkAlreadyApplied($idUser);//si ya aplico a otra oferta de trabajo que no es la actual
+                if($applied == 0){
+                    $message = "you have already applied to another job offer";
+                } else{
+                    $message = "you haven't already applied to a job offer";
+                }
+            }
+            
+            $this->jobOfferList($message);
+        }
 
 
 

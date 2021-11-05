@@ -240,7 +240,35 @@
                     $applied=0;
                 }
             }
-            return $applied; // retorna 1 si no aplicó a ninguna job offer y 0 si esta presentado para una
+            return $applied; // retorna 1 si no aplicó a ninguna job offer y 0 si ya esta presentado para una
+        }
+
+        public function cancelAplicationJobOffer($idJobOffer){
+            $query = "UPDATE joboffer SET idUser=:idUser, userState=:userState WHERE (id_JobOffer = :idJobOffer);" ;
+
+            $parameters['idUser'] = 1;
+            $parameters['userState'] = 1; //active
+            $parameters['idJobOffer'] = $idJobOffer;
+            
+            try {
+                $this->connection = Connection::getInstance();
+                return $this->connection->executeNonQuery($query, $parameters);
+            } catch (Exception $exception) {
+                throw $exception;
+            }
+        }
+
+        public function checkAppliedToSpecificJobOffer($idUser, $idJobOffer){
+            $applied=0;
+            $jobOfferList = $this->GetAll();
+
+            foreach ($jobOfferList as $jobOff) {
+
+                if (($jobOff->getUser()->getId() == $idUser) && ($jobOff->getIdJobOffer() == $idJobOffer)) {
+                    $applied=1;
+                }
+            }
+            return $applied; // retorna 1 si aplicó a la job offer especificada y 0 si no
         }
 
     }
