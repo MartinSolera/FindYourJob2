@@ -2,7 +2,6 @@ create database if not exists FindYourJob;
 
 use FindYourJob;
 
-drop  database FindYourJob;
 
 create table if not exists UserType (
 id_UserType BIGINT UNSIGNED AUTO_INCREMENT not null,
@@ -23,7 +22,7 @@ constraint pk_idUser primary key(id_User),
 constraint fk_idUserType foreign key (idUserType) references UserType(id_UserType)
 )ENGINE=INNODB;
 
-INSERT INTO User (email , password,iduserType) VALUES ('admin@utn.com','holaMundo',1); /*inserte el admid .. en la base */
+INSERT INTO `findyourjob`.`user` (`id_User`, `email`, `pass`, `idUserType`) VALUES ('1', 'admin@utn.com', 'adminutn1234', '1');
 
 create table if not exists Career(
 	id_Career BIGINT UNSIGNED AUTO_INCREMENT not null,
@@ -38,7 +37,7 @@ name VARCHAR(30) not null UNIQUE,
 constraint pk_idCity primary key(id_City)
 )ENGINE=INNODB;
 
-INSERT INTO City (name) VALUES ('Mar del Plata'),('Bahia blanca'),('Gran Buenos Aires');
+INSERT INTO City (name) VALUES ('Mar del Plata'),('Bahia blanca'),('Gran Buenos Aires'),('Tandil'),('Cordoba'),('Rosario'),('La Plata'),('Salta'),('Merlo'), ('Quilmes');
 
 
 create table if not exists Company(
