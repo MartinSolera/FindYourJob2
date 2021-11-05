@@ -63,37 +63,47 @@
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
         {
             Utils::checkSession();
-        
-            $message=null;
-            $company = $this->companyDAO->GetCompanyXid($idCompany);
-            $jobPosition = $this->jobPositionDAO->GetJobPositionXid($idJobPosition);
-            $user = $this->userDAO->GetUserXid(1); //id admin
+            if (($limitdate >= date("Y-m-d") && ($datetime>= date("Y-m-d"))))
+            {
+                $message=null;
+                $company = $this->companyDAO->GetCompanyXid($idCompany);
+                $jobPosition = $this->jobPositionDAO->GetJobPositionXid($idJobPosition);
+                $user = $this->userDAO->GetUserXid(1); //id admin
 
-            $newJobOff = new JobOffer();
-            $newJobOff->setDescription($description);
-            $newJobOff->setDatetime($datetime);
-            $newJobOff->setLimitDate($limitdate);
-            $newJobOff->setCompany($company);
-            $newJobOff->setUser($user);
-            $newJobOff->setJobPosition($jobPosition);
-            $newJobOff->setUserState(1); //disponible 
-            $newJobOff->setTimeState(1); //disponible
+                $newJobOff = new JobOffer();
+                $newJobOff->setDescription($description);
+                $newJobOff->setDatetime($datetime);
+                $newJobOff->setLimitDate($limitdate);
+                $newJobOff->setCompany($company);
+                $newJobOff->setUser($user);
+                $newJobOff->setJobPosition($jobPosition);
+                $newJobOff->setUserState(1); //disponible 
+                $newJobOff->setTimeState(1); //disponible
+                
+                try {
+                    $result = $this->jobOfferDAO->Add($newJobOff);
             
-            try {
-                $result = $this->jobOfferDAO->Add($newJobOff);
-        
-                if($result==1){
-                    $message="Job offer added successfully";
-                    
-                    $this->addJobOfferView($message);
-                } else {
-                    $message="error: failed to add the job offer";
+                    if($result==1){
+                        $message="Job offer added successfully";
+                        
+                        $this->addJobOfferView($message);
+                    } else {
+                        $message="error: failed to add the job offer";
+                        $this->addJobOfferView($message);
+                    }
+                } catch (Exception $ex) {
+                    //if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
+                    $message = $ex->getMessage();
                     $this->addJobOfferView($message);
                 }
-            } catch (Exception $ex) {
-                //if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
-                $message = $ex->getMessage();
-                $this->addJobOfferView($message);
+            }else
+            {            
+
+                $invalidDate = true;
+                $companyList = $this->companyDAO->GetAll();
+                $jobPositionList = $this->jobPositionDAO->GetAll();
+                require_once(VIEWS_PATH . "addJobOffer.php");
+
             }
         }
 
