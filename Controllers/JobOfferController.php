@@ -51,8 +51,10 @@
             if($jobOffer->getUserState()==2){ 
                 $message = "Cannot update job offer because a student has already applied";
                 $this->JobOfferManagementView($message);
+            }else{
+                require_once(VIEWS_PATH."modifyJobOffer.php");
             }
-            require_once(VIEWS_PATH."modifyJobOffer.php");
+            
         }
 
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
