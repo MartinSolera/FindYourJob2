@@ -24,7 +24,7 @@
                     <br>
                     <a href="<?php echo FRONT_ROOT."JobOffer/apply/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">apply</a>
                     
-                    <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">drop application</a>
+                    <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">cancel application</a>
                 </div>
             </div>
 

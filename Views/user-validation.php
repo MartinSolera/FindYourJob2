@@ -9,7 +9,7 @@ require_once('header.php');
         
             <h3>REGISTRATION:</h3>
             <h4 style="color:royalblue"><p><?php if(isset($message)){ echo $message; }?></p></h4>
-            <p>Enter the email with you want to register</p> 
+            <p>Enter the email that you want to register with</p> 
             
         </section>
         <form action="<?php echo FRONT_ROOT ?>Home/checkRegister" method="POST" class="login-form bg-dark-alpha p-5 text-black">

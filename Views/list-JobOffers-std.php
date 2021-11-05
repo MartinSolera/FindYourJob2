@@ -19,6 +19,7 @@
                     <thead>
                     <th>Company Name</th>
                     <th>Job position</th>
+                    <th>Career</th>
                     <th>Limit date</th>
                     <th>Status</th>
                     <th>Info</th>  
@@ -31,6 +32,7 @@
                     <tr>
                         <td><?php echo $jobOffer->getCompany()->getName(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
+                        <td><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getLimitDate(); ?></td>
                         <td><?php if($jobOffer->getUserState() == 1){
                                         echo 'active';
