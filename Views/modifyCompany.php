@@ -10,11 +10,16 @@
                     <div class="row">
                          <div class="col-lg-3">
                               <div class="form-group">
-                                 <label for="">Name</label>
-                                 <input type="text" name="name" value = "<?php  echo $company->getName();?>" required>
-                                 <label for="">Year Foundation</label><br>
-                                 <input type="number" name="yearFoundation"  value ="<?php echo $company->getYearFoundation();?>" min="1900" max= "<?php echo date('Y') ?>"  required><br>
-                                 <label for="city">City</label>
+                                 <label for=""><b>Company name:  </b></label>
+                                 <?php  echo $company->getName();?>
+                                 <br><br>
+                                 <label for=""><b>Email:  </b></label>
+                                 <?php echo $company->getEmail();?><br><br>
+                                 <label for=""><b>Phone Number</b></label>
+                                 <input type="text" name="phoneNumber" value = "<?php  echo $company->getPhoneNumber();?>" required><br><br>
+                                 <label for=""><b>Year Foundation</b></label><br>
+                                 <input type="number" name="yearFoundation"  value ="<?php echo $company->getYearFoundation();?>" min="1900" max= "<?php echo date('Y') ?>"  required><br><br>
+                                 <label for="city"><b>City</b></label>
                                  <div class="form-group">
                                    <select name="idCity" id="city" required>
                                         
@@ -23,14 +28,11 @@
                                    <?php } } ?>
                                    </select>
                                    </div>
-                                 <label for="">Description</label>
-                                 <input type="text" name="description" value = "<?php  echo $company->getDescription();?>" minlength="10" maxlength="1000" required>
-                                 <label for="">Email</label>
-                                 <input type="email" name="email"  value = "<?php  echo $company->getEmail();?>" required>
-                                 <label for="">Phone Number</label>
-                                 <input type="text" name="phoneNumber" value = "<?php  echo $company->getPhoneNumber();?>" required><br>
-                                 <label for="">Logo</label><br>
-                                 <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"> 
+                                 <label for=""><b>Description</b></label>
+                                 <input type="text" name="description" value = "<?php  echo $company->getDescription();?>" minlength="10" maxlength="1000" required><br><br>
+                                 <label for=""><b>Logo</b></label><br>
+                                 <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="120" height="80"> 
+                                 
                               </div>
                          </div>
                     </div>
