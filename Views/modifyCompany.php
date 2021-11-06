@@ -29,7 +29,7 @@
                                    </select>
                                    </div>
                                  <label for=""><b>Description</b></label>
-                                 <input type="text" name="description" value = "<?php  echo $company->getDescription();?>" minlength="10" maxlength="1000" required><br><br>
+                                 <input type="text" name="description" value = "<?php  echo $company->getDescription();?>" minlength="10" maxlength="100" required><br><br>
                                  <label for=""><b>Logo</b></label><br>
                                  <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="120" height="80"> 
                                  

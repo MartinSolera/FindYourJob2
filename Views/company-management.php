@@ -20,7 +20,7 @@
                     <th>Delete</th>
                     </thead>
                     <tbody>  
-                   <form action="" method ="get">
+                   <form action="" method ="post">
                    <?php if(!empty($companies)){ 
                   foreach($companies as $company){ ?>
                       <tr>
@@ -41,7 +41,6 @@
                         
                       </form>
                         
-
                     </tbody>
                </table>
           </div>

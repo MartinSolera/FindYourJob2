@@ -25,13 +25,12 @@ class CompanyController
     }
 
 
-    /// REVISAR !!!
     public function ShowListViewStudent($message = "")
     {
         Utils::checkSession();
 
         $companies = $this->companyDAO->GetAll();
-
+        
         require_once(VIEWS_PATH."list-companies-std.php");
     }
 

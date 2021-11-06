@@ -19,7 +19,7 @@
                               <input type="date" name="limitDate" value="<?php echo $jobOffer->getLimitDate(); ?>" required>
 
                               <label for="">Description</label>
-                              <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="1000" required>
+                              <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="100" required>
                         </div>
                     </div>
                     <button type="submit" name = "idJobOffer" value ="<?php echo $jobOffer->getIdJobOffer();?>" class="btn btn-dark ml-auto d-block">Modify</button>

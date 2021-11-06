@@ -33,7 +33,7 @@
                          <td><?php echo $company->getName(); ?></td>
 
                          <td><?php echo $company->getCity()->getName(); ?></td>
-
+                         
                          <td>
                               <?php $companyId = $company->getIdCompany();?>
                               <a href="<?php echo FRONT_ROOT."Company/ShowCompany/?idCompany=".$companyId;?>" class="btn btn-dark" style="color: white;">+</a>

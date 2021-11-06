@@ -18,7 +18,7 @@
                     <th>Delete</th> 
                     </thead>
                     <tbody>  
-                   <form action="" method ="get">
+                   <form action="" method ="post">
                    <?php if(!empty($jobOfferList)){ 
                   foreach($jobOfferList as $jobOff){ ?>
                     <tr>
@@ -35,7 +35,7 @@
                          <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/deleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">Delete </a><i class="fas fa-trash-alt"></i></button></td>
                     </tr>
                              <?php }
-                          }?>
+                    }?>
                         </form>
                     </tbody>
                </table>

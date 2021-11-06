@@ -44,7 +44,7 @@ create table if not exists Company(
 id_Company BIGINT UNSIGNED AUTO_INCREMENT not null,
 name varchar(50) not null UNIQUE, /*puse unico para no tener dos empresas con el mismo nombre*/
 yearFoundation YEAR not null ,
-description VARCHAR(50) not null ,
+description VARCHAR(100) not null ,
 logo LONGBLOB not null ,
 email VARCHAR(50) not null UNIQUE,
 phoneNumber VARCHAR(20) not null UNIQUE,
@@ -64,7 +64,7 @@ constraint fk_idCareer foreign key (idCareer) references Career(id_Career) on up
 
 create table if not exists JobOffer(
 	id_JobOffer BIGINT UNSIGNED AUTO_INCREMENT not null,
-	description VARCHAR(30) not null ,
+	description VARCHAR(100) not null ,
 	dateTime DATE  not null,
 	limitDate DATE not null ,
 	timeState int  not null,
