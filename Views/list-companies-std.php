@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>  
                     
-                   <form action=<?php echo FRONT_ROOT.'Company/ShowListViewStudent'?> method ="get">  
+                   <form action=<?php echo FRONT_ROOT.'Company/ShowListViewStudent'?> method ="POST">  
                    <?php if(!empty($companies)){ 
                     foreach($companies as $company){ ?>
                     
