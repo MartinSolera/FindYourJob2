@@ -18,7 +18,7 @@
                                  <label for=""><b>Phone Number</b></label>
                                  <input type="text" name="phoneNumber" value = "<?php  echo $company->getPhoneNumber();?>" required><br><br>
                                  <label for=""><b>Year Foundation</b></label><br>
-                                 <input type="number" name="yearFoundation"  value ="<?php echo $company->getYearFoundation();?>" min="1900" max= "<?php echo date('Y') ?>"  required><br><br>
+                                 <input type="number" name="yearFoundation"  value ="<?php echo $company->getYearFoundation();?>" min="1800" max= "<?php echo date('Y') ?>"  required><br><br>
                                  <label for="city"><b>City</b></label>
                                  <div class="form-group">
                                    <select name="idCity" id="city" required>
