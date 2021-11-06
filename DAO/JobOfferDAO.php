@@ -272,6 +272,19 @@
             return $applied; // retorna 1 si aplicó a la job offer especificada y 0 si no
         }
 
+        public function checkIfCompanyIsAsociated($idCompany){
+            $associated=false;
+            $jobOfferList = $this->GetAll();
+
+            foreach($jobOfferList as $jobOff){
+                
+                if($jobOff->getCompany()->getIdCompany() == $idCompany){
+                    $associated=true;
+                }
+            }
+            return $associated;
+        }
+
     }
 
 ?>

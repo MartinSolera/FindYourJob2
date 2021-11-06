@@ -85,13 +85,11 @@
              $parameters['id_Company'] = $idCompany;
      
              try {
-        
                 $result = $this->connection->ExecuteNonQuery($sql,$parameters);
-    
             }  catch (\PDOException $exception) {
                 throw $exception;
             }
-
+            return $result;
          }
 
          public function GetCompanyXid($idCompany){

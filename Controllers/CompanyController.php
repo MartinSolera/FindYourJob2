@@ -8,6 +8,7 @@ use Models\Company as Company;
 use Models\City as City;
 use Utils\Utils as Utils;
 use DAO\Connection as Connection;
+use DAO\JobOfferDAO as JobOfferDAO;
 use Controllers\Functions;//para mensajes de dbb
 use Exception;
 
@@ -15,13 +16,13 @@ class CompanyController
 {
     private $companyDAO;
     private $cityDao;
-    private $message;
+    private $jobOfferDAO;
 
     public function __construct()
     {
         $this->companyDAO = new CompanyDAO();
         $this->cityDao = new CityDAO();
-        $message = null;
+        $this->jobOfferDAO = new JobOfferDAO();
     }
 
 
@@ -107,12 +108,23 @@ class CompanyController
            
     }
 
-    public function DeleteCompany($email)
+    public function DeleteCompany($idCompany)
     {
         Utils::checkSession();
+        $associated = $this->jobOfferDAO->checkIfCompanyIsAsociated($idCompany);
 
-        $removed = $this->companyDAO->DeleteCompany($email);
-        $this->ShowListViewAdmin("Company deleted");
+        if($associated==false) {
+            $removed = $this->companyDAO->DeleteCompany($idCompany);
+            if($removed==1){
+                $this->ShowListViewAdmin("company deleted succesfully");
+            }else{
+                $this->ShowListViewAdmin("couldn't delete the company, try later");
+            }
+        }
+        else{
+            $this->ShowListViewAdmin("cannot delete the company because it's associated with a job offer");
+        }
+       
     }
 
     public function ModifyCompany($yearFoundation, $idCity, $description, $phoneNumber, $idCompany)

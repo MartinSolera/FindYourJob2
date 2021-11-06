@@ -93,7 +93,6 @@
                     $result = $this->updateJobP($jobP);
                 }
             }
-            return $result;//si retorna 0 se agregaron todas las job position con exito
         }
 
         public function updateJobP(JobPosition $jobPosition) {
