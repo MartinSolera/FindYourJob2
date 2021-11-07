@@ -63,7 +63,7 @@
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
         {
             Utils::checkSession();
-            if (($limitdate >= date("Y-m-d") && ($datetime>= date("Y-m-d"))))
+            if (($limitdate >= date("Y-m-d")) && ($datetime>= date("Y-m-d")))
             {
                 $message=null;
                 $company = $this->companyDAO->GetCompanyXid($idCompany);
