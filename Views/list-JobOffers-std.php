@@ -29,7 +29,7 @@
                    
                    <?php if(!empty($jobOfferList)){ 
                     foreach($jobOfferList as $jobOffer)
-                         if ($jobOffer->getDateTime()<= date("Y-m-d"))
+                         if ($jobOffer->getLimitDate() >= date("Y-m-d"))
                          {
                     { ?>
                     <tr>
