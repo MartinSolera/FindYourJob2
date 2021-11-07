@@ -10,7 +10,7 @@
                                    <h4 >
                                         <?php
                                         if (isset($invalidDate)) {
-                                             echo "La fecha limite no puede ser menor a la actual";
+                                             echo "Error in the date entered";
                                         }                                  
                                         ?>
                                    </h4>

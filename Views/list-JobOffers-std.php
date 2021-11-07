@@ -28,7 +28,10 @@
                     
                    
                    <?php if(!empty($jobOfferList)){ 
-                    foreach($jobOfferList as $jobOffer){ ?>
+                    foreach($jobOfferList as $jobOffer)
+                         if ($jobOffer->getDateTime()= date("Y-m-d"))
+                         {
+                    { ?>
                     <tr>
                         <td><?php echo $jobOffer->getCompany()->getName(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
@@ -45,7 +48,8 @@
                         </td>
      
                             <?php }
-                          }?>
+                         }
+                    }?>
                       
                 </tbody>
             
