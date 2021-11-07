@@ -76,6 +76,7 @@ class CompanyController
 
     public function AddCompany($name,$year,$idcity,$description,$email,$phone,$logo)
     {
+        $message = null;
         Utils::checkSession();
 
         $city = $this->cityDao->GetCityXid($idcity);
@@ -97,13 +98,16 @@ class CompanyController
              $this->ViewAddCompany($message);
             }
              else
-             $this->ViewAddCompany("ERROR: Failed in Company Add, reintente");
-
+             {
+             $message = "ERROR: Failed in Company Add, reintente"; 
+             $this->ViewAddCompany($message);
+             }
+             
             } catch (Exception $ex) {// si encuentra un error de dbb
     
-                if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"))
-                $this->ViewAddCompany($ex->getMessage());// devuelve este mensage 
-
+                if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"));
+                $message = "You can't add this company, there are information that is used in other company";
+                $this->ViewAddCompany($message);
             }
            
     }
