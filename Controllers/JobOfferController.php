@@ -96,14 +96,11 @@
                     $message = $ex->getMessage();
                     $this->addJobOfferView($message);
                 }
-            }else
-            {            
-
+            } else{            
                 $invalidDate = true;
                 $companyList = $this->companyDAO->GetAll();
                 $jobPositionList = $this->jobPositionDAO->GetAll();
                 require_once(VIEWS_PATH . "addJobOffer.php");
-
             }
         }
 
@@ -130,7 +127,6 @@
                 $this->JobOfferManagementView($message);
             }
         }
-        
 
         public function filterJobOffersForJobPosition($search){
             
@@ -205,7 +201,7 @@
                 $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer);
 
                 if($result == 1){
-                    $message = "canceled your application successfully";
+                    $message = "cancelled your application successfully";
                 }
                 else{
                     $message = "could not cancel your application, try again later";

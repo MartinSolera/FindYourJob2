@@ -145,7 +145,44 @@
     
         }
  
-        
+        public function checkIfNameAlreadyExists($name){
+            $exists=0;
+            $companyList = $this->GetAll();
+
+            foreach ($companyList as $company) {
+
+                if ($company->getName() == $name) {
+                    $exists=1;
+                }
+            }
+            return $exists; // retorna 1 si el nombre ya le corresponde a una company y 0 si no
+        }
+
+        public function checkIfEmailAlreadyExists($email){
+            $exists=0;
+            $companyList = $this->GetAll();
+
+            foreach ($companyList as $company) {
+
+                if ($company->getEmail() == $email) {
+                    $exists=1;
+                }
+            }
+            return $exists; // retorna 1 si el email ya le corresponde a una company y 0 si no
+        }
+
+        public function checkIfPhoneAlreadyExists($phone){
+            $exists=0;
+            $companyList = $this->GetAll();
+
+            foreach ($companyList as $company) {
+
+                if ($company->getPhoneNumber() == $phone) {
+                    $exists=1;
+                }
+            }
+            return $exists; // retorna 1 si el telefono ya le corresponde a una company y 0 si no
+        }
 
     }
 

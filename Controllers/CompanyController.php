@@ -91,22 +91,35 @@ class CompanyController
             $newCompany->setLogo($logo);
 
             try {
-             $result = $this->companyDAO->Add($newCompany);
+                $result = $this->companyDAO->Add($newCompany);
 
-             if($result == 1){
-             $message = "Company added successfully";
-             $this->ViewAddCompany($message);
-            }
-             else
-             {
-             $message = "ERROR: Failed in Company Add, reintente"; 
-             $this->ViewAddCompany($message);
-             }
-             
-            } catch (Exception $ex) {// si encuentra un error de dbb
+                if($result == 1){
+                    $message = "Company added successfully";
+                    $this->ViewAddCompany($message);
+                } else {
+                    $message = "ERROR: Failed in Company Add, reintente"; 
+                    $this->ViewAddCompany($message);
+                }
+            } catch (Exception $ex) {// si encuentra un error de db
     
                 if(Functions::contains_substr($ex->getMessage(), "Duplicate entry"));
-                $message = "You can't add this company, there are information that is used in other company";
+                $message = "You can't add this company "; 
+
+                //validacion name
+                $nameExists=$this->companyDAO->checkIfNameAlreadyExists($name);
+                if($nameExists==1){
+                    $message = $message . ", the name is owned by another company";
+                }
+                //validacion email
+                $emailExists=$this->companyDAO->checkIfEmailAlreadyExists($email);
+                if($emailExists==1){
+                    $message = $message . ", the email already exists";
+                }
+                //validacion phone number
+                $phoneExists=$this->companyDAO->checkIfPhoneAlreadyExists($phone);
+                if($phoneExists==1){
+                    $message = $message . ", the phone number belongs to another company";
+                }
                 $this->ViewAddCompany($message);
             }
            
