@@ -6,6 +6,7 @@
     use DAO\JobPositionDAO as JobPositionDAO;
     use DAO\CompanyDAO as CompanyDAO;
     use DAO\UserDAO as UserDAO;
+    use DAO\StudentDAO as StudentDAO;
     use Utils\Utils as Utils;
     use Models\User as User; 
     use Models\JobOffer as JobOffer;
@@ -20,6 +21,7 @@
         private $userDAO;
         private $companyDAO;
         private $viewController;
+        private $studentDAO;
 
         public function __construct()
         {
@@ -28,6 +30,7 @@
             $this->userDAO = new UserDAO();
             $this->companyDAO = new CompanyDAO();
             $this->viewController = new ViewController();
+            $this->studentDAO = new StudentDAO();
         }
 
         public function addJobOfferView($message = "") {
@@ -68,14 +71,15 @@
                 $message=null;
                 $company = $this->companyDAO->GetCompanyXid($idCompany);
                 $jobPosition = $this->jobPositionDAO->GetJobPositionXid($idJobPosition);
-                $user = $this->userDAO->GetUserXid(1); //id admin
-
+                /* $user = $this->userDAO->GetUserXid(1);  *///id admin
+ 
                 $newJobOff = new JobOffer();
                 $newJobOff->setDescription($description);
                 $newJobOff->setDatetime($datetime);
                 $newJobOff->setLimitDate($limitdate);
                 $newJobOff->setCompany($company);
-                $newJobOff->setUser($user);
+                /* $newJobOff->setUser($user); */
+               
                 $newJobOff->setJobPosition($jobPosition);
                 $newJobOff->setUserState(1); //disponible 
                 $newJobOff->setTimeState(1); //disponible
@@ -218,7 +222,26 @@
             $this->jobOfferList($message);
         }
 
+        public function applicantsList($idJobOffer){
+            Utils::checkSession();
 
+            $studentsList = $this->studentDAO->GetAll();
+            $jobOff = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+            
+            if($jobOff->getUserState()==1){ 
+                $message = "No student has applied to this job offer";
+                $this->JobOfferManagementView($message);
+            }else{
+                require_once(VIEWS_PATH."postulations-list.php");
+            }
+        }
+
+        public function declineStudentApplication($idJobOffer){
+            Utils::checkSession();
+            $declined=0;
+            
+            return $declined;
+        } 
 
     }
 
