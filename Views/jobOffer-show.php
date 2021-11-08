@@ -16,14 +16,18 @@
                                                 if ($jobOffer->getUserState() == 1) {
                                                     echo "<h4><b> Active </h4>";
                                                 } else {
-                                                    echo "<h4><b> inactive </h4>";
+                                                    echo "<h4><b> Inactive </h4>";
                                                 }
                         }
                     ?>        
                     <br>
 
                     <div id="outer">
-                         <button type="submit"  class="btn btn-dark ml-auto d-block " ><a href="<?php echo FRONT_ROOT."JobOffer/apply/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-dark" style="color: white;">Apply</a></button>
+                        <form action=<?php echo FRONT_ROOT."JobOffer/apply";?> method="POST">
+                            <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
+                            <button class="btn btn-dark ml-auto d-block " type="submit">Apply</button>
+                        </form>
+
                         <br>
                          <button type="submit"  class="btn btn-danger ml-auto d-block" > <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-danger" style="color: white;">Cancel application</a></button>
                          
