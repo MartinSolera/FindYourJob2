@@ -36,13 +36,24 @@
                         <td><?php echo $company->getDescription(); ?></td>
                         <td><?php echo $company->getEmail(); ?></td>
                         <td><?php echo $company->getPhoneNumber(); ?></td>
-                         
-                        <td><button class="btn btn-danger" ><a href="<?php echo FRONT_ROOT."Company/ShowModifyCompany?idCompany=".$company->getIdCompany();?> " style="color: white;">Modify </a><i class="fas fa-edit"></i> </button></td> 
-                        
-                        <td><button class="btn btn-danger"><a href="<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany?idCompany=".$company->getIdCompany();}?> " style="color: white;"> Delete </a><i class="fas fa-trash-alt"></i></button></td>      
+                          
+                        <td> 
+                             <form action=<?php echo FRONT_ROOT."Company/ShowModifyCompany";?> method="POST">
+                              <input type="hidden" name="idCompany" value="<?=$company->getIdCompany()?>">
+                              <button class="btn btn-danger ml-auto d-block" type="submit" style="color: white;">Modify<i class="fas fa-edit"></i></button>
+                              </form>
+                         </td>      
+
+                        <td> 
+                             <form action=<?php if(isset($company)){echo FRONT_ROOT . "Company/DeleteCompany";?> method="POST">
+                              <input type="hidden" name="idCompany" value="<?=$company->getIdCompany()?>">
+                              <button class="btn btn-danger ml-auto d-block" type="submit" style="color: white;">Delete<i class="fas fa-trash-alt"></i></button>
+                              </form>
+                         </td>      
                       </tr>
                              <?php }
-                          }?>
+                         }
+                         }?>
                         
                       </form>
                         
