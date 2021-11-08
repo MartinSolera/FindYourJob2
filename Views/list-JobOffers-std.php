@@ -40,12 +40,43 @@
                         <td style="color: red"><?php if($jobOffer->getUserState() == 1){
                                         echo '<b>Active</b>';
                                    } else
-                                   echo '<b>Inactive</b>';?></td>
-                        
+                                   echo '<b>Inactive</b>';?>
+                         </td>
+
+
+
+
+
+
+
+
+
+
                         <td>
+                              <!-- boton original -->
                             <?php $jobOfferId = $jobOffer->getIdJobOffer();?>
-                            <a href="<?php echo FRONT_ROOT."JobOffer/ShowJobOffer/?jobOfferId=".$jobOfferId;?>" class="btn btn-dark" style="color: white;">+</a>
-                        </td>
+                            <a href="<?php echo FRONT_ROOT."JobOffer/showJobOffer/?jobOfferId=".$jobOfferId;?>" class="btn btn-dark" style="color: white;">+</a>
+                              
+                            
+                              <!-- como lo empezamos a hacer -->
+                              <form action="<?php echo FRONT_ROOT."JobOffer/showJobOffer"; ?>" method="post">
+                                   <input type="hidden" name="jobOfferId" value="<?= $jobOffer->getIdJobOffer() ?>">
+                                   <button class="btn btn-dark" type="submit">+</button>
+                              </form>
+
+                              <!-- ejemplos de otro tp -->
+                              <form action="<?= ROOT_CLIENT?>Room/addRoom" method="POST">
+                                   <input type="hidden" name="idCinema" value="<?= $cinema->getId() ?>">
+                                   <button type="submit"><small>Agregar sala</small></button>
+                              </form> 
+
+                              <form action="<?php echo ROOT_CLIENT?>cinema" method="POST">
+                                   <input type="hidden" name="id" value="<?= $cinema->getId() ?>">
+                                   <button class="cinema-delete-btn" type="submit"><small>Eliminar</small></button>
+                              </form>      
+
+                         </td>
+                         
      
                             <?php }
                          }
