@@ -296,6 +296,20 @@
             return $associated;
         }
 
+        public function getJobOfferXidApplicant($idUser){
+            $jobOfferList = $this->GetAll();
+            $idJobOffer=null;
+
+            foreach($jobOfferList as $jobOff){
+                if($jobOff->getUser() != null){
+                    if($jobOff->getUser()->getId() == $idUser){
+                        $idJobOffer=$jobOff->getIdJobOffer();
+                    }
+                }
+            }
+            return $idJobOffer;
+        }
+
     }
 
 ?>

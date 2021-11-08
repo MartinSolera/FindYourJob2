@@ -16,6 +16,7 @@
                     <th>Status</th>
                     <th>Modify</th>  
                     <th>Delete</th> 
+                    <th>Applications</th>
                     </thead>
                     <tbody>  
                    <form action="" method ="post">
@@ -30,9 +31,11 @@
                                         echo 'active';
                                    } else
                                    echo 'inactive';?></td>
-                         <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">Modify </a><i class="fas fa-edit"></button></td> 
+                         <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">modify </a><i class="fas fa-edit"></button></td> 
                          
-                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/deleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">Delete </a><i class="fas fa-trash-alt"></i></button></td>
+                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/deleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">delete </a><i class="fas fa-trash-alt"></i></button></td>
+                    
+                         <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/applicantsList?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">applicants </a></button></td> 
                     </tr>
                              <?php }
                     }?>

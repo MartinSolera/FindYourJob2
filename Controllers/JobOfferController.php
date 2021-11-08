@@ -8,10 +8,8 @@
     use DAO\UserDAO as UserDAO;
     use DAO\StudentDAO as StudentDAO;
     use Utils\Utils as Utils;
-    use Models\User as User; 
     use Models\JobOffer as JobOffer;
     use Controllers\ViewController as ViewController;
-    use Controllers\Functions;
     use Exception;
 
     class JobOfferController {
@@ -229,18 +227,34 @@
             $jobOff = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
             
             if($jobOff->getUserState()==1){ 
-                $message = "No student has applied to this job offer";
+                $message = "no student has applied to this job offer";
                 $this->JobOfferManagementView($message);
             }else{
                 require_once(VIEWS_PATH."postulations-list.php");
             }
         }
 
-        public function declineStudentApplication($idJobOffer){
+        public function declineStudentApplication($idStudent){
             Utils::checkSession();
-            $declined=0;
             
-            return $declined;
+            $idJobOffer = $this->jobOfferDAO->getJobOfferXidApplicant($idStudent);
+            $applied=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idStudent, $idJobOffer);
+
+            if($applied==1){
+                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer);
+                if($result == 1){
+                    $student = $this->userDAO->GetUserXid($idStudent);
+                    $message = "declined the application of ".$student->getEmail();
+                    $this->JobOfferManagementView($message);
+                }
+                else{
+                    $message = "cannot decline this student application, try again later";
+                    $this->JobOfferManagementView($message);
+                }
+            }else{
+                $message = "cannot decline this student application, try again later";
+                $this->JobOfferManagementView($message);
+            }
         } 
 
     }
