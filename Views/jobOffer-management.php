@@ -30,12 +30,27 @@
                          <td><?php  if($jobOff->getUserState() == 1){
                                         echo 'active';
                                    } else
-                                   echo 'inactive';?></td>
-                         <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">modify </a><i class="fas fa-edit"></button></td> 
+                                   echo 'inactive';?>
+                         </td>
+                         <td>
+                              <form action=<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView";?> method="POST">
+                                   <input type="hidden" name="idJobOffer" value="<?=$jobOff->getIdJobOffer()?>">
+                                   <button class="btn btn-danger" type="submit">Modify <i class="fas fa-edit"></i></button>
+                              </form>
+                              </td> 
                          
-                         <td><button class="btn btn-danger"><a href="<?php if(isset($jobOff)){echo FRONT_ROOT . "JobOffer/deleteJobOffer?idJobOffer=".$jobOff->getIdJobOffer();}?> "  style="color: white;">delete </a><i class="fas fa-trash-alt"></i></button></td>
-                    
-                         <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/applicantsList?idJobOffer=".$jobOff->getIdJobOffer();?> "style="color: white;">applicants </a></button></td> 
+                         <td> 
+                              <form action=<?php echo FRONT_ROOT."JobOffer/deleteJobOffer";?> method="POST">
+                                   <input type="hidden" name="idJobOffer" value="<?=$jobOff->getIdJobOffer()?>">
+                                   <button class="btn btn-danger" type="submit">Delete <i class="fas fa-trash-alt"></i></button>
+                              </form>
+                         </td>
+                         <td>
+                              <form action=<?php echo FRONT_ROOT."JobOffer/applicantsList";?> method="POST">
+                                        <input type="hidden" name="idJobOffer" value="<?=$jobOff->getIdJobOffer()?>">
+                                        <button class="btn btn-danger" type="submit">Applicants <i class="fas fa-users"></i></button>
+                              </form>
+                         </td> 
                     </tr>
                              <?php }
                     }?>

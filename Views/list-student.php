@@ -23,12 +23,14 @@
                                    echo  "<td style='width: 350px'>" . $student->getFirstName() . "</td>";
                                    echo  "<td style='width: 350px'>" . $student->getLastName() . "</td>";
                                    
-                                   $studentId = $student->getStudentId();
-                                   ?>
-                                   <td>
-                                   <a href="<?php echo FRONT_ROOT."Student/ShowStudent/?studentId=".$studentId;?>" class="btn btn-dark" style="color: white;">+</a>
-                                   </td>
-                                   <?php
+                         ?>
+                              <td>
+                                   <form action=<?php echo FRONT_ROOT."Student/ShowStudent";?> method="POST">
+                                        <input type="hidden" name="studentId" value="<?=$student->getStudentId()?>">
+                                        <button class="btn btn-dark" type="submit">+</button>
+                                   </form>
+                              </td>
+                         <?php
                               }
                          }
                          ?>

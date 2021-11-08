@@ -35,8 +35,10 @@
                          <td><?php echo $company->getCity()->getName(); ?></td>
                          
                          <td>
-                              <?php $companyId = $company->getIdCompany();?>
-                              <a href="<?php echo FRONT_ROOT."Company/ShowCompany/?idCompany=".$companyId;?>" class="btn btn-dark" style="color: white;">+</a>
+                              <form action=<?php echo FRONT_ROOT."Company/ShowCompany";?> method="POST">
+                                   <input type="hidden" name="idCompany" value="<?=$company->getIdCompany()?>">
+                                   <button class="btn btn-dark" type="submit">+</button>
+                              </form>
                          </td>
      
                              <?php }
