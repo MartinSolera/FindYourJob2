@@ -46,7 +46,7 @@
 
             $listCompany = [];
     
-            $query = " SELECT * FROM " . $this->nameTable ;
+            $query = " SELECT * FROM " . $this->nameTable;
     
             try {
                 $result = $this->connection->Execute($query);
@@ -59,7 +59,7 @@
     
                 foreach($result as $value){
 
-                    $company = new Company();
+                $company = new Company();
 
                 $company->setIdCompany($value['id_Company']);
                 $company->setName($value["name"]);
@@ -77,6 +77,77 @@
             return  $listCompany;
          }
         
+
+         public function GetAllAsc(){
+
+            $listCompany = [];
+    
+            $query = " SELECT * FROM " . $this->nameTable . " ORDER BY company.name ASC ";
+    
+            try {
+                $result = $this->connection->Execute($query);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            if(!empty($result)){
+    
+                foreach($result as $value){
+
+                $company = new Company();
+
+                $company->setIdCompany($value['id_Company']);
+                $company->setName($value["name"]);
+                $company->setYearFoundation($value["yearFoundation"]);
+                $company->setDescription($value["description"]);
+                $company->setLogo($value["logo"]);
+                $company->setEmail($value["email"]);
+                $company->setPhoneNumber($value["phoneNumber"]);
+                $company->setCity($this->cityDao->GetCityXid($value['idCity']));
+                
+
+                array_push($listCompany, $company);
+            }
+        }
+            return  $listCompany;
+         }
+
+
+         public function GetAllDesc(){
+
+            $listCompany = [];
+    
+            $query = " SELECT * FROM " . $this->nameTable . " ORDER BY company.name DESC ";
+    
+            try {
+                $result = $this->connection->Execute($query);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            if(!empty($result)){
+    
+                foreach($result as $value){
+
+                $company = new Company();
+
+                $company->setIdCompany($value['id_Company']);
+                $company->setName($value["name"]);
+                $company->setYearFoundation($value["yearFoundation"]);
+                $company->setDescription($value["description"]);
+                $company->setLogo($value["logo"]);
+                $company->setEmail($value["email"]);
+                $company->setPhoneNumber($value["phoneNumber"]);
+                $company->setCity($this->cityDao->GetCityXid($value['idCity']));
+                
+                array_push($listCompany, $company);
+            }
+        }
+            return  $listCompany;
+         }
+
 
          public function DeleteCompany($idCompany)
          {

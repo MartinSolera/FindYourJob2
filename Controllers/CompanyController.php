@@ -188,4 +188,22 @@ class CompanyController
         require_once(VIEWS_PATH . "list-companies-std.php");
     }
 
+    public function ShowListViewCompanyAsc($message = "")
+    {
+        Utils::checkSession();
+
+        $companies = $this->companyDAO->GetAllAsc();
+        
+        require_once(VIEWS_PATH."company-management.php");
+    }
+
+    public function ShowListViewCompanyDesc($message = "")
+    {
+        Utils::checkSession();
+
+        $companies = $this->companyDAO->GetAllDesc();
+        
+        require_once(VIEWS_PATH."company-management.php");
+    }
+
 }

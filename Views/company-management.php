@@ -10,7 +10,12 @@
                <table class="table bg-light-alpha">
                     <thead>
                     <th>Logo</th>  
-                    <th>Name</th>
+                    <th> 
+                         <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewAdmin" style="color:black;" >  Name </a> 
+                         <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewCompanyAsc">  <i class="fas fa-sort-alpha-down"></i> </a> 
+                         <a href="<?php echo FRONT_ROOT ?>Company/ShowListViewCompanyDesc"> <i class="fas fa-sort-alpha-down-alt"></i></a> 
+                    </th>
+                         
                     <th>Foundation Year</th>
                     <th>City</th>
                     <th>Description</th>
