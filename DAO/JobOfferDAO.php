@@ -31,7 +31,7 @@
             $parameters['limitDate'] = $jobOffer->getLimitDate();
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['userState'] = $jobOffer->getUserState();
-            $parameters['idUser'] = $jobOffer->getUser()->getId();
+            $parameters['idUser'] = null;
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
         
@@ -70,7 +70,11 @@
                     $jobOffer->setLimitDate($value['limitDate']);
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setUserState($value['userState']);
-                    $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
+                    $user = $this->userDAO->GetUserXid($value['idUser']);
+                    if($user!=null){
+                        $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
+                    }
+                    //$jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                     $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
                     
@@ -183,7 +187,11 @@
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setUserState($value['userState']);
     
-                    $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
+                    $user = $this->userDAO->GetUserXid($value['idUser']);
+                    if($user!=null){
+                        $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
+                    }
+                    
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                     $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
                 }
@@ -210,7 +218,7 @@
 
         public function applyToJobOffer($idUser, $idJobOffer) {
             
-            if($idUser != 1){
+            if($idUser != null){
                 $applied = $this->updateApplyJobOffer($idUser, $idJobOffer);
             }
             return $applied; //si retorna 1 actualizó si retorna 0 no actualizó
@@ -237,8 +245,10 @@
             $jobOfferList = $this->GetAll();
 
             foreach ($jobOfferList as $jobOff){
-                if ($jobOff->getUser()->getId() == $idUser){
-                    $applied=0;
+                if($jobOff->getUser()!=null){
+                    if ($jobOff->getUser()->getId() == $idUser){
+                        $applied=0;
+                    }
                 }
             }
             return $applied; // retorna 1 si no aplicó a ninguna job offer y 0 si ya esta presentado para una
@@ -247,7 +257,7 @@
         public function cancelAplicationJobOffer($idJobOffer){
             $query = "UPDATE joboffer SET idUser=:idUser, userState=:userState WHERE (id_JobOffer = :idJobOffer);" ;
 
-            $parameters['idUser'] = 1;
+            $parameters['idUser'] = null;
             $parameters['userState'] = 1; //active
             $parameters['idJobOffer'] = $idJobOffer;
             
@@ -264,9 +274,10 @@
             $jobOfferList = $this->GetAll();
 
             foreach ($jobOfferList as $jobOff) {
-
-                if (($jobOff->getUser()->getId() == $idUser) && ($jobOff->getIdJobOffer() == $idJobOffer)) {
-                    $applied=1;
+                if($jobOff->getUser()!=null){
+                    if (($jobOff->getUser()->getId() == $idUser) && ($jobOff->getIdJobOffer() == $idJobOffer)) {
+                        $applied=1;
+                    }
                 }
             }
             return $applied; // retorna 1 si aplicó a la job offer especificada y 0 si no

@@ -69,7 +69,7 @@ create table if not exists JobOffer(
 	limitDate DATE not null ,
 	timeState int  not null,
 	userState int not null,
-	idUser BIGINT UNSIGNED not null,
+	idUser BIGINT UNSIGNED,
 	idJobPosition BIGINT UNSIGNED not null,
 	idCompany BIGINT UNSIGNED not null,
 	constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
