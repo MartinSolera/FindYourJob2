@@ -29,10 +29,10 @@
                    
                    <?php if(!empty($jobOfferList)){ 
                     foreach($jobOfferList as $jobOffer)
+                    {
                          if ($jobOffer->getLimitDate() >= date("Y-m-d"))
-                         {
-                    { ?>
-                    <tr>
+                         { ?>
+                    <tr> 
                         <td><?php echo $jobOffer->getCompany()->getName(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription(); ?></td>
@@ -42,48 +42,18 @@
                                    } else
                                    echo '<b>Inactive</b>';?>
                          </td>
-
-
-
-
-
-
-
-
-
-
-                        <td>
-                              <!-- boton original -->
-                            <?php $jobOfferId = $jobOffer->getIdJobOffer();?>
-                            <a href="<?php echo FRONT_ROOT."JobOffer/showJobOffer/?jobOfferId=".$jobOfferId;?>" class="btn btn-dark" style="color: white;">+</a>
-                              
-                            
-                              <!-- como lo empezamos a hacer -->
-                              <form action="<?php echo FRONT_ROOT."JobOffer/showJobOffer"; ?>" method="post">
-                                   <input type="hidden" name="jobOfferId" value="<?= $jobOffer->getIdJobOffer() ?>">
+                         <td>
+                              <form action=<?php echo FRONT_ROOT."JobOffer/showJobOffer";?> method="POST">
+                                   <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
                                    <button class="btn btn-dark" type="submit">+</button>
                               </form>
-
-                              <!-- ejemplos de otro tp -->
-                              <form action="<?= ROOT_CLIENT?>Room/addRoom" method="POST">
-                                   <input type="hidden" name="idCinema" value="<?= $cinema->getId() ?>">
-                                   <button type="submit"><small>Agregar sala</small></button>
-                              </form> 
-
-                              <form action="<?php echo ROOT_CLIENT?>cinema" method="POST">
-                                   <input type="hidden" name="id" value="<?= $cinema->getId() ?>">
-                                   <button class="cinema-delete-btn" type="submit"><small>Eliminar</small></button>
-                              </form>      
-
                          </td>
-                         
      
-                            <?php }
+                            <?php 
                          }
+                    }
                     }?>
-                      
                 </tbody>
-            
                </table>
           </div>
      </section>
