@@ -29,8 +29,10 @@
                         </form>
 
                         <br>
-                         <button type="submit"  class="btn btn-danger ml-auto d-block" > <a href="<?php echo FRONT_ROOT."JobOffer/cancelApplication/?idJobOffer=".$jobOffer->getIdJobOffer();?>" class="btn btn-danger" style="color: white;">Cancel application</a></button>
-                         
+                         <form action=<?php echo FRONT_ROOT."JobOffer/cancelApplication";?> method="POST">
+                            <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
+                            <button class="btn btn-danger ml-auto d-block" type="submit">Cancel application</button>
+                        </form>
                     </div>
                     
                     
