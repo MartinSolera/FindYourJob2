@@ -70,7 +70,7 @@
                     $jobOffer->setLimitDate($value['limitDate']);
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setUserState($value['userState']);
-                    $user = $this->userDAO->GetUserXid($value['idUser']);
+                    $user = $this->userDAO->GetUserXid($value['idUser']); //chequear id directamente
                     if($user!=null){
                         $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
                     }

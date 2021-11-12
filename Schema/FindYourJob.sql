@@ -2,7 +2,6 @@ create database if not exists FindYourJob;
 
 use FindYourJob;
 
-
 create table if not exists UserType (
 id_UserType BIGINT UNSIGNED AUTO_INCREMENT not null,
 description VARCHAR(30) not null ,
@@ -69,7 +68,6 @@ create table if not exists JobOffer(
 	limitDate DATE not null ,
 	timeState int  not null,
 	userState int not null,
-	idUser BIGINT UNSIGNED,
 	idJobPosition BIGINT UNSIGNED not null,
 	idCompany BIGINT UNSIGNED not null,
 	constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
@@ -78,9 +76,13 @@ create table if not exists JobOffer(
 	constraint fk_idCompany foreign key (idCompany) references Company(id_Company) on update CASCADE
 )ENGINE=INNODB;
 
-
-
-
-
+create table if not exists User_X_JobOffer(
+	idUserXjoboffer int not null auto_increment,
+    idUser BIGINT,
+    idJobOffer BIGINT not null,
+    constraint pk_idUserXjoboffer primary key (idUserXjoboffer),
+    constraint fk_idUserXjoboffer_idUser foreign key (idUser) references User(id_User),
+    constraint fk_idUserXjoboffer_idJobOffer foreign key (idJobOffer) references JobOffer(id_JobOffer)
+)ENGINE=INNODB;
 
 

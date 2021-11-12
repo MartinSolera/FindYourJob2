@@ -48,7 +48,7 @@
                                    <button class="btn btn-dark" type="submit">+</button>
                               </form>
                          </td>
-     
+                    </tr>
                             <?php 
                          }
                     }
