@@ -74,10 +74,66 @@ class UserController{
 
     }
 
+    public function userCompanyRegister($email, $password, $confirmPass){
+        $message = null;
+        $register = null;
+
+        if ($password == $confirmPass)
+        {
+            $studentController = new StudentController();
+            $student = new Student();
+            $student = $studentController->getByEmail($email);
+    
+            if ($student == null) {
+                
+                if($this->UserDAO->getUserByEmail($email) == null){
+                    $newUser = new User();
+                    $newUserType = new UserType();
+                    $newUserType->setId(3);
+
+                    $newUser->setEmail($email);
+                    $newUser->setPassword($password);
+                    $newUser->setUserType($newUserType);
+            
+                    $this->UserDAO->Add($newUser);
+                    
+                    $register=true;
+                } else 
+                {
+                    $message = "The email entered is already <br> registered as a company ";
+                    $this->userCompanyValidationView($message);
+                }
+                
+            } else {
+                $message = "The email entered belongs to <br> a user student";
+                $this->userCompanyValidationView($message);
+            }
+        }
+        else{
+            $message = "The passwords do not match";
+            $this->userCompanyValidationView($message);
+        }
+
+        if($register==true){
+            $message = "Succesful registration" ;
+            $this->viewController->Home($message);
+        }
+
+    }
+
+
+
     public function getUserByEmail($email){
         $user = $this->UserDAO->getUserByEmail($email);
         return $user;
     }
+
+    public function userCompanyValidationView($message = "") {
+        
+        $this->viewController->Home($message);
+    }   
+
+
 
     public function userValidationView($message = "") {
         
