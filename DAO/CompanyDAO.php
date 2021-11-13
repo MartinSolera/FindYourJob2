@@ -11,9 +11,8 @@
     class CompanyDAO implements ICompanyDAO{
 
         private $connection;
-        private $tabletName;
+        private $nameTable;
         private $cityDao;
-
 
         public function __construct(){
             $this->connection = Connection::GetInstance();

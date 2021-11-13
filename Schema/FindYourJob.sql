@@ -67,19 +67,17 @@ create table if not exists JobOffer(
 	dateTime DATE  not null,
 	limitDate DATE not null ,
 	timeState int  not null,
-	userState int not null,
 	idJobPosition BIGINT UNSIGNED not null,
 	idCompany BIGINT UNSIGNED not null,
 	constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
-	constraint fk_idUser foreign key (iduser) references User(id_User) ,
 	constraint fk_idJobPosition foreign key (idJobPosition) references JobPosition(id_JobPosition),
 	constraint fk_idCompany foreign key (idCompany) references Company(id_Company) on update CASCADE
 )ENGINE=INNODB;
 
 create table if not exists User_X_JobOffer(
 	idUserXjoboffer int not null auto_increment,
-    idUser BIGINT,
-    idJobOffer BIGINT not null,
+    idUser BIGINT UNSIGNED,
+    idJobOffer BIGINT UNSIGNED not null,
     constraint pk_idUserXjoboffer primary key (idUserXjoboffer),
     constraint fk_idUserXjoboffer_idUser foreign key (idUser) references User(id_User),
     constraint fk_idUserXjoboffer_idJobOffer foreign key (idJobOffer) references JobOffer(id_JobOffer)

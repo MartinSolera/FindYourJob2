@@ -79,7 +79,6 @@
                 /* $newJobOff->setUser($user); */
                
                 $newJobOff->setJobPosition($jobPosition);
-                $newJobOff->setUserState(1); //disponible 
                 $newJobOff->setTimeState(1); //disponible
                 
                 try {
@@ -172,9 +171,12 @@
         public function apply($idJobOffer) {
             
             $idUser = Utils::getIdUser();
-            $alreadyApp=$this->jobOfferDAO->checkAlreadyApplied($idUser);
+            $alreadyApp = $this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idUser, $idJobOffer);
 
-            if($alreadyApp == 1){
+            if($alreadyApp == true){
+                $message = "you have already applied to this job offer";
+            }
+            else{
                 $result = $this->jobOfferDAO->applyToJobOffer($idUser, $idJobOffer);
 
                 if($result == 1){
@@ -183,24 +185,16 @@
                 else{
                     $message = "could not apply, try again later";
                 }
-            }else{
-                $applied=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idUser, $idJobOffer);
-                if($applied == 1){
-                    $message = "you have already applied to this job offer";
-                } else{
-                    $message = "you have already applied to another job offer";
-                }   
             }
-            
             $this->jobOfferList($message);
         }
         
         public function cancelApplication ($idJobOffer){
             $idUser = Utils::getIdUser();
-            $alreadyApp=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idUser, $idJobOffer);
+            $alreadyApp=$this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idUser, $idJobOffer);
 
-            if($alreadyApp == 1){
-                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer);
+            if($alreadyApp == true){
+                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idUser, $idJobOffer);
 
                 if($result == 1){
                     $message = "cancelled your application successfully";
@@ -209,14 +203,8 @@
                     $message = "could not cancel your application, try again later";
                 }
             }else{
-                $applied = $this->jobOfferDAO->checkAlreadyApplied($idUser);//si ya aplico a otra oferta de trabajo que no es la actual
-                if($applied == 0){
-                    $message = "you have already applied to another job offer";
-                } else{
-                    $message = "you haven't already applied to a job offer";
-                }
+                $message = "you haven't already applied to a job offer";
             }
-            
             $this->jobOfferList($message);
         }
 
