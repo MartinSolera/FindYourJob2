@@ -100,6 +100,56 @@
             require_once(VIEWS_PATH . "user-validation.php");
         }
 
+        public function CompanyShowRegister()
+        {
+            require_once(VIEWS_PATH . "company-validation.php");
+        }
+
+        public function checkPassword($Password)
+        {
+            $message = null;
+
+            if ($Password == "admin" )
+            {
+                require_once(VIEWS_PATH . "company-registration.php");
+
+            }else
+            {
+                $message = "Incorrect password.";
+                $this->companyValidationView($message);
+            }
+
+        }
+
+        public function checkCompanyResgiter ($email)
+        {
+            $message = null;
+
+            $statusUser = $this->userDao->getUserFromDB($email);
+
+            if ($statusUser != null){
+                ///El usuario ya existe en el sistema.
+
+                $message = "This email is already in use ";
+                 $this->userValidationView($message);
+
+        }else{
+
+        }
+            $checkStudent = $this->studentDAO->getStudentByMail($email);
+            if($checkStudent == false){
+            
+                $company= $checkStudent;
+                require_once(VIEWS_PATH . "company-registration.php");
+            }else
+            {
+                $message= "the email entered belongs to a student";
+                $this->userValidationView($message);
+            }
+
+
+        }
+
         public function checkRegister($email){
 
             $message = null;
@@ -136,6 +186,11 @@
     public function userValidationView($message = "")
         {
             require_once(VIEWS_PATH."user-validation.php");
+        }
+        
+        public function CompanyValidationView($message = "")
+        {
+            require_once(VIEWS_PATH."company-validation.php");
         }   
 
 }
