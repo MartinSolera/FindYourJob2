@@ -21,7 +21,6 @@
                     <th>Job position</th>
                     <th>Career</th>
                     <th>Limit date</th>
-                    <th>Status</th>
                     <th>Info</th>  
                     </thead>
                     <tbody>  
@@ -37,11 +36,6 @@
                         <td><?php echo $jobOffer->getJobPosition()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getJobPosition()->getCareer()->getDescription(); ?></td>
                         <td><?php echo $jobOffer->getLimitDate(); ?></td>
-                        <td style="color: red"><?php if($jobOffer->getUserState() == 1){
-                                        echo '<b>Active</b>';
-                                   } else
-                                   echo '<b>Inactive</b>';?>
-                         </td>
                          <td>
                               <form action=<?php echo FRONT_ROOT."JobOffer/showJobOffer";?> method="POST">
                                    <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">

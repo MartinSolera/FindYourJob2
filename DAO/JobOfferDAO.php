@@ -250,7 +250,7 @@
 
 
         public function cancelAplicationJobOffer($idJobOffer, $idUser){
-            $query = "DELETE FROM user_x_joboffer WHERE (idUser = :idUser, idJobOffer = :idJobOffer);";
+            $query = "DELETE FROM user_x_joboffer WHERE idUser = :idUser AND idJobOffer = :idJobOffer;";
 
             $parameters['idUser'] = $idUser;
             $parameters['idJobOffer'] = $idJobOffer;
