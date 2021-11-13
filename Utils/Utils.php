@@ -16,7 +16,7 @@
             }
         }
         public static function checkSession(){
-            if(!(isset($_SESSION['admin']) || isset($_SESSION['student']))){
+            if(!(isset($_SESSION['admin']) || isset($_SESSION['student']) || isset($_SESSION['company']))){
                 $userNotLogged = true;
                 require_once(VIEWS_PATH ."login.php");
             }

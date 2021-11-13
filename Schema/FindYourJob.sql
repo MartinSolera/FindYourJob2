@@ -85,4 +85,3 @@ create table if not exists User_X_JobOffer(
     constraint fk_idUserXjoboffer_idJobOffer foreign key (idJobOffer) references JobOffer(id_JobOffer)
 )ENGINE=INNODB;
 
-
