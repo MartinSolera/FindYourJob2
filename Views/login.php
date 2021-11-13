@@ -15,7 +15,10 @@
                </div>
                <button class="btn btn-dark btn-block btn-lg" type="submit" >Log In</button>
                
-               <a class="btn btn-dark btn-block btn-lg" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Registration</a>
+               <a class="btn btn-danger btn-block btn-lg" href="<?php echo FRONT_ROOT ?>Home/ShowRegister">Student Registration</a>
+               <a class="btn btn-primary btn-block btn-lg" href="<?php echo FRONT_ROOT ?>Home/CompanyShowRegister">Company Registration</a>
+
+
             </form>
      </div>
 </main>
