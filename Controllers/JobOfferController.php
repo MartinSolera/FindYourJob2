@@ -210,7 +210,7 @@
 
         public function applicantsList($idJobOffer){
             Utils::checkSession();
-
+            $userStudentList=$this->userDAO->GetAllStudentType();
             $studentsList = $this->studentDAO->GetAll();
             $postulationsList = $this->jobOfferDAO->postulationsListForSpecificJobOffer($idJobOffer);//postulaciones para esta job offer
             

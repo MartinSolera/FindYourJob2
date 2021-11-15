@@ -17,25 +17,28 @@
                     <tbody>  
                    
                    <?php 
-                       if(!empty($studentsList)){ 
-                        foreach($studentsList as $student){ 
-                            foreach($postulationsList as $idStudentP){
-                            
-                                if($student->getStudentId() == $idStudentP){ ?>
-                                <tr>
-                                    <td><?php echo $student->getFileNumber(); ?></td>
-                                    <td><?php echo $student->getFirstName(); ?></td>
-                                    <td><?php echo $student->getLastName(); ?></td>
-                                    <td><?php echo $student->getEmail(); ?></td>
-                                    <td>
-                                        <form action=<?php echo FRONT_ROOT."JobOffer/declineApplication";?> method="POST">
-                                            <input type="hidden" name="idStudent" value="<?=$student->getStudentId()?>">
-                                            <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
-                                            <button class="btn btn-danger ml-auto d-block" type="submit">Cancel application</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <?php 
+                       if(!empty($userStudentList)){ 
+                        foreach($userStudentList as $userS){ 
+                            foreach($studentsList as $student){ 
+                                foreach($postulationsList as $idStudentP){
+                                    if($userS->getId() == $idStudentP){
+                                        if($student->getEmail() == $userS->getEmail()){ ?>
+                                        <tr>
+                                            <td><?php echo $student->getFileNumber(); ?></td>
+                                            <td><?php echo $student->getFirstName(); ?></td>
+                                            <td><?php echo $student->getLastName(); ?></td>
+                                            <td><?php echo $student->getEmail(); ?></td>
+                                            <td>
+                                                <form action=<?php echo FRONT_ROOT."JobOffer/declineApplication";?> method="POST">
+                                                    <input type="hidden" name="idStudent" value="<?=$idStudentP?>">
+                                                    <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
+                                                    <button class="btn btn-danger ml-auto d-block" type="submit">Cancel application</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php 
+                                        }
+                                    }
                                 }
                             }
                         }

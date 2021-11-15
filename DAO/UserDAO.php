@@ -60,6 +60,34 @@
             return $listUsers;
         }
 
+        public function GetAllStudentType() {
+            $listUsersStudent = [];
+
+            $query = "SELECT * FROM  " . $this->nameTable;
+
+            try {
+                $result = $this->connection->Execute($query);
+            } catch (\PDOException $ex){
+                throw $ex;
+            }
+
+            if(!empty($result)) { 
+                foreach($result as $value) {
+                    if($value['idUserType']==2){
+                        $user = new User();
+
+                        $user->setEmail($value['email']);
+                        $user->setPassword($value['pass']);
+                        $user->setUserType($this->userTypeDao->GetUserTypeXid($value['idUserType']));
+                        $user->setId($value['id_User']);
+                        
+                        array_push($listUsersStudent, $user);
+                    }
+                }
+            }
+            return $listUsersStudent;
+        }
+
         public function DeleteUser($idUser)
         {
             $sql = "DELETE FROM user WHERE id_User = :id_User";
