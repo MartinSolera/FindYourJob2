@@ -32,7 +32,7 @@
                                                 <form action=<?php echo FRONT_ROOT."JobOffer/declineApplication";?> method="POST">
                                                     <input type="hidden" name="idStudent" value="<?=$userS->getId()?>" />
                                                     <input type="hidden" name="idJobOffer" value="<?=$idJobOffer?>"/>
-                                                    <button class="btn btn-danger ml-auto d-block" type="submit">Cancel application</button>
+                                                    <button class="btn btn-danger d-block" type="submit" style="color:black; margin-left:65px;" > <b> X </b></button>
                                                 </form>
                                             </td>
                                         </tr>
