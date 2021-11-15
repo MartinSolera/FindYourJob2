@@ -1,5 +1,6 @@
 create database if not exists FindYourJob;
 
+
 use FindYourJob;
 
 create table if not exists UserType (
@@ -69,6 +70,7 @@ create table if not exists JobOffer(
 	timeState int  not null,
 	idJobPosition BIGINT UNSIGNED not null,
 	idCompany BIGINT UNSIGNED not null,
+	flyer LONGBLOB,
 	constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
 	constraint fk_idJobPosition foreign key (idJobPosition) references JobPosition(id_JobPosition),
 	constraint fk_idCompany foreign key (idCompany) references Company(id_Company) on update CASCADE
@@ -82,4 +84,3 @@ create table if not exists User_X_JobOffer(
     constraint fk_idUserXjoboffer_idUser foreign key (idUser) references User(id_User),
     constraint fk_idUserXjoboffer_idJobOffer foreign key (idJobOffer) references JobOffer(id_JobOffer)
 )ENGINE=INNODB;
-
