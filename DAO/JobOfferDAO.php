@@ -104,6 +104,58 @@
             return $studentList;
         }
         
+        public function getPostulationList(){ //devuelve cada postulacion con sus respectivos id's(el de student y el de la job offer)
+
+            $postulationsList = array();
+
+            $query = "SELECT * FROM user_x_joboffer" ;
+
+            try {
+                $result = $this->connection->Execute($query);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+
+            if(!empty($result)) {
+                foreach($result as $value){
+
+                    $postulation['idUserXjoboffer'] = $value['idUserXjoboffer'];
+                    $postulation['idJobOffer'] = $value['idJobOffer'];
+                    $postulation['idUser'] = $value['idUser'];
+
+                    array_push($postulationsList, $postulation);
+                }
+            }
+            return $postulationsList;
+        }
+
+        public function postulationsListForSpecificJobOffer($idJobOffer){
+
+            $postulationsList = array();
+
+            $query = "SELECT * FROM user_x_joboffer" ;
+
+            try {
+                $result = $this->connection->Execute($query);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+
+            if(!empty($result)) {
+                foreach($result as $value){
+
+                    if($value['idJobOffer'] == $idJobOffer){
+                        
+                        $studentId = $value['idUser'];
+                        array_push($postulationsList, $studentId);
+                    }
+                }
+            }
+            return $postulationsList;
+        }
+
         public function DeleteJobOffer($id_jobOffer)
         {
             $sql = "DELETE FROM joboffer WHERE id_JobOffer = :id_JobOffer";
@@ -351,7 +403,21 @@
             return $associated;
         }
 
-        public function getJobOfferXidApplicant($idUser){
+        public function getJobOfferXids($idUser, $idJobOffer){
+            $postulationsList = $this->getPostulationList();
+
+            foreach($postulationsList as $jobOff){
+                if($jobOff->getUser() != null){
+                    if($jobOff->getUser()->getId() == $idUser){
+                        $idJobOffer=$jobOff->getIdJobOffer();
+                    }
+                }
+            }
+            return $jobOffer;
+        }
+
+
+        public function exGetJobOfferXidApplicant($idUser){
             $jobOfferList = $this->GetAll();
             $idJobOffer=null;
 

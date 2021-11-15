@@ -19,15 +19,24 @@
                    <?php 
                        if(!empty($studentsList)){ 
                         foreach($studentsList as $student){ 
-                            if($student->getEmail() == $jobOff->getUser()->getEmail()){ ?>
-                            <tr>
-                                <td><?php echo $student->getFileNumber(); ?></td>
-                                <td><?php echo $student->getFirstName(); ?></td>
-                                <td><?php echo $student->getLastName(); ?></td>
-                                <td><?php echo $student->getEmail(); ?></td>
-                                <td><button class="btn btn-danger"><a  href="<?php echo FRONT_ROOT."JobOffer/declineStudentApplication?idStudent=".$jobOff->getUser()->getId();?> "style="color: white;">decline  </a><i class="fas fa-user-times"></i></button></td>
-                            </tr>
-                            <?php 
+                            foreach($postulationsList as $idStudentP){
+                            
+                                if($student->getStudentId() == $idStudentP){ ?>
+                                <tr>
+                                    <td><?php echo $student->getFileNumber(); ?></td>
+                                    <td><?php echo $student->getFirstName(); ?></td>
+                                    <td><?php echo $student->getLastName(); ?></td>
+                                    <td><?php echo $student->getEmail(); ?></td>
+                                    <td>
+                                        <form action=<?php echo FRONT_ROOT."JobOffer/declineApplication";?> method="POST">
+                                            <input type="hidden" name="idStudent" value="<?=$student->getStudentId()?>">
+                                            <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
+                                            <button class="btn btn-danger ml-auto d-block" type="submit">Cancel application</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php 
+                                }
                             }
                         }
                         }

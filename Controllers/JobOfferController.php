@@ -212,9 +212,9 @@
             Utils::checkSession();
 
             $studentsList = $this->studentDAO->GetAll();
-            $jobOff = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+            $postulationsList = $this->jobOfferDAO->postulationsListForSpecificJobOffer($idJobOffer);//postulaciones para esta job offer
             
-            if($jobOff->getUserState()==1){ 
+            if($postulationsList==null){ 
                 $message = "no student has applied to this job offer";
                 $this->JobOfferManagementView($message);
             }else{
@@ -222,11 +222,33 @@
             }
         }
 
+        public function declineAplication($idStudent, $idJobOffer){
+            Utils::checkSession();
+            //$idJobOffer = $this->jobOfferDAO->getJobOfferXidApplicant($idStudent);
+            $applied = $this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idStudent, $idJobOffer);
+
+            if($applied == 1){
+                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer, $idStudent);
+                if($result == 1){
+                    $student = $this->userDAO->GetUserXid($idStudent);
+                    $message = "declined the application of ".$student->getEmail();
+                    $this->JobOfferManagementView($message);
+                }
+                else{
+                    $message = "cannot decline this student application, try again later";
+                    $this->JobOfferManagementView($message);
+                }
+            }else{
+                $message = "cannot decline this student application, try again later";
+                $this->JobOfferManagementView($message);
+            }
+        }
+
         public function declineStudentApplication($idStudent){
             Utils::checkSession();
             
-            $idJobOffer = $this->jobOfferDAO->getJobOfferXidApplicant($idStudent);
-            $applied=$this->jobOfferDAO->checkAppliedToSpecificJobOffer($idStudent, $idJobOffer);
+            //$idJobOffer = $this->jobOfferDAO->getJobOfferXidApplicant($idStudent);
+            $applied=$this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idStudent, $idJobOffer);
 
             if($applied==1){
                 $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer);
