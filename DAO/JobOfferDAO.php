@@ -27,7 +27,7 @@
         }
 
         public function Add(JobOffer $jobOffer) {
-            $query = "INSERT INTO joboffer (description, dateTime, limitDate, timeState, idJobPosition, idCompany) value (:description, :dateTime, :limitDate, :timeState, :idJobPosition, :idCompany);";
+            $query = "INSERT INTO joboffer (description, dateTime, limitDate, timeState, idJobPosition, idCompany, flyer) value (:description, :dateTime, :limitDate, :timeState, :idJobPosition, :idCompany, :flyer);";
             
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
@@ -35,6 +35,7 @@
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
+            $parameters["flyer"] = $jobOffer->getFlyer();
         
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);

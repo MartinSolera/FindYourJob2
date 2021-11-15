@@ -61,7 +61,7 @@
             
         }
 
-        public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description)
+        public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description, $flyer)
         {
             Utils::checkSession();
             if (($limitdate >= date("Y-m-d")) && ($datetime>= date("Y-m-d")))
@@ -80,6 +80,7 @@
                
                 $newJobOff->setJobPosition($jobPosition);
                 $newJobOff->setTimeState(1); //disponible
+                $newJobOff->setFlyer($flyer);
                 
                 try {
                     $result = $this->jobOfferDAO->Add($newJobOff);
