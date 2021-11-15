@@ -44,7 +44,11 @@
                                  <label for="">Description</label>
                                  <!-- <input type="text" name="description" minlength="10" maxlength="1000" placeholder="Description" required> -->
                                  <textarea class="input" name="description" id="description" cols="30" rows="3" placeholder="Description of the offer..." required></textarea>
-
+                                                  
+                                 <div class="form-group">
+                                             <label>Flyer:</label>
+                                             <input type="file" name="flyer" class="form-control-file">
+                                 </div>
 
                               </div>
                          </div>

@@ -21,6 +21,9 @@
                         }
                     ?>        
                     <br>
+                    <br>
+                         <img src="<?php if(!empty($jobOffer->getFlyer())) echo IMG_PATH.$jobOffer->getFlyer();?>" width="400" height="80"><br>
+                         <br>
 
                     <div id="outer">
                         <form action=<?php echo FRONT_ROOT."JobOffer/apply";?> method="POST">
