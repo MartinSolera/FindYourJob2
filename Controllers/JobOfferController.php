@@ -224,7 +224,7 @@
 
         public function declineAplication($idStudent, $idJobOffer){
             Utils::checkSession();
-            //$idJobOffer = $this->jobOfferDAO->getJobOfferXidApplicant($idStudent);
+            
             $applied = $this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idStudent, $idJobOffer);
 
             if($applied == 1){
@@ -244,28 +244,6 @@
             }
         }
 
-        public function declineStudentApplication($idStudent){
-            Utils::checkSession();
-            
-            //$idJobOffer = $this->jobOfferDAO->getJobOfferXidApplicant($idStudent);
-            $applied=$this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idStudent, $idJobOffer);
-
-            if($applied==1){
-                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer);
-                if($result == 1){
-                    $student = $this->userDAO->GetUserXid($idStudent);
-                    $message = "declined the application of ".$student->getEmail();
-                    $this->JobOfferManagementView($message);
-                }
-                else{
-                    $message = "cannot decline this student application, try again later";
-                    $this->JobOfferManagementView($message);
-                }
-            }else{
-                $message = "cannot decline this student application, try again later";
-                $this->JobOfferManagementView($message);
-            }
-        } 
 
     }
 

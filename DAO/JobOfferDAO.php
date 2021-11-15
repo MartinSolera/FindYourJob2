@@ -403,21 +403,7 @@
             return $associated;
         }
 
-        public function getJobOfferXids($idUser, $idJobOffer){
-            $postulationsList = $this->getPostulationList();
-
-            foreach($postulationsList as $jobOff){
-                if($jobOff->getUser() != null){
-                    if($jobOff->getUser()->getId() == $idUser){
-                        $idJobOffer=$jobOff->getIdJobOffer();
-                    }
-                }
-            }
-            return $jobOffer;
-        }
-
-
-        public function exGetJobOfferXidApplicant($idUser){
+        /* public function getJobOfferXidApplicant($idUser){
             $jobOfferList = $this->GetAll();
             $idJobOffer=null;
 
@@ -429,7 +415,7 @@
                 }
             }
             return $idJobOffer;
-        }
+        } */
 
     }
 
