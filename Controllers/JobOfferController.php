@@ -222,7 +222,7 @@
             }
         }
 
-        public function declineAplication($idStudent, $idJobOffer){
+        public function declineApplication($idStudent, $idJobOffer){
             Utils::checkSession();
             
             $applied = $this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idStudent, $idJobOffer);

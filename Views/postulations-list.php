@@ -30,8 +30,8 @@
                                             <td><?php echo $student->getEmail(); ?></td>
                                             <td>
                                                 <form action=<?php echo FRONT_ROOT."JobOffer/declineApplication";?> method="POST">
-                                                    <input type="hidden" name="idStudent" value="<?=$idStudentP?>">
-                                                    <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">
+                                                    <input type="hidden" name="idStudent" value="<?=$userS->getId()?>" />
+                                                    <input type="hidden" name="idJobOffer" value="<?=$idJobOffer?>"/>
                                                     <button class="btn btn-danger ml-auto d-block" type="submit">Cancel application</button>
                                                 </form>
                                             </td>
