@@ -327,6 +327,15 @@
             }
         } //si retorna 1 elimino, si no retorna 0
 
+        public function generateDeclinedApplicationEmail($student, $jobOffer){
+            $jobP = $this->jobPositionDAO->GetJobPositionXid($jobOffer->getJobPosition()->getId());
+            if(!empty($student)){
+                
+                $mail = new Mail();
+                $mail->sendEmailDeclinatedApplication($student, $jobP); 
+            }
+        }
+
         /* public function checkAlreadyAppliedToSpecificJobOffer($idUser, $idJobOffer){
 
             $query = "SELECT idUserXjoboffer FROM user_x_joboffer WHERE idUser = :idUser AND idJobOffer = :idJobOffer " ;
@@ -444,7 +453,7 @@
             if(!empty($student)){
                 
                 $mail = new Mail();
-                $mail->sendMailEndedJobOffer($student, $jobP); 
+                $mail->sendEmailEndedJobOffer($student, $jobP); 
             }
         }
 

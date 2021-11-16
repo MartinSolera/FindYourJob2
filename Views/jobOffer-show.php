@@ -14,11 +14,11 @@
                             echo  "<h5><b> Limit date for application: </b>" . $jobOffer->getLimitDate() . "</h5>";
                         }
                     ?>        
+                    <br><?php if(!empty($jobOffer->getFlyer())){?>
                     <br>
-                    <br>
-                         <img src="<?php if(!empty($jobOffer->getFlyer())) echo IMG_PATH.$jobOffer->getFlyer();?>" width="400" height="80"><br>
-                         <br>
-
+                        <img src="<?php echo IMG_PATH.$jobOffer->getFlyer();?>" width="400" height="250"><br>
+                    <br><?php }?>
+                    
                     <div id="outer">
                         <form action=<?php echo FRONT_ROOT."JobOffer/apply";?> method="POST">
                             <input type="hidden" name="idJobOffer" value="<?=$jobOffer->getIdJobOffer()?>">

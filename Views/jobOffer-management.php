@@ -19,7 +19,7 @@
                     <th>Applications</th>
                     </thead>
                     <tbody>  
-                   <form action="" method ="post">
+                  
                    <?php if(!empty($jobOfferList)){ 
                   foreach($jobOfferList as $jobOff){ ?>
                     <tr>
@@ -54,7 +54,7 @@
                     </tr>
                              <?php }
                     }?>
-                        </form>
+                      
                     </tbody>
                </table>
           </div>

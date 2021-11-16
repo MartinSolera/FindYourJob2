@@ -233,7 +233,11 @@
                 $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer, $idStudent);
                 if($result == 1){
                     $student = $this->userDAO->GetUserXid($idStudent);
+                    $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+
                     $message = "declined the application of ".$student->getEmail();
+                    $this->jobOfferDAO->generateDeclinedApplicationEmail($student, $jobOffer);
+
                     $this->JobOfferManagementView($message);
                 }
                 else{
