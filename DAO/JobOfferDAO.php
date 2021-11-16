@@ -427,7 +427,7 @@
                         foreach ($jobOffPostulations as $studentId) {
 
                             $student = $this->userDAO->GetUserXid($studentId);
-                            if($student!==null) {
+                            if($student!=null) {
                                 $this->generateEndedJobOfferEmail($student, $jobOff);
                             }
                         }
@@ -441,7 +441,7 @@
 
         public function generateEndedJobOfferEmail($student, $jobOffer){
             $jobP = $this->jobPositionDAO->GetJobPositionXid($jobOffer->getJobPosition()->getId());
-            if(!empty($email)){
+            if(!empty($student)){
                 
                 $mail = new Mail();
                 $mail->sendMailEndedJobOffer($student, $jobP); 

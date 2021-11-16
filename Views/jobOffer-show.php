@@ -12,12 +12,6 @@
                             echo  "<h5><b> Company: " . $jobOffer->getCompany()->getName() . "</b></h5>";
                             echo  "<h5><b> Job Position: </b>" . $jobOffer->getJobPosition()->getDescription() . "</h5>";
                             echo  "<h5><b> Limit date for application: </b>" . $jobOffer->getLimitDate() . "</h5>";
-                            //echo  "<h5><b> Status:</b> </h5> " ;
-                                                if ($jobOffer->getUserState() == 1) {
-                                                    echo "<h4><b> Active </h4>";
-                                                } else {
-                                                    echo "<h4><b> Inactive </h4>";
-                                                }
                         }
                     ?>        
                     <br>
