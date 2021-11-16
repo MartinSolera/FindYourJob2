@@ -31,7 +31,7 @@
         }
 
         public function Add(JobOffer $jobOffer) {
-            $query = "INSERT INTO joboffer (description, dateTime, limitDate, timeState, idJobPosition, idCompany, flyer) value (:description, :dateTime, :limitDate, :timeState, :idJobPosition, :idCompany, :flyer);";
+            $query = "INSERT INTO joboffer (description, dateTime, limitDate, timeState, idJobPosition, idCompany, flyer, notified) value (:description, :dateTime, :limitDate, :timeState, :idJobPosition, :idCompany, :flyer, :notified);";
             
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
@@ -40,6 +40,7 @@
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
             $parameters["flyer"] = $jobOffer->getFlyer();
+            $parameters['notified'] = $jobOffer->getNotified(); 
         
             try {
                 $result = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -77,6 +78,8 @@
                     $jobOffer->setTimeState($value['timeState']);
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                     $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
+                    $jobOffer->setFlyer($value['flyer']);
+                    $jobOffer->setNotified(0);
                     
                     array_push($listJobOffers, $jobOffer);
                 }
@@ -177,7 +180,7 @@
 
         public function updateJobOffer(JobOffer $jobOffer)
         {
-            $query = "UPDATE joboffer SET name=:name, description=:description, dateTime=:dateTime, limitDate=:limitDate, timeState=:timeState, idJobPosition=:idJobPosition, idCompany=:idCompany WHERE  id_JobOffer = :id_JobOffer" ;
+            $query = "UPDATE joboffer SET name=:name, description=:description, dateTime=:dateTime, limitDate=:limitDate, timeState=:timeState, idJobPosition=:idJobPosition, idCompany=:idCompany, notified=:notified WHERE  id_JobOffer = :id_JobOffer" ;
 
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
@@ -185,6 +188,7 @@
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
+            $parameters['notified'] = $jobOffer->getNotified();
             
             try {
                 $this->connection = Connection::getInstance();
@@ -223,10 +227,10 @@
                 $jobOffer->setDateTime($value['dateTime']);
                 $jobOffer->setLimitDate($value['limitDate']);
                 $jobOffer->setTimeState($value['timeState']);
-
-                //$jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
                 $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                 $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
+                $jobOffer->setFlyer($value['flyer']);
+                $jobOffer->setNotified($value['notified']);
     
                 array_push($listToReturn, $jobOffer);
             }
@@ -267,6 +271,8 @@
                     */
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                     $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
+                    $jobOffer->setFlyer($value['flyer']);
+                    $jobOffer->setNotified($value['notified']);
                 }
             }
             return $jobOffer;

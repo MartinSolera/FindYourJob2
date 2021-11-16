@@ -26,6 +26,7 @@
                 <div class="btn-group me-2" role="group" aria-label="Second group">    
                     <a class="btn btn-secondary" href="<?php echo FRONT_ROOT ?>JobOffer/JobOfferManagementView">Job Offer Management</a>
                     <a class="btn btn-secondary" href="<?php echo FRONT_ROOT ?>JobOffer/addJobOfferView">Add Job Offer</a>
+                    <a class="btn btn-dark" href="<?php echo FRONT_ROOT ?>JobOffer/notifyEndedJobOffersToStudents" >Notify Job Offer End</a>
                 </div>
 
                 <div class="btn-group" role="group" aria-label="Third group">
@@ -37,7 +38,6 @@
                 <div class="btn-group me-2" role="group" aria-label="First group">
                     <a class="btn btn-dark" href="<?php echo FRONT_ROOT ?>Update/UpdateDB" >Update Data</a>
                     <a class="btn btn-primary" href="<?php echo FRONT_ROOT ?>Student/ShowStudentList" >Students List</a>
-                    
                 </div>
             </div>
         </div>

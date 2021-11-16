@@ -27,7 +27,7 @@
                          <td><?php echo $jobOff->getJobPosition()->getDescription(); ?></td>
                          <td><?php echo $jobOff->getDescription(); ?></td>
                          <td><?php echo $jobOff->getLimitDate(); ?></td>
-                         <td><?php  if($jobOff->getUserState() == 1){
+                         <td><?php  if($jobOff->getLimitDate() >= date("Y-m-d")){
                                         echo 'active';
                                    } else
                                    echo 'inactive';?>

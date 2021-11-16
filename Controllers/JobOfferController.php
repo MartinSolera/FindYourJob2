@@ -51,14 +51,14 @@
         public function JobOfferModifyView($idJobOffer) {
             Utils::checkSession();
 
-            $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+            /* $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
             if($jobOffer->getUserState()==2){ 
                 $message = "Cannot update job offer because a student has already applied";
                 $this->JobOfferManagementView($message);
             }else{
                 require_once(VIEWS_PATH."modifyJobOffer.php");
-            }
-            
+            } */
+            require_once(VIEWS_PATH."modifyJobOffer.php");
         }
 
         public function AddJobOffer($idCompany, $idJobPosition,  $datetime, $limitdate,$description, $flyer)
@@ -81,6 +81,7 @@
                 $newJobOff->setJobPosition($jobPosition);
                 $newJobOff->setTimeState(1); //disponible
                 $newJobOff->setFlyer($flyer);
+                $newJobOff->setNotified(0);
                 
                 try {
                     $result = $this->jobOfferDAO->Add($newJobOff);
@@ -245,11 +246,11 @@
             }
         }
 
-        public function notifyEndedJobOffer(){
+        public function notifyEndedJobOffersToStudents(){
             Utils::checkSession();
-            $jobOffList = $this->jobOfferDAO->GetAll();
-            
-            
+
+            $this->jobOfferDAO->notifyEndedJobOffers();
+            $this->viewController->showAdminMenu();
         }
 
     }
