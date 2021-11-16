@@ -245,6 +245,12 @@
             }
         }
 
+        public function notifyEndedJobOffer(){
+            Utils::checkSession();
+            $jobOffList = $this->jobOfferDAO->GetAll();
+            
+            
+        }
 
     }
 

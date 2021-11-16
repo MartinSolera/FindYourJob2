@@ -71,6 +71,7 @@ create table if not exists JobOffer(
 	idJobPosition BIGINT UNSIGNED not null,
 	idCompany BIGINT UNSIGNED not null,
 	flyer LONGBLOB,
+	notified int not null,
 	constraint pk_idJobOffer PRIMARY KEY (id_JobOffer),
 	constraint fk_idJobPosition foreign key (idJobPosition) references JobPosition(id_JobPosition),
 	constraint fk_idCompany foreign key (idCompany) references Company(id_Company) on update CASCADE

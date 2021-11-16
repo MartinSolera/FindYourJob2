@@ -51,6 +51,44 @@ class Mail
             }
 
     }
+
+    public function sendMailEndedJobOffer($student){
+
+        $mail = new PHPMailer(true);
+
+        try {
+                //Server settings
+            // $mail->SMTPDebug =0;                      // Enable verbose debug output
+                $mail->isSMTP();                                            // Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                            // Enable SMTP authentication
+                $mail->Username   = EMAIL;                     // SMTP username
+                $mail->Password   = EMAILPASS ;                               // SMTP password
+                $mail->SMTPSecure = "tls";         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+                $mail->Port       = "587";                                    // TCP port to connect to
+                $mail->CharSet = "UTF-8";
+            
+                //Recipients
+                $mail->setFrom(EMAIL,'FindYourJob');
+                $mail->addAddress($student->getEmail());                                     // Name is optional
+
+                // Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $i=1;
+                $body = "Welcome to Find Your Job " . $student->getFirstName() . " " . $student->getLastName() . " your email is the web side is: " . $student->getEmail();
+          
+                $mail->Body  = $body;
+                $mail->Subject = "REGISTER FIND YOUR JOB";
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                $mail->send();
+
+            } catch (Exception $ex) {
+
+                echo  $ex->getMessage();
+            }
+
+    }
+
 }
 
 ?>

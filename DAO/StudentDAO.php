@@ -95,7 +95,7 @@
                     return $student;
                 }
             }
-    
+
             return null;
         }
 

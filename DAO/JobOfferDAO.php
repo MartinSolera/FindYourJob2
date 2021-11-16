@@ -4,8 +4,10 @@
     use Models\JobOffer as JobOffer;
     use DAO\IJobOfferDAO as IJobOfferDAO;
     use DAO\Connection as Connection;
+    use DAO\StudentDAO as StudentDAO;
     use DAO\JobPositionDAO as JobPositionDAO;
     use Models\User as User;
+    use Models\Mail as Mail;
     use FFI\Exception;
 
     class JobOfferDAO implements IJobOfferDAO {
@@ -16,6 +18,7 @@
         private $userDAO;
         private $companyDAO;
         private $studentList;
+        private $studentDAO;
 
         public function __construct(){
             $this->connection = Connection::GetInstance();
@@ -24,6 +27,7 @@
             $this->userDAO = new UserDAO();
             $this->companyDAO = new CompanyDAO();
             $this->studentList = array();
+            $this->studentDAO = new StudentDAO();
         }
 
         public function Add(JobOffer $jobOffer) {
@@ -404,19 +408,38 @@
             return $associated;
         }
 
-        /* public function getJobOfferXidApplicant($idUser){
-            $jobOfferList = $this->GetAll();
-            $idJobOffer=null;
+        public function notifyEndedJobOffers(){
+            $jobOffList = $this->GetAll();
 
-            foreach($jobOfferList as $jobOff){
-                if($jobOff->getUser() != null){
-                    if($jobOff->getUser()->getId() == $idUser){
-                        $idJobOffer=$jobOff->getIdJobOffer();
+            foreach ($jobOffList as $jobOff){
+                if($jobOff->getLimitDate() < date("Y-m-d")){ //filtro las que corresponden a fechas menores al dia de hoy 
+
+                    if($jobOff != 1){ //checkeo si la finalizacion de la job offer fue notificada
+                        $jobOffPostulations = $this->jobOfferDAO->postulationsListForSpecificJobOffer($jobOff->getId());
+
+                        foreach ($jobOffPostulations as $studentId) {
+
+                            $student = $this->studentDAO->GetByStudentId($studentId);
+                            if($student!==null) {
+                                $this->generateEndedJobOfferEmail($student);
+                            }
+                        }
+                        $jobOff->setNotified(1);
+                        $this->updateJobOffer($jobOff);
                     }
+                    
                 }
+            } 
+        }
+
+        public function generateEndedJobOfferEmail($student){
+
+            if(!empty($email)){
+                
+                $mail = new Mail();
+                $mail->sendMailEndedJobOffer($student); 
             }
-            return $idJobOffer;
-        } */
+        }
 
     }
 

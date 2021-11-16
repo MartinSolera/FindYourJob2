@@ -11,8 +11,8 @@
         private $datetime;
         private $limitDate;
         private $timeState;
-        private $userState;
         private $flyer;
+        private $notified;
 
         public function setIdJobOffer($idJobOffer){
             $this->idJobOffer = $idJobOffer;
@@ -78,25 +78,20 @@
             return $this->timeState;
         }
 
-        public function setUserState($userState){
-            $this->userState = $userState;
-        }
-
-        public function getUserState(){
-            return $this->userState;
-        }
-
-        public function getFlyer()
-        {
+        public function getFlyer(){
             return $this->flyer;
         }
     
-
-        public function setFlyer($flyer)
-        {
+        public function setFlyer($flyer){
             $this->flyer = $flyer;
-    
-            return $this;
+        }
+
+        public function getNotified(){
+            return $this->notified;
+        }
+
+        public function setNotified($notified){
+            $this->notified = $notified;
         }
 
     }
