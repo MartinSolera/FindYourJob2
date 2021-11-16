@@ -180,7 +180,7 @@
 
         public function updateJobOffer(JobOffer $jobOffer)
         {
-            $query = "UPDATE joboffer SET name=:name, description=:description, dateTime=:dateTime, limitDate=:limitDate, timeState=:timeState, idJobPosition=:idJobPosition, idCompany=:idCompany, notified=:notified WHERE  id_JobOffer = :id_JobOffer" ;
+            $query = "UPDATE joboffer SET name=:name, description=:description, dateTime=:dateTime, limitDate=:limitDate, timeState=:timeState, idJobPosition=:idJobPosition, idCompany=:idCompany, flyer=:flyer, notified=:notified WHERE  id_JobOffer = :id_JobOffer" ;
 
             $parameters['description'] = $jobOffer->getDescription();
             $parameters['dateTime'] = $jobOffer->getDateTime();
@@ -188,6 +188,7 @@
             $parameters['timeState'] = $jobOffer->getTimeState();
             $parameters['idJobPosition'] = $jobOffer->getJobPosition()->getId();
             $parameters['idCompany'] = $jobOffer->getCompany()->getIdCompany();
+            $parameters['flyer'] = $jobOffer->getFlyer();
             $parameters['notified'] = $jobOffer->getNotified();
             
             try {
@@ -420,31 +421,46 @@
             foreach ($jobOffList as $jobOff){
                 if($jobOff->getLimitDate() < date("Y-m-d")){ //filtro las que corresponden a fechas menores al dia de hoy 
 
-                    if($jobOff != 1){ //checkeo si la finalizacion de la job offer fue notificada
-                        $jobOffPostulations = $this->jobOfferDAO->postulationsListForSpecificJobOffer($jobOff->getId());
+                    if($jobOff->getNotified() != 1){ //checkeo si la finalizacion de la job offer fue notificada
+                        $jobOffPostulations = $this->postulationsListForSpecificJobOffer($jobOff->getIdJobOffer());
 
                         foreach ($jobOffPostulations as $studentId) {
 
-                            $student = $this->studentDAO->GetByStudentId($studentId);
+                            $student = $this->userDAO->GetUserXid($studentId);
                             if($student!==null) {
-                                $this->generateEndedJobOfferEmail($student);
+                                $this->generateEndedJobOfferEmail($student, $jobOff);
                             }
                         }
-                        $jobOff->setNotified(1);
-                        $this->updateJobOffer($jobOff);
+                        $notified = 1;
+                        $this->updateNotificatedJobOffer($notified, $jobOff->getIdJobOffer());
                     }
                     
                 }
             } 
         }
 
-        public function generateEndedJobOfferEmail($student){
-
+        public function generateEndedJobOfferEmail($student, $jobOffer){
+            $jobP = $this->jobPositionDAO->GetJobPositionXid($jobOffer->getJobPosition()->getId());
             if(!empty($email)){
                 
                 $mail = new Mail();
-                $mail->sendMailEndedJobOffer($student); 
+                $mail->sendMailEndedJobOffer($student, $jobP); 
             }
+        }
+
+        public function updateNotificatedJobOffer($notified, $idJobOffer) {
+
+            $sql = "UPDATE joboffer SET notified = :notified WHERE (id_JobOffer = :idJobOffer);" ;
+            
+            $parameters['notified'] = $notified;
+            $parameters['idJobOffer'] = $idJobOffer;
+            
+            try {
+                $result = $this->connection->ExecuteNonQuery($sql, $parameters);
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+            return $result; //si retorna 1 actualizó si retorna 0 no actualizó
         }
 
     }

@@ -52,7 +52,7 @@ class Mail
 
     }
 
-    public function sendMailEndedJobOffer($student){
+    public function sendMailEndedJobOffer($student, $jobPosition){
 
         $mail = new PHPMailer(true);
 
@@ -75,10 +75,10 @@ class Mail
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
                 $i=1;
-                $body = "Welcome to Find Your Job " . $student->getFirstName() . " " . $student->getLastName() . " your email is the web side is: " . $student->getEmail();
+                $body = "Dear " . $student->getEmail() .", the job offer you applied to with the position of: ". $jobPosition->getDescription() ." has come to an end. <br> Please wait for the company administration to contact you back.";
           
                 $mail->Body  = $body;
-                $mail->Subject = "REGISTER FIND YOUR JOB";
+                $mail->Subject = "Job Offer - ". $jobPosition->getDescription();
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 $mail->send();
 
