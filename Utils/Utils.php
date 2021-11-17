@@ -37,6 +37,16 @@
             return $idUser;
         }
 
+        public static function getUserEmail(){
+            if(isset($_SESSION['student'])){
+                $idUser = $_SESSION['student']->getEmail();
+            }
+            else if(isset($_SESSION['company'])){
+                $idUser = $_SESSION['company']->getEmail();
+            }
+            return $idUser;
+        }
+
         public static function completeSearch(String $haystack, String $needle)
         {
             return $needle != '' && strncmp($haystack, $needle, strlen($needle)) == 0;

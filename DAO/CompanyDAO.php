@@ -254,6 +254,41 @@
             return $exists; // retorna 1 si el telefono ya le corresponde a una company y 0 si no
         }
 
+
+        public function GetCompanyXEmail($email){
+
+            $query = " SELECT * FROM " . $this->nameTable . " WHERE email = (:email)"; 
+    
+            $parameters['email'] = $email;
+    
+            try {
+                $result = $this->connection->Execute($query, $parameters);
+    
+            } catch (Exception $ex) {
+                throw $ex;
+            }
+    
+            $company = null;
+    
+            if(!empty($result)){
+    
+                foreach($result as $value){
+
+                    $company = new Company();
+
+                    $company->setIdCompany($value['id_Company']);
+                    $company->setName($value["name"]);
+                    $company->setYearFoundation($value["yearFoundation"]);
+                    $company->setDescription($value["description"]);
+                    $company->setLogo($value["logo"]);
+                    $company->setEmail($value["email"]);
+                    $company->setPhoneNumber($value["phoneNumber"]);
+                    $company->setCity($this->cityDao->GetCityXid($value['idCity']));
+                }
+            }
+            return $company;
+         }
+
     }
 
 ?>

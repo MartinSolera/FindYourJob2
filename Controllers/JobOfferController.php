@@ -42,6 +42,11 @@
 
         public function addJobOfferByCompanyView($message = "") {
             Utils::checkSession();
+            $emailCompany = Utils::getUserEmail();
+            $exists = $this->companyDAO->checkIfEmailAlreadyExists($emailCompany); // retorna 1 si el email ya le corresponde a una company cargada y 0 si no
+            if($exists==1){
+                $company = $this->companyDAO->GetCompanyXEmail($emailCompany);
+            }
 
             $companyList = $this->companyDAO->GetAll();
             $jobPositionList = $this->jobPositionDAO->GetAll();

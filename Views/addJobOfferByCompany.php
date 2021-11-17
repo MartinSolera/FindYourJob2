@@ -3,11 +3,11 @@
 ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
-     <h2 class="d-flex align-items-center justify-content-center height-50" style="color:#006400" ><b>Welcome Company</b></h2>
-        
           <div class="container">
-          <h4 style="color:#C70039 "><p><?php if(isset($message)){ echo $message; }?></p></h4>
-               
+          <h4 style="color:#006400 "><p><?php if(isset($message)){ echo $message; }?></p></h4>
+
+          <?php
+          if($exists==1){ ?>
                <form action="<?php echo FRONT_ROOT."JobOffer/AddJobOffer";?>" method="post" class="bg-light-alpha p-5">
                     <h3 class="mb-4">Add Job Offer</h3>
                                     <h4 >
@@ -20,14 +20,9 @@
                     <div class="row">
                          <div class="col-lg-3">
                               <div class="form-group">
-                                   <label for="company">Company</label>
-                                   <div class="form-group">
-                                        <select name="idCompany" id="company" required>
-                                             <?php if(isset($companyList)){ foreach($companyList as $company){ ?>
-                                             <option value="<?php echo $company->getIdCompany(); ?>"><?php echo $company->getName();?></option>
-                                             <?php } } ?>
-                                        </select>
-                                   </div>
+                                   <label for="company"><h6>Company:</h6></label>
+                                   <?php echo $company->getName(); ?><br>
+                                   <input type="hidden" name="idCompany" value="<?=$company->getIdCompany()?>" />
 
                                    <label for="jobPosition">Job Position</label>
                                    <div class="form-group">
@@ -59,6 +54,7 @@
                     </div>
                     <button type="submit"  class="btn btn-dark ml-auto d-block">Add</button>
                </form>
+          <?php } ?>
           </div>
      </section>
 </main>

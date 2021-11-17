@@ -5,9 +5,11 @@
     use Models\Student as Student;
     use Controllers\CompanyController as CompanyController;
     use Controllers\UserController as UserController;
+    use Controllers\JobOfferController as JobOfferController;
     use Utils\Utils as Utils;
     use DAO\StudentDAO as StudentDAO;
     use DAO\UserDAO as UserDao;
+    use DAO\CompanyDAO as CompanyDAO;
     use Controllers\ViewController as ViewController;
 
     class HomeController
@@ -18,6 +20,8 @@
         private $userDao;
         private $user;
         private $viewController;
+        private $jobOfferController;
+        private $companyDAO;
 
         public function __construct(){
             $this->studentController = new StudentController();
@@ -26,6 +30,8 @@
             $this->userDao = new UserDao();
             $this->studentDAO = new StudentDAO();
             $this->viewController = new ViewController();
+            $this->jobOfferController = new JobOfferController();
+            $this->companyDAO = new CompanyDAO();
         }
 
         public function Index($message = "")
@@ -79,8 +85,15 @@
                 }elseif ($user->getUserType()->getId()==3)
                 {
                     $_SESSION['company'] = $user;
-                    require_once(VIEWS_PATH . "addJobOfferByCompany.php");
-
+                    $emailCompany = Utils::getUserEmail();
+                    $exists = $this->companyDAO->checkIfEmailAlreadyExists($emailCompany); // retorna 1 si el email ya le corresponde a una company cargada y 0 si no
+                    
+                    if($exists == 1){
+                        $message = "Welcome Company";
+                    }else{
+                        $message = "Welcome! <br><br>your company can't add job offers until an administrator charges the company into the system. If you have any more doubts please contact the UTN Administration";
+                    }
+                    $this->jobOfferController->addJobOfferByCompanyView($message);
                 }
             }
             else{

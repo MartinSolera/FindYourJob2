@@ -6,7 +6,6 @@
         private $studentId; 
         private $dni;
         private $email;
-        private $password;
         private $firstName;
         private $lastName;
         private $phoneNumber;
@@ -15,7 +14,6 @@
         private $fileNumber;
         private $careerId;
         private $active;
-        private $roleId;
         
         
         public function getFirstName()
@@ -128,13 +126,6 @@
             return $this;
         }
 
-        public function getRoleId(){
-            return $this->roleId;
-        }
-
-        public function setRoleId($roleId){
-            $this->roleId = $roleId;
-        }
     }
 ?>
 
