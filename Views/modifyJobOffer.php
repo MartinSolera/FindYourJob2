@@ -9,10 +9,10 @@
                <form action="<?php echo FRONT_ROOT."JobOffer/modifyJobOffer";?>" method="POST" class="bg-light-alpha p-5">
                     <div class="row">
                         <div class="col-lg-3">
-                              <label for="">Company:</label>
+                              <label for=""><h6>Company:</h6></label>
                               <?php echo $jobOffer->getCompany()->getName(); ?><br><br>
 
-                              <label for="">Job Position:</label>
+                              <label for=""><h6>Job Position:</h6></label><br>
                               <?php echo $jobOffer->getJobPosition()->getDescription(); ?><br><br>
 
                               <label for="">Limit Date</label>

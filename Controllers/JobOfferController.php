@@ -65,13 +65,13 @@
         public function JobOfferModifyView($idJobOffer) {
             Utils::checkSession();
 
-            /* $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
-            if($jobOffer->getUserState()==2){ 
+            $jobOffer = $this->jobOfferDAO->GetJobOfferXid($idJobOffer);
+            /* if($jobOffer->getUserState()==2){ 
                 $message = "Cannot update job offer because a student has already applied";
                 $this->JobOfferManagementView($message);
             }else{
                 require_once(VIEWS_PATH."modifyJobOffer.php");
-            } */
+            } */ 
             require_once(VIEWS_PATH."modifyJobOffer.php");
         }
 
