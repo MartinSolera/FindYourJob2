@@ -4,7 +4,6 @@
     class JobOffer {
 
         private $idJobOffer;
-        private $user; 
         private $company;
         private $jobPosition;
         private $description;
@@ -20,14 +19,6 @@
 
         public function getIdJobOffer(){
             return $this->idJobOffer;
-        }
-
-        public function setUser(User $user){
-            $this->user = $user;
-        }
-
-        public function getUser(){
-            return $this->user;
         }
 
         public function setCompany(Company $company){
