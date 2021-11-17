@@ -255,11 +255,11 @@
                     $this->JobOfferManagementView($message);
                 }
                 else{
-                    $message = "cannot decline this student application, try again later";
+                    $message = "cannot decline this student application now, try again later";
                     $this->JobOfferManagementView($message);
                 }
             }else{
-                $message = "cannot decline this student application, try again later";
+                $message = "the selected student has not applied to this job offer";
                 $this->JobOfferManagementView($message);
             }
         }
