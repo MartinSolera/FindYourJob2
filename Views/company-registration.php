@@ -3,7 +3,7 @@
         <form action='<?php echo FRONT_ROOT ?>User/userCompanyRegister' method="POST" class=" d-flex align-items-center justify-content-center height-100">
             <div class="form-group">
                 <div class="form-group">
-                    <label for="" align="center">EMAIL Company</label>
+                    <label for="" align="center">Company email</label>
                     
                     <input type="email" name="email" class="form-control form-control-lg" placeholder="Email required"required><br>
 

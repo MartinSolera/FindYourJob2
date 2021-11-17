@@ -31,6 +31,9 @@
             if(isset($_SESSION['student'])){
                 $idUser = $_SESSION['student']->getId();
             }
+            else if(isset($_SESSION['company'])){
+                $idUser = $_SESSION['company']->getId();
+            }
             return $idUser;
         }
 
