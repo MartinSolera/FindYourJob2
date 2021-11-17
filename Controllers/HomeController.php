@@ -76,6 +76,11 @@
                         $message = "This student is not available";
                         $this->Index($message);
                     }
+                }elseif ($user->getUserType()->getId()==3)
+                {
+                    $_SESSION['company'] = $user;
+                    require_once(VIEWS_PATH . "addJobOfferByCompany.php");
+
                 }
             }
             else{

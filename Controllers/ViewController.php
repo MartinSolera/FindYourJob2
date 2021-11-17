@@ -40,6 +40,12 @@
             require_once(VIEWS_PATH."home-student.php");
         }
 
+        public function showCompanyMenu()
+        {
+            Utils::checkStudentSession();
+            require_once(VIEWS_PATH."addJobOfferByCompany.php");
+        }
+
         public function Home($message = "")
         {
             require_once(VIEWS_PATH."login.php");

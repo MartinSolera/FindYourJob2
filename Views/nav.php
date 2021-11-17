@@ -50,5 +50,15 @@
           <?php } 
           ?>
 
+          <?php if(isset($_SESSION['company'])) { ?>
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>JobOffer/addJobOfferByCompanyView"><i class="fas fa-plus-square"> </i> Add job offer </a>
+          </li>
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>View/LogOut">Logout <i class="fas fa-sign-out-alt"></i></a>
+          </li> 
+          <?php } 
+          ?>
+
      </ul>
 </nav>

@@ -40,6 +40,15 @@
             require_once(VIEWS_PATH."addJobOffer.php");
         }
 
+        public function addJobOfferByCompanyView($message = "") {
+            Utils::checkSession();
+
+            $companyList = $this->companyDAO->GetAll();
+            $jobPositionList = $this->jobPositionDAO->GetAll();
+
+            require_once(VIEWS_PATH."addJobOfferByCompany.php");
+        }
+
         public function JobOfferManagementView($message = "") {
             Utils::checkSession();
 
