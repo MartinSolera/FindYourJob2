@@ -97,7 +97,7 @@ class CompanyController
                     $message = "Company added successfully";
                     $this->ViewAddCompany($message);
                 } else {
-                    $message = "ERROR: Failed in Company Add, reintente"; 
+                    $message = "Couldn't add the company, please try again later"; 
                     $this->ViewAddCompany($message);
                 }
             } catch (Exception $ex) {// si encuentra un error de db

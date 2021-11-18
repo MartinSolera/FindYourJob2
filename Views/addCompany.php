@@ -29,7 +29,7 @@
                                  <input type="email" name="email" placeholder="Email" required>
                                  <label for="">Phone Number</label>
                                  <input type="text" name="phone" placeholder="Phone Number" required>
-                                 <label for="">Photo</label>
+                                 <label for="">Logo</label>
                                  <input type="file" name ="logo" required> 
                               </div>
                          </div>

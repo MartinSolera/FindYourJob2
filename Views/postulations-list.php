@@ -46,12 +46,10 @@
                     ?>  
                     </tbody>
                </table>
+            <form action=<?php echo FRONT_ROOT."JobOffer/createPdfAppliedStudents";?> method="POST">
+                <input type="hidden" name="idJobOffer" value="<?=$idJobOffer?>"/>
+                <button class="btn btn-danger d-block" type="submit" style="color:black; margin-left:65px;"><b>Generate PDF</b></button>
+            </form>
           </div>
      </section>
-     </section>
-      <form action=<?php echo FRONT_ROOT."JobOffer/SendPdfListEstudient";?> method="POST">
-        <input type="hidden" name="idJobOffer" value="<?=$idJobOffer?>"/>
-        <button class="btn btn-danger d-block" type="submit" style="color:black; margin-left:65px;"><b>Generate PDF</b></button>
-      </form>
-     <section> 
 </main>

@@ -272,7 +272,7 @@
             $this->viewController->showAdminMenu();
         }
 
-        public function SendPdfListEstudient($idJobOffer){
+        public function createPdfAppliedStudents($idJobOffer){
 
             Utils::checkSession();
 
