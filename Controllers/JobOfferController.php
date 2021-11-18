@@ -9,6 +9,7 @@
     use DAO\StudentDAO as StudentDAO;
     use Utils\Utils as Utils;
     use Models\JobOffer as JobOffer;
+    use Models\PDF as PDF;
     use Controllers\ViewController as ViewController;
     use Exception;
 
@@ -269,6 +270,42 @@
 
             $this->jobOfferDAO->notifyEndedJobOffers();
             $this->viewController->showAdminMenu();
+        }
+
+        public function SendPdfListEstudient($idJobOffer){
+
+            Utils::checkSession();
+
+            $postulationsList = $this->jobOfferDAO->postulationsListForSpecificJobOffer($idJobOffer);
+
+            $studentsList = $this->studentDAO->getAll();
+
+            $userStudentList=$this->userDAO->GetAllStudentType();
+
+            //Creación del objeto de la clase heredada
+            $pdf = new PDF();
+            $pdf->AliasNbPages();// numeros paginas 
+            $pdf->AddPage();
+            $pdf->SetFont('Times','',12);
+
+            if(!empty($userStudentList)){ 
+                foreach($userStudentList as $userS){ 
+                    foreach($studentsList as $student){ 
+                        foreach($postulationsList as $idStudentP){
+                            if($userS->getId() == $idStudentP){
+                                if($student->getEmail() == $userS->getEmail()){ 
+
+                                    $pdf->Cell(40,10,$student->getFileNumber(),1,0,'C',0);
+                                    $pdf->Cell(40,10,$student->getFirstName(),1,0,'C',0);
+                                    $pdf->Cell(40,10,$student->getLastName(),1,0,'C',0);
+                                    $pdf->Cell(70,10,$student->getEmail() ,1,1,'C',0); 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            $pdf->Output();
         }
 
     }
