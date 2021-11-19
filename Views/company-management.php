@@ -29,7 +29,7 @@
                    <?php if(!empty($companies)){ 
                   foreach($companies as $company){ ?>
                       <tr>
-                        <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="30"></td>
+                        <td> <img src="<?php if(!empty($company->getLogo())) echo IMG_PATH.$company->getLogo();?>" alt="" width="60" height="40"></td>
                         <td><?php echo $company->getName(); ?></td>
                         <td><?php echo $company->getYearFoundation(); ?></td>
                         <td><?php echo $company->getCity()->getName(); ?></td>

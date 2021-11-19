@@ -16,7 +16,7 @@
                     ?>        
                     <br><?php if(!empty($jobOffer->getFlyer())){?>
                     <br>
-                        <img src="<?php echo IMG_PATH.$jobOffer->getFlyer();?>" width="400" height="250"><br>
+                        <img src="<?php echo IMG_PATH.$jobOffer->getFlyer();?>" width="550" height="250"><br>
                     <br><?php }?>
                     
                     <div id="outer">

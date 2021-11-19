@@ -211,7 +211,7 @@
             $alreadyApp=$this->jobOfferDAO->checkAlreadyAppliedToSpecificJobOffer($idUser, $idJobOffer);
 
             if($alreadyApp == true){
-                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idUser, $idJobOffer);
+                $result = $this->jobOfferDAO->cancelAplicationJobOffer($idJobOffer, $idUser);
 
                 if($result == 1){
                     $message = "cancelled your application successfully";
@@ -220,7 +220,7 @@
                     $message = "could not cancel your application, try again later";
                 }
             }else{
-                $message = "you haven't already applied to a job offer";
+                $message = "you haven't already applied to this job offer";
             }
             $this->jobOfferList($message);
         }

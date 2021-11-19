@@ -9,12 +9,9 @@
                <form action="<?php echo FRONT_ROOT."JobOffer/modifyJobOffer";?>" method="POST" class="bg-light-alpha p-5">
                     <div class="row">
                         <div class="col-lg-3">
-                        <br><?php if(!empty($jobOffer->getFlyer())){?>
-                    <br>
-                        <img src="<?php echo IMG_PATH.$jobOffer->getFlyer();?>" width="120" height="60"><br>
-                    <?php }?>
+                        
                               <label for=""><h6>Company:</h6></label>
-                              <?php echo $jobOffer->getCompany()->getName(); ?><br><br>
+                              <?php echo $jobOffer->getCompany()->getName(); ?><br>
 
                               <label for=""><h6>Job Position:</h6></label><br>
                               <?php echo $jobOffer->getJobPosition()->getDescription(); ?><br><br>
@@ -23,7 +20,13 @@
                               <input type="date" name="limitDate" value="<?php echo $jobOffer->getLimitDate(); ?>" required>
 
                               <label for="">Description</label>
-                              <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="100" required>
+                              <input type="text" name="description" value = "<?php  echo $jobOffer->getDescription();?>" minlength="10" maxlength="100" required> <br><br>
+                         
+                              <?php if(!empty($jobOffer->getFlyer())){?>
+                    
+                                   <img src="<?php echo IMG_PATH.$jobOffer->getFlyer();?>" width="550" height="250"><br>
+                              <?php }?>
+     
                          </div>
                     </div>
                     <button type="submit" name = "idJobOffer" value ="<?php echo $jobOffer->getIdJobOffer();?>" class="btn btn-dark ml-auto d-block">Modify</button>
