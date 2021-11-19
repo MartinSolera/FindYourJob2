@@ -9,6 +9,7 @@
                <h2 class="mb-4">Job Offer Management</h2>
                <table class="table bg-light-alpha">
                     <thead>
+                    <th>Flyer</th>  
                     <th>Company</th>
                     <th>Job position</th>
                     <th>Description</th>
@@ -23,6 +24,12 @@
                    <?php if(!empty($jobOfferList)){ 
                   foreach($jobOfferList as $jobOff){ ?>
                     <tr>
+                         <td>
+                              <?php if(!empty($jobOff->getFlyer())){?>
+                              
+                                   <img src="<?php echo IMG_PATH.$jobOff->getFlyer();?>" width="60" height="30"><br>
+                              <?php }?>
+                         </td>
                          <td><?php echo $jobOff->getCompany()->getName(); ?></td>
                          <td><?php echo $jobOff->getJobPosition()->getDescription(); ?></td>
                          <td><?php echo $jobOff->getDescription(); ?></td>
@@ -32,6 +39,7 @@
                                    } else
                                    echo 'inactive';?>
                          </td>
+
                          <td>
                               <form action=<?php echo FRONT_ROOT."JobOffer/JobOfferModifyView";?> method="POST">
                                    <input type="hidden" name="idJobOffer" value="<?=$jobOff->getIdJobOffer()?>">
