@@ -112,7 +112,7 @@
             return $studentList;
         }
         
-        public function getPostulationList(){ //devuelve cada postulacion con sus respectivos id's(el de student y el de la job offer)
+        public function getPostulationList(){ //devuelve cada id de postulacion con sus respectivos id's(el de student y el de la job offer)
 
             $postulationsList = array();
 
@@ -264,12 +264,6 @@
                     $jobOffer->setDateTime($value['dateTime']);
                     $jobOffer->setLimitDate($value['limitDate']);
                     $jobOffer->setTimeState($value['timeState']);
-                    /* 
-                    $user = $this->userDAO->GetUserXid($value['idUser']);
-                    if($user!=null){
-                        $jobOffer->setUser($this->userDAO->GetUserXid($value['idUser']));
-                    }
-                    */
                     $jobOffer->setCompany($this->companyDAO->GetCompanyXid($value['idCompany']));
                     $jobOffer->setJobPosition($this->jobPositionDAO->GetJobPositionXid($value['idJobPosition']));
                     $jobOffer->setFlyer($value['flyer']);
@@ -279,7 +273,6 @@
             return $jobOffer;
         }
 
-        /* public function getPostulationById */
 
         public function modifyJobOffer($limitDate, $description, $idJobOffer) {
 
@@ -336,22 +329,6 @@
             }
         }
 
-        /* public function checkAlreadyAppliedToSpecificJobOffer($idUser, $idJobOffer){
-
-            $query = "SELECT idUserXjoboffer FROM user_x_joboffer WHERE idUser = :idUser AND idJobOffer = :idJobOffer " ;
-
-            $parameters['idUser'] = $idUser;
-            $parameters['idJobOffer'] = $idJobOffer;
-
-            try {
-                $result = $this->connection->Execute($query);
-    
-            } catch (Exception $ex) {
-                throw $ex;
-            }
-            return $result; // retorna 1 si existe el registro o 0 si no existe
-        }
-        */
 
         public function checkAlreadyAppliedToSpecificJobOffer($idUser, $idJobOffer){
 
@@ -380,36 +357,6 @@
             return $applied;
         }
 
-        /* public function checkAppliedToSpecificJobOffer($idUser, $idJobOffer){
-            $applied=0;
-            $jobOfferList = $this->GetAll();
-
-            foreach ($jobOfferList as $jobOff) {
-                if($jobOff->getUser()!=null){
-                    if (($jobOff->getUser()->getId() == $idUser) && ($jobOff->getIdJobOffer() == $idJobOffer)) {
-                        $applied=1;
-                    }
-                }
-            }
-            return $applied; // retorna 1 si aplicó a la job offer especificada y 0 si no
-        } */
-
-        /* public function cancelAplicationJobOffer($idJobOffer){
-            $query = "UPDATE joboffer SET idUser=:idUser WHERE (id_JobOffer = :idJobOffer);" ;
-
-            //llamar funcion para eliminar registro de la tabla user_x_joboffer
-            $parameters['idUser'] = null;
-            $parameters['idJobOffer'] = $idJobOffer;
-            
-            try {
-                $this->connection = Connection::getInstance();
-                return $this->connection->executeNonQuery($query, $parameters);
-            } catch (Exception $exception) {
-                throw $exception;
-            }
-        } */
-
-        
 
         public function checkIfCompanyIsAsociated($idCompany){
             $associated=false;
