@@ -1,0 +1,42 @@
+[
+    {
+        "active": 1,
+        "id_Career": 1,
+        "description": "Naval engineering"
+    },
+    {
+        "active": 0,
+        "id_Career": 2,
+        "description": "Fishing engineering"
+    },
+    {
+        "active": 1,
+        "id_Career": 3,
+        "description": "University technician in programming"
+    },
+    {
+        "active": 1,
+        "id_Career": 4,
+        "description": "University technician in computer systems"
+    },
+    {
+        "active": 1,
+        "id_Career": 5,
+        "description": "University technician in textile production"
+    },
+    {
+        "active": 1,
+        "id_Career": 6,
+        "description": "University technician in administration"
+    },
+    {
+        "active": 1,
+        "id_Career": 7,
+        "description": "Bachelor in environmental management"
+    },
+    {
+        "active": 1,
+        "id_Career": 8,
+        "description": "University technician in environmental procedures and technologies"
+    }
+  ]

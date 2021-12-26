@@ -1,0 +1,117 @@
+[
+  {
+    "jobPositionId": 1,
+    "careerId": 1,
+    "description": "Jr naval engineer"
+  },
+  {
+    "jobPositionId": 2,
+    "careerId": 1,
+    "description": "Ssr naval engineer"
+  },
+  {
+    "jobPositionId": 3,
+    "careerId": 1,
+    "description": "Sr naval engineer"
+  },
+  {
+    "jobPositionId": 4,
+    "careerId": 2,
+    "description": "Jr fisheries engineer"
+  },
+  {
+    "jobPositionId": 5,
+    "careerId": 2,
+    "description": "Ssr fisheries engineer"
+  },
+  {
+    "jobPositionId": 6,
+    "careerId": 2,
+    "description": "Sr fisheries engineer"
+  },
+  {
+    "jobPositionId": 7,
+    "careerId": 3,
+    "description": "Java Jr developer"
+  },
+  {
+    "jobPositionId": 8,
+    "careerId": 3,
+    "description": "PHP Jr developer"
+  },
+  {
+    "jobPositionId": 9,
+    "careerId": 3,
+    "description": "Ssr developer"
+  },
+  {
+    "jobPositionId": 10,
+    "careerId": 4,
+    "description": "Full Stack developer"
+  },
+  {
+    "jobPositionId": 11,
+    "careerId": 4,
+    "description": "Sr developer"
+  },
+  {
+    "jobPositionId": 12,
+    "careerId": 4,
+    "description": "Project manager"
+  },
+  {
+    "jobPositionId": 13,
+    "careerId": 4,
+    "description": "Scrum Master"
+  },
+  {
+    "jobPositionId": 14,
+    "careerId": 5,
+    "description": "Jr textile operator"
+  },
+  {
+    "jobPositionId": 15,
+    "careerId": 5,
+    "description": "Textile production assistant manager"
+  },
+  {
+    "jobPositionId": 16,
+    "careerId": 5,
+    "description": "Textile design assistant"
+  },
+  {
+    "jobPositionId": 17,
+    "careerId": 5,
+    "description": "Textile production supervisor"
+  },
+  {
+    "jobPositionId": 18,
+    "careerId": 6,
+    "description": "Head of administration"
+  },
+  {
+    "jobPositionId": 19,
+    "careerId": 6,
+    "description": "Management analyst"
+  },
+  {
+    "jobPositionId": 20,
+    "careerId": 6,
+    "description": "Administration intern"
+  },
+  {
+    "jobPositionId": 21,
+    "careerId": 7,
+    "description": "Environmental management specialist"
+  },
+  {
+    "jobPositionId": 22,
+    "careerId": 7,
+    "description": "Environmental management coordinator"
+  },
+  {
+    "jobPositionId": 23,
+    "careerId": 8,
+    "description": "Received technician"
+  }
+]

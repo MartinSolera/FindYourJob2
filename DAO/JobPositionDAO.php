@@ -14,6 +14,7 @@
         private $tableName;
         private $connection;
         private $careerDAO;
+        private $fileName;
 
         public function __construct(){
             $this->connection = Connection::GetInstance();
@@ -21,6 +22,7 @@
             $this->companyDAO = new CompanyDAO();
             $this->careerDAO = new CareerDAO();
             $this->jobPositionList = array();
+            $this->fileName = ROOT ."Data/job-positions.json";
         }
 
         public function Add(JobPosition $jobPosition) {
@@ -80,8 +82,32 @@
             return $exists;
         }
 
+        private function RetrieveData() //para json
+        {
+            $this->jobPositionList = array();
+    
+            if(file_exists($this->fileName))
+            {
+                $jsonContent = file_get_contents($this->fileName);
+    
+                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+    
+                foreach($arrayToDecode as $value)
+                {
+                    $jobP = new JobPosition();
+
+                    $jobP->setId($value['jobPositionId']);
+                    $jobP->setDescription($value['description']);
+                    $jobP->setCareer($this->careerDAO->GetCareerXid($value['careerId']));
+                    
+                    array_push($this->jobPositionList, $jobP);
+                }
+            }
+        }
+
         public function updateJobPositionDB(){
-            $this->getJobPositionsFromAPI();
+            //$this->getJobPositionsFromAPI();
+            $this->RetrieveData();
     
             foreach ($this->jobPositionList as $jobP) {
                

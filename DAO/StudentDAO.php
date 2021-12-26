@@ -10,7 +10,7 @@
     {
         private $studentList = array();
         private $connection;
-
+        private $fileName = ROOT ."Data/students.json";
 
         public function Delete($idToDelete){
 
@@ -45,7 +45,6 @@
             }
                      
         }
-
         
         public function GetAll()
         {
@@ -54,7 +53,37 @@
             return $this->studentList;
         }
 
-        private function RetrieveData()
+        private function RetrieveData() //para json
+        {
+            $this->studentList = array();
+    
+            if(file_exists($this->fileName))
+            {
+                $jsonContent = file_get_contents($this->fileName);
+    
+                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+    
+                foreach($arrayToDecode as $valuesArray)
+                {
+                    $student = new Student();
+
+                    $student->setStudentId($valuesArray["studentId"]);
+                    $student->setFirstName($valuesArray["firstName"]);
+                    $student->setLastName($valuesArray["lastName"]);
+                    $student->setDni($valuesArray["dni"]);
+                    $student->setFileNumber($valuesArray["fileNumber"]);
+                    $student->setEmail($valuesArray["email"]);
+                    $student->setBirthDate($valuesArray["birthDate"]);
+                    $student->setGender($valuesArray["gender"]);
+                    $student->setPhoneNumber($valuesArray["phoneNumber"]);
+                    $student->setActive($valuesArray["active"]);
+
+                    array_push($this->studentList, $student);  
+                }
+            }
+        }
+
+        private function RetrieveData2()
         {
             $this->studentList = array();
 

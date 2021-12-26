@@ -11,12 +11,14 @@
         private $careerList;
         private $nameTable;
         private $connection;
+        private $fileName; 
 
         public function __construct()
         {
             $this->connection = Connection::GetInstance();
             $careerList = array();
             $nameTable = "career";
+            $this->fileName = ROOT ."Data/careers.json";
         }
 
         public function GetAll() { //from DB
@@ -56,6 +58,28 @@
             return $exists;
         }
 
+        private function RetrieveData() //para json
+        {
+            $this->careerList = array();
+    
+            if(file_exists($this->fileName))
+            {
+                $jsonContent = file_get_contents($this->fileName);
+    
+                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+    
+                foreach($arrayToDecode as $valuesArray)
+                {
+                    $career = new Career();
+
+                    $career->setActive($valuesArray['active']);
+                    $career->setCareerId($valuesArray['id_Career']);
+                    $career->setDescription($valuesArray['description']);
+
+                    array_push($this->careerList, $career);
+                }
+            }
+        }
 
         public function getCareersFromAPI(){
 
@@ -96,7 +120,8 @@
         }
 
         public function updateCareerDB(){
-            $this->getCareersFromAPI();
+            //$this->getCareersFromAPI();
+            $this->RetrieveData();
             
             foreach ($this->careerList as $career) {
                 

@@ -1,0 +1,8 @@
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('Naval engineering', '1');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('Fishing engineering', '0');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('University technician in programming', '1');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('University technician in computer systems', '1');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('University technician in textile production', '1');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('University technician in administration', '1');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('Bachelor in environmental management', '0');
+INSERT INTO `letswork`.`careers` (`description`, `active`) VALUES ('University technician in environmental procedures and technologies', '1');
